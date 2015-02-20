@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:title="Folder name"
+        android:defaultValue="FRCScouting"
+        android:summary="Name of the folder that should be used for storing data"
+        android:key="folder_name"
+        android:icon="@drawable/ic_folder"
+        android:textColor="@color/textColor" />
+
+    <CheckBoxPreference
+        android:title="@string/use_bluetooth"
+        android:defaultValue="false"
+        android:summary="@string/use_bluetooth_summary"
+        android:icon="@drawable/ic_bluetooth"
+        android:key="use_bluetooth"/>
+
+    <SwitchPreference
+        android:title="@string/bluetooth_receiver"
+        android:defaultValue="false"
+        android:key="is_receiver"
+        android:summaryOff="@string/bluetooth_sending_summary"
+        android:summaryOn="@string/bluetooth_receiving_summary"
+        android:dependency="use_bluetooth" />
+
+</PreferenceScreen>

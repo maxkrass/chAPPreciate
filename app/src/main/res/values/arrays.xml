@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="drive_type">
+		<item>Other</item>
+		<item>Tank</item>
+		<item>Mecanum</item>
+		<item>Swerve</item>
+		<item>Holonomical</item>
+	</string-array>
+	<string-array name="highest_possible_stack">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+	</string-array>
+	<string-array name="num_cims">
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+		<item>8</item>
+	</string-array>
+	<string-array name="num_wheels">
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7+</item>
+	</string-array>
+	<string-array name="wheel_type">
+		<item>Other</item>
+		<item>Tread</item>
+		<item>Solid</item>
+		<item>Air</item>
+		<item>Mecanum</item>
+	</string-array>
+	<string-array name="containers">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+	<string-array name="totes">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7+</item>
+	</string-array>
+
+</resources>

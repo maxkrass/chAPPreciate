@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	<color name="accent">#fff44336</color>
+	<color name="accentDark">#ffD32F2F</color>
+	<color name="black_semi_transparent">#B2000000</color>
+	<color name="half_black">#808080</color>
+	<color name="white">#fafafa</color>
+	<color name="white_pressed">#f1f1f1</color>
+	<color name="primary">#ff3f51b5</color>
+	<color name="primaryDark">#ff303f9f</color>
+	<color name="grey800">#ff424242</color>
+	<color name="textColorPrimary">#ffffffff</color>
+	<color name="textColor">#ff000000</color>
+
+	<color name="cardview_dark_background">#ff202020</color>
+	<color name="cardview_light_background">#fffafafa</color>
+	<color name="cardview_shadow_end_color">#03000000</color>
+	<color name="cardview_shadow_start_color">#37000000</color>
+
+	<color name="sb__action_bg_color">#ffffff</color>
+	<color name="sb__action_text_color">#ffffffff</color>
+	<color name="sb__background">#ff323232</color>
+	<color name="sb__text_color">#ffffffff</color>
+</resources>
