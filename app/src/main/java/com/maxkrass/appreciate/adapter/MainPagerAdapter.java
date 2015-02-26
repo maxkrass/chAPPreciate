@@ -14,15 +14,17 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
 	public MainPagerAdapter(FragmentManager fm) {
 		super(fm);
+		pitScouts = new PitScoutFragment();
+		matchScouts = new MatchScoutFragment();
 	}
 
 	@Override
 	public Fragment getItem(int position) {
 		switch (position) {
 			case 0:
-				return pitScouts = new PitScoutFragment();
+				return pitScouts;
 			case 1:
-				return matchScouts = new MatchScoutFragment();
+				return matchScouts;
 			default:
 				return null;
 		}

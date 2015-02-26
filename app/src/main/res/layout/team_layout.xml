@@ -32,28 +32,6 @@
 				android:gravity="center_vertical"
 				android:text="@string/auto_card_title"/>
 
-			<FrameLayout
-				android:layout_height="48.0dip"
-				android:layout_width="fill_parent">
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
-					android:text="@string/team_name_label"
-					android:layout_gravity="center_vertical"/>
-
-				<EditText
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
-					android:id="@+id/team_name"
-					android:layout_gravity="center|end"
-					android:inputType="text"
-					android:singleLine="true"
-					android:ems="8"
-					android:textColor="@color/textColor"/>
-
-			</FrameLayout>
-
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -67,7 +45,7 @@
 				<TextView
 					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
-					android:text="Auto Points"
+					android:text="@string/auto_points"
 					android:layout_gravity="center_vertical"/>
 
 				<EditText
@@ -78,8 +56,23 @@
 					android:inputType="number"
 					android:maxLength="4"
 					android:ems="4"
-					android:textColor="@color/textColor"/>
+					android:textColor="@color/textColor"
+					android:text="@string/zero"/>
 
+			</FrameLayout>
+
+			<FrameLayout
+				android:layout_width="fill_parent"
+				android:layout_height="48dp">
+
+				<EditText
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:id="@+id/auto_comment_field"
+					android:layout_gravity="center"
+					android:textColor="@color/textColor"
+					android:inputType="textMultiLine"
+					android:hint="@string/auto_comment"/>
 			</FrameLayout>
 
 		</LinearLayout>
@@ -117,7 +110,7 @@
 					android:layout_height="wrap_content"
 					android:clickable="false"
 					android:focusable="false"
-					android:text="Add another stack..."
+					android:text="@string/add_stack"
 					android:gravity="center_vertical"
 					android:layout_gravity="center_vertical"/>
 
@@ -131,12 +124,12 @@
 
 			<FrameLayout
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
+				android:layout_height="48dp">
 
 				<TextView
 					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
-					android:text="Total Points"
+					android:text="@string/total_points"
 					android:layout_gravity="center_vertical"/>
 
 				<EditText
@@ -148,8 +141,24 @@
 					android:ems="4"
 					android:textColor="@color/textColor"
 					android:inputType="numberSigned|numberDecimal"
-					android:maxLength="5"/>
+					android:maxLength="5"
+					android:text="@string/zero"/>
 
+			</FrameLayout>
+
+			<FrameLayout
+				android:layout_width="fill_parent"
+				android:layout_height="48dp">
+
+				<EditText
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:inputType="textMultiLine"
+					android:ems="10"
+					android:id="@+id/tele_comment_field"
+					android:layout_gravity="center"
+					android:textColor="@color/textColor"
+					android:hint="@string/tele_comment"/>
 			</FrameLayout>
 
 		</LinearLayout>

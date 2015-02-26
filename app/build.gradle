@@ -29,4 +29,5 @@ dependencies {
     compile 'com.github.manuelpeinado.fadingactionbar:fadingactionbar:3.1.2'
     compile 'com.getbase:floatingactionbutton:1.7.0'
     compile 'com.nispok:snackbar:2.7.5'
+    compile 'com.akexorcist:bluetoothspp:1.0.0'
 }

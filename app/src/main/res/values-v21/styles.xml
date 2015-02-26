@@ -1,34 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-	    <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:textColor">@color/textColor</item>
-        <item name="colorPrimary">@color/primary</item>
-        <item name="android:colorPrimaryDark">@color/primaryDark</item>
-        <item name="android:colorAccent">@color/accent</item>
-        <item name="android:statusBarColor">@color/primaryDark</item>
-    </style>
-	<style name="Toolbar.Style" parent="Base.ThemeOverlay.AppCompat.Dark">
-		<item name="android:textColor">@color/textColorPrimary</item>
+
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:textColorPrimary">@color/textColorPrimary</item>
-		<item name="android:actionOverflowButtonStyle">@style/OverFlow</item>
-	</style>
-	<style name="OverFlow" parent="Base.Widget.AppCompat.ActionButton.Overflow">
-		<item name="android:src">@drawable/ic_overflow</item>
-	</style>
-	<style name="Toolbar.Spinner" parent="Toolbar.Style">
-		<item name="android:textSize">20sp</item>
-		<item name="android:fontFamily">sans-serif-medium</item>
-		<item name="android:actionOverflowButtonStyle">@android:color/white</item>
-	</style>
-	<style name="Snackbar.Text.Action" parent="@style/Snackbar.Text">
-        <item name="android:textColor">@color/sb__action_text_color</item>
-        <item name="android:background">@drawable/sb__btn_bg</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-	<style name="menu_labels_style">
-		<item name="android:background">@drawable/fab_label_background</item>
-		<item name="android:textColor">@color/white</item>
+		<item name="android:textColor">@color/textColor</item>
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primaryDark</item>
+		<item name="colorAccent">@color/accent</item>
+		<item name="android:statusBarColor">@color/primaryDark</item>
 	</style>
 </resources>

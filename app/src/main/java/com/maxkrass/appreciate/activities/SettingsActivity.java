@@ -50,11 +50,11 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("use_bluetooth") || key.equals("is_receiver")) {
-	        try {
-		        MainActivity.singleton.setupBluetooth();
+	        /*try {
+		        //MainActivity.singleton.setupBluetooth();
 	        } catch (IOException e) {
 		        e.printStackTrace();
-	        }
+	        }*/
         }
     }
 

@@ -55,6 +55,10 @@ public class CheckBoxWidget extends FrameLayout
         titleView.setText(s);
     }
 
+	public void setEnabled(boolean enabled) {
+		checkBox.setEnabled(enabled);
+	}
+
     public String toString()
     {
         return String.valueOf(isChecked()) + "";

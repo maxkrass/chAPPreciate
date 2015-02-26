@@ -48,7 +48,7 @@ public class AlliancePagerAdapter extends FragmentStatePagerAdapter {
 		return "Team " + teamNumbers[position];
 	}
 
-	public static void saveAlliance() {
+	/*public static void saveAlliance() {
 		MainActivity.singleton.setLastSavedTeam(teamNumbers[0] + " - " + teamNumbers[1] + " - " + teamNumbers[2]);
 		MainActivity.singleton.writeDataToFile(MainActivity.singleton.getLastSavedTeam(), true, team1.getDataString(), team2.getDataString(), team3.getDataString());
 		//team1.clearFields();
@@ -86,5 +86,5 @@ public class AlliancePagerAdapter extends FragmentStatePagerAdapter {
 							public void onShown(Snackbar snackbar) {
 							}
 						}));
-	}
+	}*/
 }

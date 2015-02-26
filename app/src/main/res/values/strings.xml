@@ -50,5 +50,35 @@
 	<string name="pit_scouts_list_title">Pit Scouts</string>
 	<string name="game_scouts_lis_title">Game Scouts</string>
 	<string name="team_name_label">Team Name</string>
+	<string name="none_found">None found</string>
+	<string name="select_device">Select device</string>
+	<string name="none_paired">None paired</string>
+	<string name="scanning">Scanning</string>
+	<string name="search">Analyze Alliance</string>
+	<string name="scan">Scan</string>
+	<string name="discoverable">Discoverable</string>
+	<string name="team_1">Team 1</string>
+	<string name="team_2">Team 2</string>
+	<string name="team_3">Team 3</string>
+	<string name="auto_zone">Auto Zone:</string>
+	<string name="stacked_totes">Stacked Totes:</string>
+	<string name="worked">Worked:</string>
+	<string name="auto_points">Auto Points:</string>
+	<string name="avg_number_stacks">Ø # of Stacks:</string>
+	<string name="avg_number_totes_per_stack">Ø # totes/stack:</string>
+	<string name="avg_number_containers_per_stack">Ø Containers:</string>
+	<string name="avg_number_noodles_per_stack">Ø Noodles:</string>
+	<string name="functional">Functional:</string>
+	<string name="coopertition">Coopertition:</string>
+	<string name="total_points">Totel Points:</string>
+	<string name="new_match_scout">New Match Scout</string>
+	<string name="tele_comment">Comment on Teleoperated</string>
+	<string name="zero">0</string>
+	<string name="add_stack">Add another stack…</string>
+	<string name="auto_comment">Comment on Autonomous</string>
+	<string name="auto_zone_match_label">Drives to Auto Zone</string>
+	<string name="program_auto_worked">Containers into Auto Zone</string>
+	<string name="coopertition_tele_match">Contributes to the coopertition stack</string>
+	<string name="functional_tele_match">Works all the way through</string>
 
 </resources>

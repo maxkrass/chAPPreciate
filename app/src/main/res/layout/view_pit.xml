@@ -7,7 +7,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<com.maxkrass.appreciate.views.ObservableScrollView
+	<!--<com.maxkrass.appreciate.views.ObservableScrollView
 		android:layout_height="wrap_content"
 		android:layout_width="fill_parent"
 		android:focusableInTouchMode="true"
@@ -27,15 +27,35 @@
 				android:scaleType="centerCrop"
 				android:src="@android:drawable/ic_menu_report_image"
 				android:background="@color/primary"
-				android:id="@+id/pit_scout_image"/>
+				android:id="@+id/pit_scout_image"/>-->
+
+	<android.support.v7.widget.Toolbar
+		android:layout_height="@dimen/abc_action_bar_default_height_material"
+		android:layout_width="match_parent"
+		app:title="View Pit Scout"
+		android:id="@+id/view_pit_toolbar"
+		android:theme="@style/Toolbar.Style"
+		android:background="@drawable/ab_background"
+		app:contentInsetStart="0dp"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/view_pit_toolbar">
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="@android:color/white">
 
 			<LinearLayout
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:orientation="vertical"
 				android:paddingEnd="16dp"
-				android:background="@android:color/white"
-				android:paddingStart="16dp">
+				android:paddingStart="16dp"
+				>
 
 				<TextView
 					android:layout_width="wrap_content"
@@ -53,21 +73,14 @@
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/teamLabel"
-						android:alpha="0.87"
 						android:text="@string/team_number_label"
 						android:layout_gravity="center_vertical"/>
 
-					<EditText
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/teamNumberEditText"
-						android:alpha="0.87"
-						android:layout_gravity="center|end"
-						android:inputType="number"
-						android:maxLength="4"
-						android:ems="4"
-						android:textColor="@color/textColor"/>
+						android:id="@+id/team_number_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
 
@@ -81,17 +94,13 @@
 						android:text="@string/team_name_label"
 						android:layout_gravity="center_vertical"/>
 
-					<EditText
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/team_name_edit_text"
-						android:layout_gravity="center|end"
-						android:inputType="text"
-						android:ems="8"
-						android:textColor="@color/textColor"/>
+						android:id="@+id/team_name_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
-
 
 				<FrameLayout
 					android:layout_height="48.0dip"
@@ -100,18 +109,14 @@
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/driveLabel"
-						android:alpha="0.87"
 						android:text="@string/drive_label"
 						android:layout_gravity="center_vertical"/>
 
-					<Spinner
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/driveTypeSpinner"
-						android:alpha="0.87"
-						android:layout_gravity="center|end"
-						android:minWidth="100.0dip"/>
+						android:id="@+id/drive_type_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
 
@@ -122,18 +127,15 @@
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/wheelLabel"
 						android:alpha="0.87"
 						android:text="@string/wheel_label"
 						android:layout_gravity="center_vertical"/>
 
-					<Spinner
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/wheelTypeSpinner"
-						android:alpha="0.87"
-						android:layout_gravity="center|end"
-						android:minWidth="100.0dip"/>
+						android:id="@+id/wheel_type_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
 
@@ -144,21 +146,16 @@
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/numWheelLabel"
-						android:alpha="0.87"
 						android:text="@string/num_wheel_label"
 						android:layout_gravity="center_vertical"/>
 
-					<Spinner
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/wheelNumSpinner"
-						android:alpha="0.87"
-						android:layout_gravity="center|end"
-						android:minWidth="100.0dip"/>
+						android:id="@+id/wheel_num_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
-
 
 				<FrameLayout
 					android:layout_height="48.0dip"
@@ -167,21 +164,16 @@
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/numCIMsLabel"
-						android:alpha="0.87"
 						android:text="@string/num_cims_label"
 						android:layout_gravity="center_vertical"/>
 
-					<Spinner
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/cimNumSpinner"
-						android:alpha="0.87"
-						android:layout_gravity="center|end"
-						android:minWidth="100.0dip"/>
+						android:id="@+id/cim_num_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
-
 
 				<FrameLayout
 					android:layout_height="48.0dip"
@@ -190,27 +182,34 @@
 					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:alpha="0.87"
 						android:text="@string/max_speed_label"
 						android:layout_gravity="center_vertical"/>
 
-					<Spinner
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/maxSpeedSpinner"
-						android:layout_gravity="center|end"
-						android:entries="@array/speeds"/>
+						android:id="@+id/max_speed_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
 
-				<EditText
+				<FrameLayout
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:hint="Comment on the robot"
-					android:singleLine="false"
-					android:id="@+id/main_comment"
-					android:textColor="@color/textColor"
-					android:layout_gravity="center"/>
+					android:layout_height="48dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Comment on the robot"
+						android:layout_gravity="center|start"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/comment_main_field"
+						android:layout_gravity="center|end"/>
+
+				</FrameLayout>
 
 			</LinearLayout>
 
@@ -242,7 +241,6 @@
 					android:id="@+id/tele_list"
 					android:orientation="vertical"/>
 
-
 				<FrameLayout
 					android:layout_height="48.0dip"
 					android:layout_width="fill_parent">
@@ -254,22 +252,31 @@
 						android:text="@string/highest_stack_tele_label"
 						android:layout_gravity="center_vertical"/>
 
-					<Spinner
+					<TextView
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:id="@+id/highestStackSpinner"
-						android:alpha="0.87"
-						android:layout_gravity="center|end"
-						android:minWidth="100.0dip"/>
+						android:id="@+id/highest_possible_stack_field"
+						android:layout_gravity="center|end"/>
 
 				</FrameLayout>
 
-				<EditText
+				<FrameLayout
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:hint="Comment on teleoperated"
-					android:singleLine="false"
-					android:id="@+id/tele_comment"/>
+					android:layout_height="48dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center|start"
+						android:text="Comment on Teleoperated"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center|end"
+						android:id="@+id/comment_tele_field"/>
+
+				</FrameLayout>
 
 			</LinearLayout>
 
@@ -301,12 +308,23 @@
 					android:id="@+id/auto_list"
 					android:orientation="vertical"/>
 
-				<EditText
+				<FrameLayout
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:hint="Comment on Autonomous"
-					android:singleLine="false"
-					android:id="@+id/auto_comment"/>
+					android:layout_height="48dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center|start"
+						android:text="Comment on Autonomous"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/comment_auto_field"
+						android:layout_gravity="center|end"/>
+
+				</FrameLayout>
 
 			</LinearLayout>
 
@@ -338,26 +356,30 @@
 					android:id="@+id/abilities_list"
 					android:orientation="vertical"/>
 
-				<EditText
+				<FrameLayout
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:hint="Comment on the abilities"
-					android:singleLine="false"
-					android:id="@+id/abilities_comment"/>
+					android:layout_height="48dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Comment on the robot's abilities"
+						android:layout_gravity="center|start"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center|end"
+						android:id="@+id/comment_abilities_field"/>
+
+				</FrameLayout>
 
 			</LinearLayout>
 
 		</LinearLayout>
 
-	</com.maxkrass.appreciate.views.ObservableScrollView>
+	<!--</com.maxkrass.appreciate.views.ObservableScrollView>-->
 
-	<android.support.v7.widget.Toolbar
-		android:layout_height="@dimen/abc_action_bar_default_height_material"
-		android:layout_width="match_parent"
-		app:title="New Pit Scout"
-		android:id="@+id/pit_toolbar"
-		android:theme="@style/Toolbar.Style"
-		android:background="@drawable/ab_background"
-		app:contentInsetStart="0dp"/>
+	</ScrollView>
 
 </RelativeLayout>

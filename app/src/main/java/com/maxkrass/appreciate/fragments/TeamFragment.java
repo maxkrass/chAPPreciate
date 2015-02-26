@@ -24,6 +24,8 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public EditText teamName;
 	public EditText autoPoints;
 	public EditText totalPoints;
+	public EditText autoComment;
+	public EditText teleComment;
 
 	public CheckBoxWidget stackedTotesCBW;
 	public CheckBoxWidget autoZoneCBW;
@@ -47,7 +49,7 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	private void initCBWs(View v) {
 		autoList = (LinearLayout) v.findViewById(R.id.auto_match_list);
 		autoZoneCBW = new CheckBoxWidget(getActivity());
-		autoZoneCBW.setTitleView(getString(R.string.auto_zone_auto_label));
+		autoZoneCBW.setTitleView(getString(R.string.auto_zone_match_label));
 		autoZoneCBW.setOnClickListener(this);
 		autoList.addView(autoZoneCBW);
 		stackedTotesCBW = new CheckBoxWidget(getActivity());
@@ -55,16 +57,16 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 		stackedTotesCBW.setOnClickListener(this);
 		autoList.addView(stackedTotesCBW);
 		workedCBW = new CheckBoxWidget(getActivity());
-		workedCBW.setTitleView(getString(R.string.containers_auto_label));
+		workedCBW.setTitleView(getString(R.string.program_auto_worked));
 		workedCBW.setOnClickListener(this);
 		autoList.addView(workedCBW);
 		teleList = (LinearLayout) v.findViewById(R.id.tele_list);
 		functionalCBW = new CheckBoxWidget(getActivity());
-		functionalCBW.setTitleView(getString(R.string.totes_auto_label));
+		functionalCBW.setTitleView(getString(R.string.functional_tele_match));
 		functionalCBW.setOnClickListener(this);
 		teleList.addView(functionalCBW);
 		coopertitionCBW = new CheckBoxWidget(getActivity());
-		coopertitionCBW.setTitleView(getString(R.string.containers_auto_label));
+		coopertitionCBW.setTitleView(getString(R.string.coopertition_tele_match));
 		coopertitionCBW.setOnClickListener(this);
 		teleList.addView(coopertitionCBW);
 	}
@@ -74,45 +76,29 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View mainView = inflater.inflate(R.layout.team_layout, container, false);
 		teleMatchList = (LinearLayout) mainView.findViewById(R.id.tele_match_list);
-		teamName = (EditText) mainView.findViewById(R.id.team_name);
 		autoPoints = (EditText) mainView.findViewById(R.id.auto_points_field);
+		autoComment = (EditText) mainView.findViewById(R.id.auto_comment_field);
 		totalPoints = (EditText) mainView.findViewById(R.id.total_score_field);
+		teleComment = (EditText) mainView.findViewById(R.id.tele_comment_field);
 		scrollView = (ScrollView) mainView.findViewById(R.id.scrollView);
 		initCBWs(mainView);
 		return mainView;
 	}
 
-	public String getDataString() {
-		String s = "" + teamName.getText() + autoZoneCBW + stackedTotesCBW + workedCBW + autoPoints.getText();
-		return s;
+	public void clearFields() {
+		autoZoneCBW.setCheckBox(false);
+		stackedTotesCBW.setCheckBox(false);
+		workedCBW.setCheckBox(false);
+		functionalCBW.setCheckBox(false);
+		coopertitionCBW.setCheckBox(false);
+		autoPoints.setText("0");
+		totalPoints.setText("0");
+		autoComment.setText("");
+		teleComment.setText("");
+		teleMatchList.removeAllViews();
 	}
 
-	/*public void clearFields() {
-		autoZoneAutoCBW.setCheckBox(false);
-		totesAutoCBW.setCheckBox(false);
-		containersAutoCBW.setCheckBox(false);
-		flexibleAutoCBW.setCheckBox(false);
-		wideTeleCBW.setCheckBox(false);
-		narrowTeleCBW.setCheckBox(false);
-		stepTeleCBW.setCheckBox(false);
-		landfillTeleCBW.setCheckBox(false);
-		humanPlayerTeleCBW.setCheckBox(false);
-		totesAbilityCBW.setCheckBox(false);
-		containersAbilityCBW.setCheckBox(false);
-		noodlesAbilityCBW.setCheckBox(false);
-		shiftingAbilityCBW.setCheckBox(false);
-		coopAbilityCBW.setCheckBox(false);
-		driveSpinner.setSelection(0);
-		wheelTypeSpinner.setSelection(0);
-		wheelNumSpinner.setSelection(0);
-		cimNumSpinner.setSelection(0);
-		highestStackSpinner.setSelection(0);
-		maxSpeed.setText("");
-		teamNumber.setText("");
-		scrollView.scrollTo(0, 0);
-	}
-
-	public void putDataIntoFields(String[] data) {
+	/*public void putDataIntoFields(String[] data) {
 		String driveTypeArray[];
 		String wheelNumArray[];
 		String cimNumArray[];

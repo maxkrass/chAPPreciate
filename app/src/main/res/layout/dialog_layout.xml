@@ -7,6 +7,27 @@
               android:paddingEnd="16dp">
 
 	<FrameLayout
+		android:layout_height="48.0dip"
+		android:layout_width="fill_parent">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="Match Number:"
+			android:layout_gravity="center_vertical"/>
+
+		<EditText
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:id="@+id/match_number"
+			android:layout_gravity="center|end"
+			android:singleLine="true"
+			android:ems="4"
+			android:textColor="@color/textColor"
+			android:inputType="number"/>
+	</FrameLayout>
+
+	<FrameLayout
 		android:layout_width="fill_parent"
 		android:layout_height="48dp">
 

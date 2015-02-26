@@ -12,34 +12,55 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.maxkrass.appreciate.AlphanumComparator;
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
+import com.maxkrass.appreciate.adapter.MatchScoutTeamAdapter;
 import com.maxkrass.appreciate.adapter.PitScoutTeamAdapter;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MatchScoutFragment extends Fragment {
 	RecyclerView recyclerView;
-	PitScoutTeamAdapter teamAdapter;
+	public MatchScoutTeamAdapter teamAdapter;
 
+	public File[] teamFiles;
 	File localScoutFolder;
 	SharedPreferences settings;
 
 	public List<Team> getTeams() {
 		List<Team> teams = new ArrayList<>();
-		localScoutFolder =  new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/local/MatchScouts");
+		localScoutFolder =  new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data");
 		if (!localScoutFolder.exists() && !localScoutFolder.mkdir()) {
-			//TODO make no files yet screen
+			teams.add(new Team("0"));
 		}
-		File[] teamFiles = localScoutFolder.listFiles();
+		final FilenameFilter filenameFilter = new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String filename) {
+				return filename.startsWith("Match ") && filename.endsWith(".match");
+			}
+		};
+		FilenameFilter filter = new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String filename) {
+				File folder = new File(dir, filename);
+				File[] files = folder.listFiles(filenameFilter);
+				return files != null && files.length > 0;
+			}
+		};
+		teamFiles = localScoutFolder.listFiles(filter);
 		if (teamFiles == null || teamFiles.length == 0) {
-			teams.add(new Team("2"));
+			teams.add(new Team("0"));
 		} else {
 			for (File teamFile : teamFiles) {
-				teams.add(Team.getTeamFromFile(teamFile));
-			}}
+				teams.add(new Team(teamFile.getName().substring(5)));
+			}
+		}
+		Collections.sort(teams, new AlphanumComparator());
 		return teams;
 	}
 
@@ -49,7 +70,7 @@ public class MatchScoutFragment extends Fragment {
 		View v = inflater.inflate(R.layout.main_layout, container, false);
 		settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		recyclerView = (RecyclerView) v.findViewById(R.id.scouts_list);
-		teamAdapter = new PitScoutTeamAdapter(getActivity(), getTeams());
+		teamAdapter = new MatchScoutTeamAdapter(getActivity(), getTeams());
 		recyclerView.setAdapter(teamAdapter);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		return v;

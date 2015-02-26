@@ -2,7 +2,6 @@ package com.maxkrass.appreciate.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -39,7 +38,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.net.URI;
 import java.util.ArrayList;
 
 public class PitScout extends ActionBarActivity implements View.OnClickListener, OnScrollChangedCallback {
@@ -50,9 +48,8 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 	File pitScoutFile;
 	File scoutFolder;
 	FileOutputStream fOut;
-	Bitmap imageBitmap;
 
-	EditText maxSpeed;
+	Spinner maxSpeed;
 	EditText teamNumber;
 	EditText teamName;
 	EditText mainComment;
@@ -193,7 +190,7 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 	private void initEditTexts() {
 		teamNumber = (EditText) findViewById(R.id.teamNumberEditText);
 		teamName = (EditText) findViewById(R.id.team_name_edit_text);
-		maxSpeed = (EditText) findViewById(R.id.maxSpeedEditText);
+		maxSpeed = (Spinner) findViewById(R.id.maxSpeedSpinner);
 		mainComment = (EditText) findViewById(R.id.main_comment);
 		teleComment = (EditText) findViewById(R.id.tele_comment);
 		autoComment = (EditText) findViewById(R.id.auto_comment);
@@ -241,7 +238,7 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 				} else {
 					savePitScoutAsXML();
 					Toast.makeText(this, "PitScout " + MainActivity.singleton.getLastSavedTeam() + " saved successfully", Toast.LENGTH_LONG).show();
-					MainPagerAdapter.pitScouts.teamAdapter.add(Team.getTeamFromFile(new File(scoutFolder, MainActivity.singleton.getLastSavedTeam() + ".xml")));
+					MainPagerAdapter.pitScouts.teamAdapter.add(Team.getTeamFromFile(new File(scoutFolder, "Team " + MainActivity.singleton.getLastSavedTeam() + ".pit")));
 				}
 				break;
 			case R.id.clear_action:
@@ -282,9 +279,9 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 		wheelNumSpinner.setSelection(0);
 		cimNumSpinner.setSelection(0);
 		highestPossibleStackSpinner.setSelection(0);
-		maxSpeed.setText("");
+		maxSpeed.setSelection(0);
 		teamNumber.setText("");
-		scrollView.scrollTo(0, 0);
+		//scrollView.scrollTo(0, 0);
 	}
 
 	static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -322,10 +319,10 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 		}
 	}
 
-	private File createTempImage() throws IOException{
+	private File createTempImage() throws IOException {
 		File sdDir = Environment.getExternalStorageDirectory();
 		File sdTempDir = new File(sdDir, "/.temp/");
-		if(!sdTempDir.exists())
+		if (!sdTempDir.exists())
 			sdTempDir.mkdir();
 		File image = File.createTempFile("Pit_Robot_Image", ".jpg", sdTempDir);
 		mCurrentPath = image.getAbsolutePath();
@@ -333,11 +330,11 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 	}
 
 	public void savePitScoutAsXML() {
-		scoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/local/PitScouts");
+		scoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data/Team " + teamNumber.getText().toString());
 		if (!scoutFolder.exists() && !scoutFolder.mkdirs()) {
 			Log.w("File directory", "Failed to create directory");
 		}
-		pitScoutFile = new File(scoutFolder, teamNumber.getText().toString() + ".xml");
+		pitScoutFile = new File(scoutFolder, "Team " + teamNumber.getText().toString() + ".pit");
 		ArrayList<String> data = new ArrayList<>();
 		data.add(teamNumber.getText() + "");
 		data.add(teamName.getText() + "");
@@ -345,7 +342,7 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 		data.add(wheelTypeSpinner.getSelectedItem() + "");
 		data.add(wheelNumSpinner.getSelectedItem() + "");
 		data.add(cimNumSpinner.getSelectedItem() + "");
-		data.add(maxSpeed.getText() + "");
+		data.add(maxSpeed.getSelectedItem() + "");
 		data.add(mainComment.getText() + "");
 		data.add(wideTeleCBW + "");
 		data.add(narrowTeleCBW + "");
@@ -469,16 +466,22 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 			xml.endDocument();
 			xml.flush();
 			String dataWrite = writer.toString();
+			/*String sendString = "";
+			for (String s : data) {
+				sendString += "|" + s;
+			}
+			sendString = sendString.substring(1);*/
 			fOut.write(dataWrite.getBytes());
 			fOut.close();
-			if (imageBitmap != null) {
+			//MainActivity.singleton.sendPit(pitScoutFile);
+			/*if (imageBitmap != null) {
 				File imageDir = new File(Environment.getExternalStorageDirectory() + "/" + settings.getString("folder_name", "FRCScouting") + "/local/PitScouts/images");
 				if (!imageDir.exists())
 					imageDir.mkdirs();
 				File imageFile = new File(imageDir, teamNumber.getText() + "_Robot_Image.jpg");
 				File tempImageFile = new File(mCurrentPath);
 				tempImageFile.renameTo(imageFile);
-			}
+			}*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

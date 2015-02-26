@@ -1,22 +1,16 @@
 package com.maxkrass.appreciate.activities;
 
 import android.app.DialogFragment;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothClass;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothServerSocket;
-import android.bluetooth.BluetoothSocket;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,50 +19,43 @@ import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.views.SlidingTabLayout;
 import com.maxkrass.appreciate.adapter.MainPagerAdapter;
 import com.maxkrass.appreciate.fragments.CreateMatchDialog;
 
-import java.io.BufferedReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.UUID;
+import java.security.Timestamp;
+import java.util.ArrayList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class MainActivity extends ActionBarActivity {
 
 	private String lastSavedTeam = "";
-	int REQUEST_ENABLE_BT = 1;
 
 	FileOutputStream fOut;
-	File scoutFolder;
 	File localScoutFolder;
 	File newScout;
-	File savedScout;
 
 	MainPagerAdapter scouts;
 	SlidingTabLayout tabLayout;
+	String exportedFileName = "";
 	ViewPager viewPager;
+	Intent intent;
 
 	public SharedPreferences settings;
 
-	BluetoothSocket btSocket;
-	UUID uuid;
-	InputStream receivingStream;
-	OutputStream sendingStream;
-	Thread receivingThread;
-
-	BroadcastReceiver broadcastReceiver;
-	BluetoothAdapter bluetoothAdapter;
-
 	FloatingActionsMenu fam;
-
-	boolean stopReceiving;
-	byte[] resultBytes;
 
 	public static MainActivity singleton;
 
@@ -80,141 +67,6 @@ public class MainActivity extends ActionBarActivity {
 		this.lastSavedTeam = lastSavedTeam;
 	}
 
-	public void sendViaBluetooth(String data) {
-		try {
-			if (sendingStream != null) {
-				sendingStream.write(data.getBytes("US-ASCII"));
-			} else {
-				setupBluetoothSending();
-				sendViaBluetooth(data);
-			}
-			Toast.makeText(this, lastSavedTeam + " scout sent", Toast.LENGTH_LONG).show();
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e("Max - sendViaBluetooth, wrong Charset", data);
-		}
-
-	}
-
-	void setupBluetooth() throws IOException {
-		if (settings.getBoolean("use_bluetooth", false)) {              //if the bluetooth setting is on
-			bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-			if (bluetoothAdapter == null) {                             //if there is no bluetooth adapter
-				Toast.makeText(getApplicationContext(),
-						"Device doesn't support Bluetooth",
-						Toast.LENGTH_LONG).show();
-				settings.edit().putBoolean("use_bluetooth", false).apply();     //turn the bluetooth setting off
-			} else {
-				if (!bluetoothAdapter.isEnabled()) {                    //if bluetooth is turned off
-					Log.e("Max", "Requesting bluetooth");
-					Intent turnOn = new Intent("android.bluetooth.adapter.action.REQUEST_ENABLE");
-					startActivityForResult(turnOn, REQUEST_ENABLE_BT);  //request user to turn bluetooth on
-					Log.e("Max", "Bluetooth requested");
-				}
-				uuid = UUID.fromString("d0903867-b0b4-4052-b0da-d066be10414b");
-				if (settings.getBoolean("is_receiver", false)) {
-					setupBluetoothReceiving();
-				} else {
-					setupBluetoothSending();
-				}
-			}
-		}
-	}
-
-	private void setupBluetoothReceiving() throws IOException {
-		if (bluetoothAdapter.getScanMode() != BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
-			Log.e("Max", "Requesting visibility");
-			Intent infiniteVisible = new Intent("android.bluetooth.adapter.action.REQUEST_DISCOVERABLE");
-			infiniteVisible.putExtra("android.bluetooth.adapter.extra.DISCOVERABLE_DURATION", 0);
-			startActivity(infiniteVisible);             //request setting the discoverable for ever
-			Log.e("Max", "Visibility requested");
-		}
-		final BluetoothServerSocket btServerSocket = bluetoothAdapter.listenUsingRfcommWithServiceRecord("APPreciate", uuid);
-		Log.e("Max", "ServerSocket created");
-		Thread acceptThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				BluetoothSocket socket = null;
-				while (true) {
-					Log.e("Max", "In the while loop of acceptThread");
-					try {
-						Log.e("Max", "Accepting");
-						socket = btServerSocket.accept();
-						Log.e("Max", "ServerSocket accepted");
-					} catch (IOException e) {
-						Log.e("Max", "Caught the accept");
-					}
-					if (socket != null) {
-						stopReceiving = false;
-						resultBytes = new byte[1024];
-						try {
-							receivingStream = socket.getInputStream();
-						} catch (IOException e) {
-							e.printStackTrace();
-							break;
-						}
-						receivingThread = new Thread(new Runnable() {
-							@Override
-							public void run() {
-								Log.e("Max", "Entering loop");
-								while (!Thread.currentThread().isInterrupted() && !stopReceiving) {
-									try {
-										int bytesAvailable = receivingStream.available();
-										if (bytesAvailable > 0) {
-											byte[] packetBytes = new byte[bytesAvailable];
-											int read = receivingStream.read(packetBytes);
-											String data = new String(packetBytes, "US_ASCII");
-											Log.e("Max", data + " " + read);
-											writeDataToFile(data.substring(0, 3), false, data);
-											Toast.makeText(getApplicationContext(), "File received and saved", Toast.LENGTH_LONG).show();
-										}
-									} catch (IOException e) {
-										stopReceiving = true;
-										break;
-									}
-								}
-							}
-						});
-						receivingThread.start();
-					}
-				}
-			}
-		});
-		acceptThread.start();
-		Log.e("Max", "acceptThread started");
-	}
-
-	private void setupBluetoothSending() throws IOException {
-		broadcastReceiver = new BroadcastReceiver() {
-			public void onReceive(Context context, Intent intent) {
-				if (BluetoothDevice.ACTION_FOUND.equals(intent.getAction())) {
-					final BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-					if (BluetoothClass.Device.PHONE_SMART == bluetoothDevice.getBluetoothClass().getDeviceClass()) {
-						bluetoothAdapter.cancelDiscovery();
-						try {
-							btSocket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);
-							Log.e("Max", "Socket created");
-							btSocket.connect();
-							Log.e("Max", "Connected");
-							sendingStream = btSocket.getOutputStream();
-							Log.e("Max", "OutputStream created");
-						} catch (IOException e) {
-							e.printStackTrace();
-							Log.e("Max", "Connect failed");
-						}
-					} else {
-						Log.e("Max", "Not a smart phone");
-					}
-				}
-			}
-		};
-		IntentFilter intentfilter = new IntentFilter("android.bluetooth.device.action.FOUND");
-		registerReceiver(broadcastReceiver, intentfilter);
-		Log.e("Max", "broadcastReceiver started");
-		bluetoothAdapter.startDiscovery();
-		Log.e("Max", "Discovery started");
-	}
-
 	public void writeDataToFile(String team, boolean localData, String... s) {
 		localScoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/" + (localData ? "local" : "received"));
 		if (!localScoutFolder.exists() && !localScoutFolder.mkdir()) {
@@ -224,7 +76,7 @@ public class MainActivity extends ActionBarActivity {
 		newScout = new File(file1, team + ".xml");
 		try {
 			fOut = new FileOutputStream(newScout);
-			for (int i = 1; i < s.length; i++){
+			for (int i = 1; i < s.length; i++) {
 				s[i] = "\n" + s[i];
 			}
 			for (String string : s) {
@@ -241,18 +93,26 @@ public class MainActivity extends ActionBarActivity {
 		fam.collapse();
 	}
 
-	protected void onActivityResult(int i, int j, Intent intent) {
-		if (i == REQUEST_ENABLE_BT) {
-			if (j == -1) {
-				Toast.makeText(getApplicationContext(), "Bluetooth is now Enabled", Toast.LENGTH_LONG).show();
-			}
-			if (j == 0) {
-				Toast.makeText(getApplicationContext(), "Error occurred while enabling. Leaving the application..", Toast.LENGTH_LONG).show();
-			}
-		}
+	/**
+	 * Sends a message.
+	 *
+	 * @param message A string of text to send.
+	 */
+	public void sendPit(File message) {
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_SEND);
+		Uri u = Uri.fromFile(message);
+		intent.putExtra(Intent.EXTRA_STREAM, u);
+		intent.setType("text/plain");
+		intent.setPackage("com.android.bluetooth");
+		startActivity(Intent.createChooser(intent, "Send pits to... (Select Bluetooth)"));
 	}
 
-	public void undoSave(View view) {
+	public void sendMatch(String fileAsString, String teamNumber, String matchNumber) {
+
+	}
+
+	/*public void undoSave(View view) {
 		savedScout = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/" + lastSavedTeam + ".txt");
 		String s = "";
 		String data[];
@@ -267,8 +127,8 @@ public class MainActivity extends ActionBarActivity {
 			Log.getStackTraceString(ioexception);
 		}
 		data = s.split(",");
-		//TODO putDataIntoFields(data);
-	}
+		//
+	}*/
 
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
@@ -288,12 +148,92 @@ public class MainActivity extends ActionBarActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
 		fam = (FloatingActionsMenu) findViewById(R.id.view);
 		setSupportActionBar(toolbar);
-		try {
-			setupBluetooth();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		intent = getIntent();
+		checkForInput();
 		singleton = this;
+	}
+
+	private void checkForInput() {
+		if (intent.getDataString() != null) {
+			Uri u = intent.getData();
+			if (u != null) {
+				File receivedFile = new File(u.getPath());
+				/*String fileName = receivedFile.getName();
+				fileName = fileName.replaceAll("[^0-9]", "");
+				if (receivedFile.getName().contains(".pit")) {
+					File dstFolder = new File(Environment.getExternalStorageDirectory() + "/" + settings.getString("folder_name", "FRCScouting") + "/Team " + fileName);
+					if (!dstFolder.exists() && !dstFolder.mkdirs()) {
+
+					}
+					File dst = new File(dstFolder, receivedFile.getName());
+
+					try {
+						FileInputStream in = new FileInputStream(receivedFile);
+						Log.e("Max", "input created");
+						FileOutputStream out = new FileOutputStream(dst);
+
+						// Transfer bytes from in to out
+						byte[] buf = new byte[1024];
+						int len;
+						while ((len = in.read(buf)) > 0) {
+							out.write(buf, 0, len);
+						}
+						in.close();
+						out.close();
+						receivedFile.delete();
+						Toast.makeText(this, "Team " + fileName + " imported successfully", Toast.LENGTH_LONG).show();
+						finish();
+					} catch (IOException e) {
+						Log.e("Max", e.getMessage());
+					}
+				}*/
+				try {
+					File f = new File(Environment.getExternalStorageDirectory() + "/" + settings.getString("folder_name", "FRCScouting"));
+					if(!f.isDirectory()) {
+						f.mkdirs();
+					}
+					ZipInputStream zin = new ZipInputStream(new FileInputStream(receivedFile));
+					try {
+						ZipEntry ze;
+						while ((ze = zin.getNextEntry()) != null) {
+							String path = Environment.getExternalStorageDirectory() + "/" + settings.getString("folder_name", "FRCScouting") + ze.getName();
+							if (ze.isDirectory()) {
+								File unzipFile = new File(path);
+								if(!unzipFile.isDirectory()) {
+									unzipFile.mkdirs();
+								}
+							}
+							else {
+								File output = new File(path);
+								File outputFolder = output.getParentFile();
+								if (!outputFolder.exists() && !outputFolder.mkdirs()) {
+
+								}
+								FileOutputStream fout = new FileOutputStream(output);
+								try {
+									for (int c = zin.read(); c != -1; c = zin.read()) {
+										fout.write(c);
+									}
+									zin.closeEntry();
+								}
+								finally {
+									fout.close();
+								}
+							}
+						}
+					}
+					finally {
+						zin.close();
+						receivedFile.delete();
+						Toast.makeText(this, "Library imported successfully", Toast.LENGTH_LONG).show();
+						finish();
+					}
+				}
+				catch (Exception e) {
+					Log.e("Max", "Unzip exception", e);
+				}
+			}
+		}
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -311,15 +251,135 @@ public class MainActivity extends ActionBarActivity {
 			case R.id.exit_menu:
 				finish();
 				break;
+			case R.id.search_menu:
+				startActivity(new Intent(this, SearchActivity.class));
+				break;
+			case R.id.export_menu:
+				if (export()) {
+					Intent mailIntent = new Intent();
+					mailIntent.setAction(Intent.ACTION_SEND);
+					Uri u = Uri.fromFile(new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/" + exportedFileName));
+					mailIntent.putExtra(Intent.EXTRA_STREAM, u);
+					mailIntent.setType("application/zip");
+					mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Export Scouting Files");
+					mailIntent.putExtra(Intent.EXTRA_TEXT, "The exported data is attached");
+					startActivity(Intent.createChooser(mailIntent, "Send Email"));
+				}
+				break;
 		}
 
 		return true;
 	}
 
-	protected void onDestroy() {
-		super.onDestroy();
-		if (settings.getBoolean("use_bluetooth", false) && !settings.getBoolean("is_receiver", false))
-			unregisterReceiver(broadcastReceiver);
+	private boolean export() {
+		/*File outputFileDir = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting"));
+		if (!outputFileDir.exists() && !outputFileDir.mkdirs()){
+
+		}
+		File[] inputFiles = outputFileDir.listFiles();
+		byte[] buffer = new byte[1024];
+		if (inputFiles != null && inputFiles.length > 0) {
+			File outputFile = new File(outputFileDir, "export.zip");
+			try {
+				ZipOutputStream zipOut = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(outputFile)));
+				ZipEntry entry = null;
+				FileInputStream fIn = null;
+				BufferedInputStream bIn;
+				for (File file : inputFiles) {
+					if (file.isFile()) {
+						entry = new ZipEntry(file.getName());
+						fIn = new FileInputStream(file);
+					} else if (file.isDirectory()) {
+						File [] otherFiles = file.listFiles();
+						if (otherFiles != null && otherFiles.length > 0) {
+							for (File f: otherFiles) {
+								entry = new ZipEntry(f.getName());
+								fIn = new FileInputStream(f);
+							}
+						}
+					}
+					bIn = new BufferedInputStream(fIn, 1024);
+					zipOut.putNextEntry(entry);
+					int count;
+					while ((count = bIn.read(buffer, 0, 1024)) != -1) {
+						zipOut.write(buffer, 0, count);
+					}
+					bIn.close();
+				}
+				zipOut.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}*/
+		final int BUFFER = 2048;
+		String sourcePath = String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data/";
+		Time time = new Time();
+		time.setToNow();
+		exportedFileName = "Export " + time.format("%m-%d-%Y %H:%M:%S") + ".zip";
+		String toLocation = String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/" + exportedFileName;
+		File sourceFile = new File(sourcePath);
+		try {
+			BufferedInputStream origin;
+			FileOutputStream dest = new FileOutputStream(toLocation);
+			ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(dest));
+			if (sourceFile.isDirectory()) {
+				zipSubFolder(out, sourceFile, sourceFile.getParent().length());
+			} else {
+				byte data[] = new byte[BUFFER];
+				FileInputStream fi = new FileInputStream(sourcePath);
+				origin = new BufferedInputStream(fi, BUFFER);
+				ZipEntry entry = new ZipEntry(getLastPathComponent(sourcePath));
+				out.putNextEntry(entry);
+				int count;
+				while ((count = origin.read(data, 0, BUFFER)) != -1) {
+					out.write(data, 0, count);
+				}
+			}
+			out.close();
+			Toast.makeText(this, "Successfully exported to SDCard", Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	private void zipSubFolder(ZipOutputStream out, File folder, int basePathLength) throws IOException {
+		final int BUFFER = 2048;
+
+		File[] fileList = folder.listFiles();
+		BufferedInputStream origin;
+		for (File file : fileList) {
+			if (file.isDirectory()) {
+				zipSubFolder(out, file, basePathLength);
+			} else {
+				byte data[] = new byte[BUFFER];
+				String unmodifiedFilePath = file.getPath();
+				String relativePath = unmodifiedFilePath
+						.substring(basePathLength);
+				Log.i("ZIP SUBFOLDER", "Relative Path : " + relativePath);
+				FileInputStream fi = new FileInputStream(unmodifiedFilePath);
+				origin = new BufferedInputStream(fi, BUFFER);
+				ZipEntry entry = new ZipEntry(relativePath);
+				out.putNextEntry(entry);
+				int count;
+				while ((count = origin.read(data, 0, BUFFER)) != -1) {
+					out.write(data, 0, count);
+				}
+				origin.close();
+			}
+		}
+	}
+
+	/*
+	 * gets the last path component
+	 *
+	 * Example: getLastPathComponent("downloads/example/fileToZip");
+	 * Result: "fileToZip"
+	 */
+	public String getLastPathComponent(String filePath) {
+		String[] segments = filePath.split("/");
+		return segments[segments.length - 1];
 	}
 
 	public void createNewMatchScout(View view) {
@@ -327,4 +387,6 @@ public class MainActivity extends ActionBarActivity {
 		createDialog.show(getFragmentManager(), "teams");
 		fam.collapse();
 	}
+
+
 }

@@ -24,15 +24,13 @@
 			android:text="Totes"
 			android:layout_gravity="start|center_vertical"/>
 
-		<Spinner
+		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:entries="@array/totes"
-			android:id="@+id/totes_spinner"
-			android:layout_gravity="center_vertical|end"
-			android:minWidth="100dp"/>
+			android:id="@+id/totes_label"
+			android:layout_gravity="center_vertical|end"/>
 
-		</FrameLayout>
+	</FrameLayout>
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -44,17 +42,13 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="Containers"
-			android:id="@+id/containers_label"
 			android:layout_gravity="start|center_vertical"/>
 
-		<Spinner
+		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/containers_spinner"
-			android:entries="@array/containers"
-			android:layout_gravity="center_vertical|end"
-			android:spinnerMode="dropdown"
-			android:minWidth="100dp"/>
+			android:id="@+id/containers_label"
+			android:layout_gravity="center_vertical|end"/>
 	</FrameLayout>
 
 	<FrameLayout

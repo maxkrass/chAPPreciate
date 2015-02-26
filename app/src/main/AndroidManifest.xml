@@ -21,10 +21,19 @@
 			android:configChanges="orientation|screenSize"
 			android:exported="true">
 			<intent-filter>
+				<action android:name="android.intent.action.EDIT"/>
+
+				<category android:name="android.intent.category.DEFAULT"/>
+
+				<data android:mimeType="application/zip"/>
+			</intent-filter>
+			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
+
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
+
 		<activity
 			android:name=".activities.SettingsActivity"
 			android:label="@string/action_settings"
@@ -39,6 +48,18 @@
 			android:name=".activities.MatchScout"
 			android:label="New Match Scout"
 			android:configChanges="orientation|screenSize"
+			android:exported="false"/>
+		<activity
+			android:name=".activities.SearchActivity"
+			android:label="Search"
+			android:exported="false"/>
+		<activity
+			android:name=".activities.ViewMatchScoutSelect"
+			android:label="View Team"
+			android:exported="false"/>
+		<activity
+			android:name=".activities.ViewPitScout"
+			android:label="View Pit"
 			android:exported="false"/>
 	</application>
 

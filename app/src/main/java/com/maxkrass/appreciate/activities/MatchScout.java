@@ -10,13 +10,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Xml;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -24,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.Team;
+import com.maxkrass.appreciate.adapter.MainPagerAdapter;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
 import com.maxkrass.appreciate.views.SlidingTabLayout;
 import com.maxkrass.appreciate.adapter.AlliancePagerAdapter;
@@ -43,25 +41,27 @@ public class MatchScout extends ActionBarActivity implements View.OnClickListene
 	SlidingTabLayout tabLayout;
 	SharedPreferences settings;
 
-	File matchScoutFile;
 	FileOutputStream fOut;
 	XmlSerializer xml;
 
 	int i0 = 0, i1 = 0, i2 = 0;
+	String matchNumber = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Intent intent = getIntent();
 		setContentView(R.layout.match_save_dialog);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.match_toolbar);
+		matchNumber = intent.getStringExtra("matchNumber");
+		toolbar.setTitle("Match " + matchNumber);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
 		settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.singleton);
-		Intent intent = getIntent();
 		alliance = new AlliancePagerAdapter(getSupportFragmentManager(), intent.getStringExtra("team1"), intent.getStringExtra("team2"), intent.getStringExtra("team3"));
 		viewPager = (ViewPager) findViewById(R.id.viewPager);
-		viewPager.setOffscreenPageLimit(3);
+		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(alliance);
 		tabLayout = (SlidingTabLayout) findViewById(R.id.tabStrip);
 		tabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
@@ -89,9 +89,12 @@ public class MatchScout extends ActionBarActivity implements View.OnClickListene
 				saveMatchTeam();
 				break;
 			case R.id.clear_action:
-				//AlliancePagerAdapter.team1.clearFields();
-				//AlliancePagerAdapter.team2.clearFields();
-				//AlliancePagerAdapter.team3.clearFields();
+				AlliancePagerAdapter.team1.clearFields();
+				AlliancePagerAdapter.team2.clearFields();
+				AlliancePagerAdapter.team3.clearFields();
+				i0 = 0;
+				i1 = 0;
+				i2 = 0;
 				break;
 			case R.id.settings:
 				startActivity(new Intent(this, SettingsActivity.class));
@@ -138,24 +141,33 @@ public class MatchScout extends ActionBarActivity implements View.OnClickListene
 		ArrayList<String> data1 = new ArrayList<>();
 		ArrayList<String> data2 = new ArrayList<>();
 		ArrayList<String> data3 = new ArrayList<>();
-		data1.add(AlliancePagerAdapter.team1.teamName.getText() + "");
 		data1.add(AlliancePagerAdapter.team1.autoZoneCBW + "");
 		data1.add(AlliancePagerAdapter.team1.stackedTotesCBW + "");
 		data1.add(AlliancePagerAdapter.team1.workedCBW + "");
+		data1.add(AlliancePagerAdapter.team1.autoPoints.getText() + "");
+		data1.add(AlliancePagerAdapter.team1.autoComment.getText() + "");
 		data1.add(AlliancePagerAdapter.team1.functionalCBW + "");
 		data1.add(AlliancePagerAdapter.team1.coopertitionCBW + "");
-		data2.add(AlliancePagerAdapter.team2.teamName.getText() + "");
+		data1.add(AlliancePagerAdapter.team1.totalPoints.getText() + "");
+		data1.add(AlliancePagerAdapter.team1.teleComment.getText() + "");
 		data2.add(AlliancePagerAdapter.team2.autoZoneCBW + "");
 		data2.add(AlliancePagerAdapter.team2.stackedTotesCBW + "");
 		data2.add(AlliancePagerAdapter.team2.workedCBW + "");
+		data2.add(AlliancePagerAdapter.team2.autoPoints.getText() + "");
+		data2.add(AlliancePagerAdapter.team2.autoComment.getText() + "");
 		data2.add(AlliancePagerAdapter.team2.functionalCBW + "");
 		data2.add(AlliancePagerAdapter.team2.coopertitionCBW + "");
-		data3.add(AlliancePagerAdapter.team3.teamName.getText() + "");
+		data2.add(AlliancePagerAdapter.team2.totalPoints.getText() + "");
+		data2.add(AlliancePagerAdapter.team2.teleComment.getText() + "");
 		data3.add(AlliancePagerAdapter.team3.autoZoneCBW + "");
 		data3.add(AlliancePagerAdapter.team3.stackedTotesCBW + "");
 		data3.add(AlliancePagerAdapter.team3.workedCBW + "");
+		data3.add(AlliancePagerAdapter.team3.autoPoints.getText() + "");
+		data3.add(AlliancePagerAdapter.team3.autoComment.getText() + "");
 		data3.add(AlliancePagerAdapter.team3.functionalCBW + "");
 		data3.add(AlliancePagerAdapter.team3.coopertitionCBW + "");
+		data3.add(AlliancePagerAdapter.team3.totalPoints.getText() + "");
+		data3.add(AlliancePagerAdapter.team3.teleComment.getText() + "");
 		for (int i = 0; i < data1.size(); i++) {
 			if (data1.get(i).equals(""))
 				data1.set(i, " ");
@@ -210,19 +222,16 @@ public class MatchScout extends ActionBarActivity implements View.OnClickListene
 				stacks3.remove(i);
 			}
 		}
-		Toast.makeText(this, stacks1 + "", Toast.LENGTH_LONG).show();
-		Toast.makeText(this, stacks2 + "", Toast.LENGTH_LONG).show();
-		Toast.makeText(this, stacks3 + "", Toast.LENGTH_LONG).show();
-		File scoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/local/MatchScouts");
-		if (!scoutFolder.exists() && !scoutFolder.mkdirs()) {
+		//Toast.makeText(this, stacks1 + "", Toast.LENGTH_LONG).show();
+		//Toast.makeText(this, stacks2 + "", Toast.LENGTH_LONG).show();
+		//Toast.makeText(this, stacks3 + "", Toast.LENGTH_LONG).show();
+		File firstScoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data/Team " + AlliancePagerAdapter.teamNumbers[0]);
+		if (!firstScoutFolder.exists() && !firstScoutFolder.mkdirs()) {
 			Log.w("File directory", "Failed to create directory");
 		}
-		matchScoutFile = new File(scoutFolder,
-				AlliancePagerAdapter.teamNumbers[0] + " & " +
-				AlliancePagerAdapter.teamNumbers[1] + " & " +
-				AlliancePagerAdapter.teamNumbers[2] + ".xml");
-		/*try {
-			fOut = new FileOutputStream(matchScoutFile);
+		File firstMatchScoutFile = new File(firstScoutFolder, "Match " + matchNumber + ".match");
+		try {
+			fOut = new FileOutputStream(firstMatchScoutFile);
 			xml = Xml.newSerializer();
 			StringWriter writer = new StringWriter();
 			xml.setOutput(writer);
@@ -231,106 +240,209 @@ public class MatchScout extends ActionBarActivity implements View.OnClickListene
 			xml.startTag(null, "MatchScout");
 			xml.attribute(null, "localFile", "true");
 			text("");
-			xml.startTag(null, "team1");
-			xml.attribute(null, "teamNumber", AlliancePagerAdapter.team1.teamNumber.getText() + "");
-			text("");
-			start("main");
-			start("teamNumber");
-			text(AlliancePagerAdapter.team1.teamNumber.getText() + "");
-			end("teamNumber");
-			start("driveType");
-			text(AlliancePagerAdapter.team1.driveSpinner.getSelectedItem() + "");
-			end("driveType");
-			start("wheelType");
-			text(AlliancePagerAdapter.team1.wheelTypeSpinner.getSelectedItem() + "");
-			end("wheelType");
-			start("wheelNumber");
-			text(AlliancePagerAdapter.team1.wheelNumSpinner.getSelectedItem() + "");
-			end("wheelNumber");
-			start("cimNumber");
-			text(AlliancePagerAdapter.team1.cimNumSpinner.getSelectedItem() + "");
-			end("cimNumber");
-			start("maxSpeed");
-			text(AlliancePagerAdapter.team1.maxSpeed.getText() + "");
-			end("maxSpeed");
-			start("mainComment");
-			//text(AlliancePagerAdapter.team1.mainComment.getText() + "");
-			end("mainComment");
-			end("main");
-			start("totes");
-			start("wideSideTote");
-			text(AlliancePagerAdapter.team1.wideTeleCBW + "");
-			end("wideSideTote");
-			start("narrowSideTote");
-			text(AlliancePagerAdapter.team1.narrowTeleCBW + "");
-			end("narrowSideTote");
-			start("stepPickUp");
-			text(AlliancePagerAdapter.team1.stepTeleCBW + "");
-			end("stepPickUp");
-			start("landfillPickUp");
-			text(AlliancePagerAdapter.team1.landfillTeleCBW + "");
-			end("landfillPickUp");
-			start("toteChutePickUp");
-			text(AlliancePagerAdapter.team1.humanPlayerTeleCBW + "");
-			end("toteChutePickUp");
-			start("highestPossibleStack");
-			//text(AlliancePagerAdapter.team1.highestPossibleStackSpinner.getSelectedItem() + "");
-			end("highestPossibleStack");
-			start("teleComment");
-			//text(AlliancePagerAdapter.team1.teleComment.getText() + "");
-			end("teleComment");
-			end("totes");
-			start("auto");
 			start("autoZone");
-			text(AlliancePagerAdapter.team1.autoZoneAutoCBW + "");
+			text(data1.get(0));
 			end("autoZone");
-			start("totes");
-			text(AlliancePagerAdapter.team1.totesAutoCBW + "");
-			end("totes");
-			start("containers");
-			text(AlliancePagerAdapter.team1.containersAutoCBW + "");
-			end("containers");
-			start("flexible");
-			text(AlliancePagerAdapter.team1.flexibleAutoCBW + "");
-			end("flexible");
+			start("stackedTotes");
+			text(data1.get(1));
+			end("stackedTotes");
+			start("worked");
+			text(data1.get(2));
+			end("worked");
+			start("autoPoints");
+			text(data1.get(3));
+			end("autoPoints");
 			start("autoComment");
-			//text(AlliancePagerAdapter.team1.autoComment.getText() + "");
+			text(data1.get(4));
 			end("autoComment");
-			end("auto");
-			start("abilities");
-			start("canStackTotes");
-			text(AlliancePagerAdapter.team1.totesAbilityCBW + "");
-			end("canStackTotes");
-			start("canLiftCans");
-			text(AlliancePagerAdapter.team1.containersAbilityCBW + "");
-			end("canLiftCans");
-			start("canScoreNoodles");
-			text(AlliancePagerAdapter.team1.noodlesAbilityCBW + "");
-			end("canScoreNoodles");
-			start("canShift");
-			text(AlliancePagerAdapter.team1.shiftingAbilityCBW + "");
-			end("canShift");
-			start("canCoopStack");
-			text(AlliancePagerAdapter.team1.coopAbilityCBW + "");
-			end("canCoopStack");
-			start("abilitiesComment");
-			//text(AlliancePagerAdapter.team1.abilitiesComment.getText() + "");
-			end("abilitiesComment");
-			end("abilities");
-			end("team1");
+			start("numberOfStacks");
+			text(stacks1.size() + "");
+			end("numberOfStacks");
+			for (int i = 0; i < stacks1.size(); i++) {
+				start("stack" + (i + 1));
+				start("totes");
+				text(stacks1.get(i).get(0));
+				end("totes");
+				start("containers");
+				text(stacks1.get(i).get(1));
+				end("containers");
+				start("noodles");
+				text(stacks1.get(i).get(2));
+				end("noodles");
+				end("stack" + (i + 1));
+			}
+			start("functional");
+			text(data1.get(5));
+			end("functional");
+			start("coopertition");
+			text(data1.get(6));
+			end("coopertition");
+			start("telePoints");
+			text(data1.get(7));
+			end("telePoints");
+			start("teleComment");
+			text(data1.get(8));
+			end("teleComment");
 			end("MatchScout");
 			xml.endDocument();
 			xml.flush();
 			String dataWrite = writer.toString();
+			MainActivity.singleton.sendMatch(dataWrite, AlliancePagerAdapter.teamNumbers[0], matchNumber);
+			Toast.makeText(this, "Match " + matchNumber + ": Team " + AlliancePagerAdapter.teamNumbers[0] + " saved successfully", Toast.LENGTH_SHORT).show();
 			fOut.write(dataWrite.getBytes());
 			fOut.close();
+			MainPagerAdapter.matchScouts.teamAdapter.add(new Team(AlliancePagerAdapter.teamNumbers[0]));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		MainActivity.singleton.setLastSavedTeam(AlliancePagerAdapter.team1.teamNumber.getText() + " & " +
-				AlliancePagerAdapter.team2.teamNumber.getText() + " & " +
-				AlliancePagerAdapter.team3.teamNumber.getText());
-		finish();*/
+
+		File secondScoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data/Team " + AlliancePagerAdapter.teamNumbers[1]);
+		if (!secondScoutFolder.exists() && !secondScoutFolder.mkdirs()) {
+			Log.w("File directory", "Failed to create directory");
+		}
+		try {
+			File secondMatchScoutFile = new File(secondScoutFolder, "Match " + matchNumber + ".match");
+			FileOutputStream secondOut = new FileOutputStream(secondMatchScoutFile);
+			xml = Xml.newSerializer();
+			StringWriter writer = new StringWriter();
+			xml.setOutput(writer);
+			xml.startDocument("UTF-8", true);
+			text("");
+			xml.startTag(null, "MatchScout");
+			xml.attribute(null, "localFile", "true");
+			text("");
+			start("autoZone");
+			text(data2.get(0));
+			end("autoZone");
+			start("stackedTotes");
+			text(data2.get(1));
+			end("stackedTotes");
+			start("worked");
+			text(data2.get(2));
+			end("worked");
+			start("autoPoints");
+			text(data2.get(3));
+			end("autoPoints");
+			start("autoComment");
+			text(data2.get(4));
+			end("autoComment");
+			start("numberOfStacks");
+			text(stacks2.size() + "");
+			end("numberOfStacks");
+			for (int i = 0; i < stacks2.size(); i++) {
+				start("stack" + (i + 1));
+				start("totes");
+				text(stacks2.get(i).get(0));
+				end("totes");
+				start("containers");
+				text(stacks2.get(i).get(1));
+				end("containers");
+				start("noodles");
+				text(stacks2.get(i).get(2));
+				end("noodles");
+				end("stack" + (i + 1));
+			}
+			start("functional");
+			text(data2.get(5));
+			end("functional");
+			start("coopertition");
+			text(data2.get(6));
+			end("coopertition");
+			start("telePoints");
+			text(data2.get(7));
+			end("telePoints");
+			start("teleComment");
+			text(data2.get(8));
+			end("teleComment");
+			end("MatchScout");
+			xml.endDocument();
+			xml.flush();
+			String dataWrite = writer.toString();
+			//MainActivity.singleton.sendViaBluetooth(dataWrite);
+			MainActivity.singleton.sendMatch(dataWrite, AlliancePagerAdapter.teamNumbers[1], matchNumber);
+			Toast.makeText(this, "Match " + matchNumber + ": Team " + AlliancePagerAdapter.teamNumbers[1] + " saved successfully", Toast.LENGTH_SHORT).show();
+			secondOut.write(dataWrite.getBytes());
+			secondOut.close();
+			MainPagerAdapter.matchScouts.teamAdapter.add(new Team(AlliancePagerAdapter.teamNumbers[1]));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		File thirdScoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data/Team " + AlliancePagerAdapter.teamNumbers[2]);
+		if (!thirdScoutFolder.exists() && !thirdScoutFolder.mkdirs()) {
+			Log.w("File directory", "Failed to create directory");
+		}
+		try {
+			File thirdMatchScoutFile = new File(thirdScoutFolder, "Match " + matchNumber + ".match");
+			FileOutputStream thirdOut = new FileOutputStream(thirdMatchScoutFile);
+			xml = Xml.newSerializer();
+			StringWriter writer = new StringWriter();
+			xml.setOutput(writer);
+			xml.startDocument("UTF-8", true);
+			text("");
+			xml.startTag(null, "MatchScout");
+			xml.attribute(null, "localFile", "true");
+			text("");
+			start("autoZone");
+			text(data3.get(0));
+			end("autoZone");
+			start("stackedTotes");
+			text(data3.get(1));
+			end("stackedTotes");
+			start("worked");
+			text(data3.get(2));
+			end("worked");
+			start("autoPoints");
+			text(data3.get(3));
+			end("autoPoints");
+			start("autoComment");
+			text(data3.get(4));
+			end("autoComment");
+			start("numberOfStacks");
+			text(stacks3.size() + "");
+			end("numberOfStacks");
+			for (int i = 0; i < stacks3.size(); i++) {
+				start("stack" + (i + 1));
+				start("totes");
+				text(stacks3.get(i).get(0));
+				end("totes");
+				start("containers");
+				text(stacks3.get(i).get(1));
+				end("containers");
+				start("noodles");
+				text(stacks3.get(i).get(2));
+				end("noodles");
+				end("stack" + (i + 1));
+			}
+			start("functional");
+			text(data3.get(5));
+			end("functional");
+			start("coopertition");
+			text(data3.get(6));
+			end("coopertition");
+			start("telePoints");
+			text(data3.get(7));
+			end("telePoints");
+			start("teleComment");
+			text(data3.get(8));
+			end("teleComment");
+			end("MatchScout");
+			xml.endDocument();
+			xml.flush();
+			String dataWrite = writer.toString();
+			//MainActivity.singleton.sendViaBluetooth(dataWrite);
+			MainActivity.singleton.sendMatch(dataWrite, AlliancePagerAdapter.teamNumbers[2], matchNumber);
+			Toast.makeText(this, "Match " + matchNumber + ": Team " + AlliancePagerAdapter.teamNumbers[2] + " saved successfully", Toast.LENGTH_SHORT).show();
+			thirdOut.write(dataWrite.getBytes());
+			thirdOut.close();
+			MainPagerAdapter.matchScouts.teamAdapter.add(new Team(AlliancePagerAdapter.teamNumbers[2]));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		MainActivity.singleton.setLastSavedTeam(AlliancePagerAdapter.teamNumbers[0] + " & " +
+				AlliancePagerAdapter.teamNumbers[1] + " & " +
+				AlliancePagerAdapter.teamNumbers[2]);
+		finish();
 	}
 
 	private void start(String tagName) throws IOException {

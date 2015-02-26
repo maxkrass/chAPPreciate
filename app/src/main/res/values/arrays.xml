@@ -55,5 +55,10 @@
 		<item>6</item>
 		<item>7+</item>
 	</string-array>
+	<string-array name="speeds">
+		<item>slow</item>
+		<item>medium</item>
+		<item>fast</item>
+	</string-array>
 
 </resources>

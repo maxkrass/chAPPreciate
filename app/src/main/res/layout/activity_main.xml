@@ -1,66 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:fab="http://schemas.android.com/apk/res-auto"
 	android:layout_height="fill_parent"
 	android:layout_width="fill_parent"
 	android:focusableInTouchMode="true"
 	android:focusable="true"
 	android:id="@+id/content">
 
+	<android.support.v7.widget.Toolbar
+		android:layout_height="@dimen/abc_action_bar_default_height_material"
+		android:layout_width="match_parent"
+		android:id="@+id/main_toolbar"
+		android:layout_alignParentTop="true"
+		android:background="@color/primary"
+		android:theme="@style/Toolbar.Style"/>
+
 	<com.maxkrass.appreciate.views.SlidingTabLayout
-		android:layout_width="fill_parent"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/tabStrip"
-		android:layout_above="@+id/viewPager"/>
+		android:layout_below="@id/main_toolbar"
+		android:background="@color/primary"
+		android:id="@+id/main_tabs"/>
 
 	<android.support.v4.view.ViewPager
-		android:id="@+id/viewPager"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_above="@+id/buttonBar"/>
+		android:layout_height="wrap_content"
+		android:layout_below="@id/main_tabs"
+		android:id="@+id/scouts_pager"/>
 
-	<RelativeLayout
-		android:layout_height="48.0dip"
-		android:layout_width="fill_parent"
-		android:id="@+id/buttonBar"
-		android:paddingEnd="12.0dip"
-		android:paddingStart="12.0dip"
+	<com.getbase.floatingactionbutton.FloatingActionsMenu
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentEnd="true"
 		android:layout_alignParentBottom="true"
-		android:background="@color/textColorPrimary">
+		android:layout_marginEnd="8dp"
+		fab:fab_addButtonColorNormal="@color/accent"
+		fab:fab_addButtonColorPressed="@color/accentDark"
+		fab:fab_addButtonPlusIconColor="@android:color/white"
+		fab:fab_labelStyle="@style/menu_labels_style"
+		android:id="@+id/view">
 
-		<Button
-			android:layout_height="wrap_content"
+		<com.getbase.floatingactionbutton.FloatingActionButton
 			android:layout_width="wrap_content"
-			android:id="@+id/clearButton"
-			android:layout_marginRight="4.0dip"
-			android:layout_marginLeft="4.0dip"
-			android:text="@string/clear_button_text"
-			android:layout_gravity="center"
-			android:minWidth="64.0dip"
-			android:layout_toStartOf="@+id/saveButton"
-			android:layout_toLeftOf="@id/saveButton"
-			android:onClick="clearButtonClick"
-			android:layout_centerVertical="true"
-			android:paddingRight="8.0dip"
-			android:paddingLeft="8.0dip"/>
-
-		<Button
 			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:id="@+id/saveButton"
-			android:layout_marginRight="4.0dip"
-			android:layout_marginLeft="4.0dip"
-			android:text="@string/save_button_text"
-			android:layout_gravity="center|end"
-			android:minWidth="64.0dip"
-			android:onClick="createNewPitScout"
-			android:layout_centerVertical="true"
-			android:paddingRight="8.0dip"
-			android:paddingLeft="8.0dip"
-			android:layout_alignParentEnd="true"
-			android:layout_alignParentRight="true"
-			/>
+			fab:fab_colorNormal="@color/white"
+			fab:fab_title="New Game Scout"
+			fab:fab_size="mini"
+			fab:fab_colorPressed="@color/white_pressed"
+			android:src="@drawable/ic_game"
+			android:scaleType="fitStart"
+			android:onClick="createNewMatchScout"/>
 
-	</RelativeLayout>
+		<com.getbase.floatingactionbutton.FloatingActionButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			fab:fab_colorNormal="@color/white"
+			fab:fab_size="mini"
+			android:scaleType="fitStart"
+			android:src="@drawable/ic_pit"
+			fab:fab_title="New Pit Scout"
+			fab:fab_colorPressed="@color/white_pressed"
+			android:onClick="createNewPitScout"/>
+
+	</com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>

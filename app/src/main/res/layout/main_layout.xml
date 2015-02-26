@@ -10,7 +10,6 @@
 		android:layout_height="wrap_content"
 		android:scrollbars="vertical"
 		android:id="@+id/scouts_list"
-		android:background="@android:color/white"
-		android:paddingTop="8dp"/>
+		android:background="@android:color/white"/>
 
 </LinearLayout>

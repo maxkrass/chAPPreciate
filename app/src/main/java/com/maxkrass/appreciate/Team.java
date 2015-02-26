@@ -91,4 +91,9 @@ public class Team implements Comparable<Team> {
 	public int compareTo(@NonNull Team another) {
 		return this.teamNumber.compareTo(another.teamNumber);
 	}
+
+	@Override
+	public String toString() {
+		return teamNumber;
+	}
 }
