@@ -71,7 +71,7 @@ public class MatchScoutOneTeam extends ActionBarActivity implements View.OnClick
     }
 
     private void initAutoCBWs() {
-
+        auto = (LinearLayout) findViewById(R.id.abilities_list);
         driveToAuto = new CheckBoxWidget(this);
         driveToAuto.setTitleView(getString(R.string.auto_zone_match_label));
         driveToAuto.setOnClickListener(this);
@@ -81,6 +81,9 @@ public class MatchScoutOneTeam extends ActionBarActivity implements View.OnClick
         containersIntoAutoZone = new CheckBoxWidget(this);
         containersIntoAutoZone.setTitleView(getString(R.string.totes_auto_label));
         containersIntoAutoZone.setOnClickListener(this);
+        auto.addView(driveToAuto);
+        auto.addView(stacksTotesInAuto);
+        auto.addView(containersIntoAutoZone);
     }
 
     private void initEditTexts() {
@@ -113,7 +116,7 @@ public class MatchScoutOneTeam extends ActionBarActivity implements View.OnClick
         setContentView(R.layout.pit_save_dialog);
         settings = PreferenceManager.getDefaultSharedPreferences(this);
         initToolbar();
-        //initEditTexts();
+        initEditTexts();
         //initSpinners();
         initAutoCBWs();
         //initAbilitiesCBWs();
