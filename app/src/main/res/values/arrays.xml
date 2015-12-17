@@ -60,5 +60,9 @@
 		<item>medium</item>
 		<item>fast</item>
 	</string-array>
-
+	<string-array name="mode">
+		<item>pit</item>
+		<item>match (one alliance)</item>
+		<item>match (one team)</item>
+	</string-array>
 </resources>
