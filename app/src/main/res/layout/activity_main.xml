@@ -29,40 +29,21 @@
 		android:layout_below="@id/main_tabs"
 		android:id="@+id/scouts_pager"/>
 
-	<com.getbase.floatingactionbutton.FloatingActionsMenu
+
+	<android.support.design.widget.FloatingActionButton
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentEnd="true"
-		android:layout_alignParentBottom="true"
-		android:layout_marginEnd="8dp"
-		fab:fab_addButtonColorNormal="@color/accent"
-		fab:fab_addButtonColorPressed="@color/accentDark"
-		fab:fab_addButtonPlusIconColor="@android:color/white"
-		fab:fab_labelStyle="@style/menu_labels_style"
-		android:id="@+id/view">
+		android:src="@drawable/ic_game"
+		android:scaleType="fitStart"
+		android:onClick="createNewMatchScout" />
 
-		<com.getbase.floatingactionbutton.FloatingActionButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			fab:fab_colorNormal="@color/white"
-			fab:fab_title="New Game Scout"
-			fab:fab_size="mini"
-			fab:fab_colorPressed="@color/white_pressed"
-			android:src="@drawable/ic_game"
-			android:scaleType="fitStart"
-			android:onClick="createNewMatchScout"/>
+	<android.support.design.widget.FloatingActionButton
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="fitStart"
+		android:src="@drawable/ic_pit"
+		android:onClick="createNewPitScout" />
 
-		<com.getbase.floatingactionbutton.FloatingActionButton
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			fab:fab_colorNormal="@color/white"
-			fab:fab_size="mini"
-			android:scaleType="fitStart"
-			android:src="@drawable/ic_pit"
-			fab:fab_title="New Pit Scout"
-			fab:fab_colorPressed="@color/white_pressed"
-			android:onClick="createNewPitScout"/>
 
-	</com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </RelativeLayout>

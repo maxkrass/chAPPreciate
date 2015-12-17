@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import android.support.design.widget.*;
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.views.SlidingTabLayout;
@@ -55,7 +55,6 @@ public class MainActivity extends ActionBarActivity {
 
 	public SharedPreferences settings;
 
-	FloatingActionsMenu fam;
 
 	public static MainActivity singleton;
 
@@ -90,7 +89,7 @@ public class MainActivity extends ActionBarActivity {
 
 	public void createNewPitScout(View view) {
 		startActivity(new Intent(this, PitScout.class));
-		fam.collapse();
+
 	}
 
 	/**
@@ -146,7 +145,7 @@ public class MainActivity extends ActionBarActivity {
 		});
 		tabLayout.setViewPager(viewPager);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-		fam = (FloatingActionsMenu) findViewById(R.id.view);
+
 		setSupportActionBar(toolbar);
 		intent = getIntent();
 		checkForInput();
@@ -385,7 +384,7 @@ public class MainActivity extends ActionBarActivity {
 	public void createNewMatchScout(View view) {
 		DialogFragment createDialog = new CreateMatchDialog();
 		createDialog.show(getFragmentManager(), "teams");
-		fam.collapse();
+
 	}
 
 

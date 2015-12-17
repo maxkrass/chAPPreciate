@@ -1,8 +1,6 @@
 package com.maxkrass.appreciate.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,22 +8,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.maxkrass.appreciate.R;
-import com.maxkrass.appreciate.Team;
-import com.maxkrass.appreciate.activities.MainActivity;
+import com.maxkrass.appreciate.objects.PitRecord;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class PitScoutTeamAdapter extends RecyclerView.Adapter<PitScoutTeamAdapter.TeamViewHolder> {
 
 	LayoutInflater inflater;
-	List<Team> teamList = Collections.emptyList();
+	List<PitRecord> teamList = Collections.emptyList();
+	View.OnClickListener onClickListener;
+	View.OnLongClickListener onLongClickListener;
 
-	public PitScoutTeamAdapter(Context context, List<Team> teamList) {
+	public PitScoutTeamAdapter(Context context, View.OnClickListener onClickListener, View.OnLongClickListener onLongClickListener, List<PitRecord> teamList) {
 		inflater = LayoutInflater.from(context);
 		this.teamList = teamList;
+		this.onClickListener = onClickListener;
+		this.onLongClickListener = onLongClickListener;
 	}
 
 	@Override
@@ -36,10 +35,10 @@ public class PitScoutTeamAdapter extends RecyclerView.Adapter<PitScoutTeamAdapte
 
 	@Override
 	public void onBindViewHolder(TeamViewHolder holder, int position) {
-		holder.textView.setText("Team " + teamList.get(position).teamNumber);
+		holder.textView.setText("Team " + teamList.get(position).getTeamNumber());
 	}
 
-	public void add(Team t) {
+	public void add(PitRecord t) {
 		teamList.add(t);
 		Collections.sort(teamList);
 		notifyDataSetChanged();
@@ -50,24 +49,17 @@ public class PitScoutTeamAdapter extends RecyclerView.Adapter<PitScoutTeamAdapte
 		return teamList.size();
 	}
 
-	class TeamViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+	class TeamViewHolder extends RecyclerView.ViewHolder {
 
 		TextView textView;
 
 		public TeamViewHolder(View itemView) {
 			super(itemView);
-			itemView.setOnClickListener(this);
+			itemView.setOnClickListener(onClickListener);
+			itemView.setOnLongClickListener(onLongClickListener);
 			textView = (TextView) itemView.findViewById(R.id.list_team_number);
 		}
 
-		@Override
-		public void onClick(View v) {
-			/*String name = textView.getText().toString().replaceAll("[^0-9]", "");
-			File pitScoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + MainActivity.singleton.settings.getString("folder_name", "FRCScouting") + "/local/PitScouts");
-			ArrayList<String> pitData = Team.getTextFromFile(new File(pitScoutFolder, name + ".xml"));
-			Intent intent = new Intent(MainActivity.singleton, ViewPitScout.class);
-			intent.putExtra("pitData", pitData);
-			MainActivity.singleton.startActivity(intent);*/
-		}
+
 	}
 }

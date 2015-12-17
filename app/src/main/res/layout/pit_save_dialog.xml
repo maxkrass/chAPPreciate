@@ -269,6 +269,7 @@
 					android:layout_height="wrap_content"
 					android:hint="Comment on teleoperated"
 					android:singleLine="false"
+                    android:textColor="@color/textColor"
 					android:id="@+id/tele_comment"/>
 
 			</LinearLayout>
@@ -306,6 +307,7 @@
 					android:layout_height="wrap_content"
 					android:hint="Comment on Autonomous"
 					android:singleLine="false"
+                    android:textColor="@color/textColor"
 					android:id="@+id/auto_comment"/>
 
 			</LinearLayout>
@@ -342,6 +344,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Comment on the abilities"
+                    android:textColor="@color/textColor"
 					android:singleLine="false"
 					android:id="@+id/abilities_comment"/>
 

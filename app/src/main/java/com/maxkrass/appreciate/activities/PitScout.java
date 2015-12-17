@@ -1,5 +1,9 @@
 package com.maxkrass.appreciate.activities;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -13,7 +17,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,18 +30,18 @@ import android.widget.Toast;
 
 import com.manuelpeinado.fadingactionbar.view.ObservableScrollable;
 import com.manuelpeinado.fadingactionbar.view.OnScrollChangedCallback;
-import com.maxkrass.appreciate.Team;
-import com.maxkrass.appreciate.adapter.MainPagerAdapter;
-import com.maxkrass.appreciate.views.CheckBoxWidget;
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.adapter.MainPagerAdapter;
+import com.maxkrass.appreciate.objects.PitRecord;
+import com.maxkrass.appreciate.views.CheckBoxWidget;
+import com.orm.SugarRecord;
 
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.ArrayList;
+import java.util.List;
 
 public class PitScout extends ActionBarActivity implements View.OnClickListener, OnScrollChangedCallback {
 	LinearLayout abilitiesList;
@@ -236,9 +239,7 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 				if (teamNumber.getText().toString().equals("")) {
 					teamNumber.setError("A Team Number is required");
 				} else {
-					savePitScoutAsXML();
-					Toast.makeText(this, "PitScout " + MainActivity.singleton.getLastSavedTeam() + " saved successfully", Toast.LENGTH_LONG).show();
-					MainPagerAdapter.pitScouts.teamAdapter.add(Team.getTeamFromFile(new File(scoutFolder, "Team " + MainActivity.singleton.getLastSavedTeam() + ".pit")));
+					savePitScoutToDatabase();
 				}
 				break;
 			case R.id.clear_action:
@@ -329,189 +330,76 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 		return image;
 	}
 
-	public void savePitScoutAsXML() {
-		scoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data/Team " + teamNumber.getText().toString());
-		if (!scoutFolder.exists() && !scoutFolder.mkdirs()) {
-			Log.w("File directory", "Failed to create directory");
+	public void savePitScoutToDatabase() {
+
+		List<PitRecord> listTest = SugarRecord.find(PitRecord.class, "team_Number=?", teamNumber.getText().toString());
+		if (listTest.size() > 0) {
+			System.out.println("it works!");
+			Log.e("Tim1", String.valueOf(listTest.size()));
+
+			// 1. Instantiate an AlertDialog.Builder with its constructor
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+			builder.setMessage("Team number already entered")
+					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+
+						}
+					});
+
+			AlertDialog dialog = builder.create();
+			dialog.show();
+		} else {
+			System.out.print(listTest.size());
+			Log.e("Tim2", String.valueOf(listTest.size()));
+			PitRecord record = new PitRecord();
+
+			record.setAbilitiesComment(abilitiesComment.getText().toString());
+			record.setAutoComment(autoComment.getText().toString());
+			record.setWheelNumSpinner(wheelNumSpinner.getSelectedItemPosition());
+			record.setMainComment(mainComment.getText().toString());
+			record.setTeleComment(teleComment.getText().toString());
+
+
+			record.setCoopAbilityCBW(coopAbilityCBW.isChecked());
+			record.setAutoZoneAutoCBW(autoZoneAutoCBW.isChecked());
+			record.setContainersAbilityCBW(containersAbilityCBW.isChecked());
+			record.setNarrowTeleCBW(narrowTeleCBW.isChecked());
+			record.setNoodlesAbilityCBW(noodlesAbilityCBW.isChecked());
+			record.setFlexibleAutoCBW(flexibleAutoCBW.isChecked());
+			record.setWideTeleCBW(wideTeleCBW.isChecked());
+			record.setHumanPlayerTeleCBW(humanPlayerTeleCBW.isChecked());
+			record.setLandfillTeleCBW(landfillTeleCBW.isChecked());
+			record.setContainersAutoCBW(containersAutoCBW.isChecked());
+			record.setShiftingAbilityCBW(shiftingAbilityCBW.isChecked());
+			record.setStepTeleCBW(stepTeleCBW.isChecked());
+			record.setTotesAbilityCBW(totesAbilityCBW.isChecked());
+			record.setTotesAutoCBW(totesAutoCBW.isChecked());
+
+			record.setCimNumSpinner(cimNumSpinner.getSelectedItemPosition());
+			record.setDriveSpinner(driveSpinner.getSelectedItemPosition());
+			record.setHighestPossibleStackSpinner(highestPossibleStackSpinner.getSelectedItemPosition());
+			record.setWheelTypeSpinner(wheelTypeSpinner.getSelectedItemPosition());
+			record.setWheelNumSpinner(wheelNumSpinner.getSelectedItemPosition());
+			record.setMaxSpeed(maxSpeed.getSelectedItemPosition());
+
+			record.setTeamName(teamName.getText().toString());
+			record.setTeamNumber(teamNumber.getText().toString());
+			record.save();
+			finish();
+
+			Toast.makeText(this, "PitScout " + MainActivity.singleton.getLastSavedTeam() + " saved successfully", Toast.LENGTH_LONG).show();
+			MainPagerAdapter.pitScouts.teamAdapter.add(record);
+
+			Log.e("Tim", "Saved 1");
+			Log.e("Tim", record.toString());
+
+
 		}
-		pitScoutFile = new File(scoutFolder, "Team " + teamNumber.getText().toString() + ".pit");
-		ArrayList<String> data = new ArrayList<>();
-		data.add(teamNumber.getText() + "");
-		data.add(teamName.getText() + "");
-		data.add(driveSpinner.getSelectedItem() + "");
-		data.add(wheelTypeSpinner.getSelectedItem() + "");
-		data.add(wheelNumSpinner.getSelectedItem() + "");
-		data.add(cimNumSpinner.getSelectedItem() + "");
-		data.add(maxSpeed.getSelectedItem() + "");
-		data.add(mainComment.getText() + "");
-		data.add(wideTeleCBW + "");
-		data.add(narrowTeleCBW + "");
-		data.add(stepTeleCBW + "");
-		data.add(landfillTeleCBW + "");
-		data.add(humanPlayerTeleCBW + "");
-		data.add(highestPossibleStackSpinner.getSelectedItem() + "");
-		data.add(teleComment.getText() + "");
-		data.add(autoZoneAutoCBW + "");
-		data.add(totesAutoCBW + "");
-		data.add(containersAutoCBW + "");
-		data.add(flexibleAutoCBW + "");
-		data.add(autoComment.getText() + "");
-		data.add(totesAbilityCBW + "");
-		data.add(containersAbilityCBW + "");
-		data.add(noodlesAbilityCBW + "");
-		data.add(shiftingAbilityCBW + "");
-		data.add(coopAbilityCBW + "");
-		data.add(abilitiesComment.getText() + "");
-		for (int i = 0; i < data.size(); i++) {
-			if (data.get(i).equals(""))
-				data.set(i, " ");
-		}
-		try {
-			fOut = new FileOutputStream(pitScoutFile);
-			xml = Xml.newSerializer();
-			StringWriter writer = new StringWriter();
-			xml.setOutput(writer);
-			xml.startDocument("UTF-8", true);
-			text("");
-			xml.startTag(null, "PitScout");
-			xml.attribute(null, "localFile", "true");
-			text("");
-			start("main");
-			start("teamNumber");
-			text(data.get(0));
-			end("teamNumber");
-			start("teamName");
-			text(data.get(1));
-			end("teamName");
-			start("driveType");
-			text(data.get(2));
-			end("driveType");
-			start("wheelType");
-			text(data.get(3));
-			end("wheelType");
-			start("wheelNumber");
-			text(data.get(4));
-			end("wheelNumber");
-			start("cimNumber");
-			text(data.get(5));
-			end("cimNumber");
-			start("maxSpeed");
-			text(data.get(6));
-			end("maxSpeed");
-			start("mainComment");
-			text(data.get(7));
-			end("mainComment");
-			end("main");
-			start("totes");
-			start("wideSideTote");
-			text(data.get(8));
-			end("wideSideTote");
-			start("narrowSideTote");
-			text(data.get(9));
-			end("narrowSideTote");
-			start("stepPickUp");
-			text(data.get(10));
-			end("stepPickUp");
-			start("landfillPickUp");
-			text(data.get(11));
-			end("landfillPickUp");
-			start("toteChutePickUp");
-			text(data.get(12));
-			end("toteChutePickUp");
-			start("highestPossibleStack");
-			text(data.get(13));
-			end("highestPossibleStack");
-			start("teleComment");
-			text(data.get(14));
-			end("teleComment");
-			end("totes");
-			start("auto");
-			start("autoZone");
-			text(data.get(15));
-			end("autoZone");
-			start("totes");
-			text(data.get(16));
-			end("totes");
-			start("containers");
-			text(data.get(17));
-			end("containers");
-			start("flexible");
-			text(data.get(18));
-			end("flexible");
-			start("autoComment");
-			text(data.get(19));
-			end("autoComment");
-			end("auto");
-			start("abilities");
-			start("canStackTotes");
-			text(data.get(20));
-			end("canStackTotes");
-			start("canLiftCans");
-			text(data.get(21));
-			end("canLiftCans");
-			start("canScoreNoodles");
-			text(data.get(22));
-			end("canScoreNoodles");
-			start("canShift");
-			text(data.get(23));
-			end("canShift");
-			start("canCoopStack");
-			text(data.get(24));
-			end("canCoopStack");
-			start("abilitiesComment");
-			text(data.get(25));
-			end("abilitiesComment");
-			end("abilities");
-			end("PitScout");
-			xml.endDocument();
-			xml.flush();
-			String dataWrite = writer.toString();
-			/*String sendString = "";
-			for (String s : data) {
-				sendString += "|" + s;
-			}
-			sendString = sendString.substring(1);*/
-			fOut.write(dataWrite.getBytes());
-			fOut.close();
-			//MainActivity.singleton.sendPit(pitScoutFile);
-			/*if (imageBitmap != null) {
-				File imageDir = new File(Environment.getExternalStorageDirectory() + "/" + settings.getString("folder_name", "FRCScouting") + "/local/PitScouts/images");
-				if (!imageDir.exists())
-					imageDir.mkdirs();
-				File imageFile = new File(imageDir, teamNumber.getText() + "_Robot_Image.jpg");
-				File tempImageFile = new File(mCurrentPath);
-				tempImageFile.renameTo(imageFile);
-			}*/
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		MainActivity.singleton.setLastSavedTeam(teamNumber.getText().toString());
-		finish();
+
+
 	}
 
-	private void start(String tagName) throws IOException {
-		xml.text("\t");
-		xml.startTag(null, tagName);
-		xml.text("\n");
-		for (int i = 1; i < xml.getDepth(); i++) {
-			xml.text("\t");
-		}
-	}
-
-	private void end(String tagName) throws IOException {
-		xml.endTag(null, tagName);
-		xml.text("\n");
-		for (int i = 1; i < xml.getDepth(); i++) {
-			xml.text("\t");
-		}
-	}
-
-	private void text(String text) throws IOException {
-		xml.text("\t" + text + "\n");
-		for (int i = 1; i < xml.getDepth(); i++) {
-			xml.text("\t");
-		}
-	}
 
 	@Override
 	public void onScroll(int i, int i2) {
@@ -537,5 +425,26 @@ public class PitScout extends ActionBarActivity implements View.OnClickListener,
 		robotImage.offsetTopAndBottom(-offset);
 
 		mLastDampedScroll = dampedScroll;
+	}
+}
+
+class FireMissilesDialogFragment extends DialogFragment {
+	@Override
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		// Use the Builder class for convenient dialog construction
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setMessage("Team number already entered")
+				.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// FIRE ZE MISSILES!
+					}
+				})
+				.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						// User cancelled the dialog
+					}
+				});
+		// Create the AlertDialog object and return it
+		return builder.create();
 	}
 }

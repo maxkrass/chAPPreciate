@@ -1,6 +1,7 @@
 package com.maxkrass.appreciate.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,8 +9,13 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.objects.PitRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
+import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 
@@ -50,6 +56,11 @@ public class ViewPitScout extends ActionBarActivity {
 	Toolbar toolbar;
 
 	Intent intent;
+	/**
+	 * ATTENTION: This was auto-generated to implement the App Indexing API.
+	 * See https://g.co/AppIndexing/AndroidStudio for more information.
+	 */
+	private GoogleApiClient client;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,33 +127,36 @@ public class ViewPitScout extends ActionBarActivity {
 		abilitiesList.addView(shiftingAbilityCBW);
 		abilitiesList.addView(coopAbilityCBW);
 		intent = getIntent();
-		ArrayList<String> data = intent.getStringArrayListExtra("pitData");
-		teamNumber.setText(data.get(0));
-		teamName.setText(data.get(1));
-		driveField.setText(data.get(2));
-		wheelTypeField.setText(data.get(3));
-		wheelNumField.setText(data.get(4));
-		cimNumField.setText(data.get(5));
-		maxSpeed.setText(data.get(6));
-		mainComment.setText(data.get(7));
-		wideTeleCBW.setCheckBox(Boolean.parseBoolean(data.get(8)));
-		narrowTeleCBW.setCheckBox(Boolean.parseBoolean(data.get(9)));
-		stepTeleCBW.setCheckBox(Boolean.parseBoolean(data.get(10)));
-		landfillTeleCBW.setCheckBox(Boolean.parseBoolean(data.get(11)));
-		humanPlayerTeleCBW.setCheckBox(Boolean.parseBoolean(data.get(12)));
-		highestPossibleStackField.setText(data.get(13));
-		teleComment.setText(data.get(14));
-		autoZoneAutoCBW.setCheckBox(Boolean.parseBoolean(data.get(15)));
-		totesAutoCBW.setCheckBox(Boolean.parseBoolean(data.get(16)));
-		containersAutoCBW.setCheckBox(Boolean.parseBoolean(data.get(17)));
-		flexibleAutoCBW.setCheckBox(Boolean.parseBoolean(data.get(18)));
-		autoComment.setText(data.get(19));
-		totesAbilityCBW.setCheckBox(Boolean.parseBoolean(data.get(21)));
-		containersAbilityCBW.setCheckBox(Boolean.parseBoolean(data.get(20)));
-		noodlesAbilityCBW.setCheckBox(Boolean.parseBoolean(data.get(22)));
-		shiftingAbilityCBW.setCheckBox(Boolean.parseBoolean(data.get(23)));
-		coopAbilityCBW.setCheckBox(Boolean.parseBoolean(data.get(24)));
-		abilitiesComment.setText(data.get(25));
+		PitRecord timsquad = SugarRecord.findById(PitRecord.class, (long) intent.getIntExtra("position", 1));
+		teamNumber.setText(timsquad.getTeamNumber());
+		teamName.setText(timsquad.getTeamName());
+		driveField.setText(String.valueOf(timsquad.getDriveSpinner()));
+		//wheelTypeField.setText(timsquad.getWheelTypeSpinner());
+		//wheelNumField.setText(timsquad.getWheelNumSpinner());
+		//cimNumField.setText(timsquad.getCimNumSpinner());
+		//maxSpeed.setText(timsquad.getMaxSpeed());
+		mainComment.setText(timsquad.getMainComment());
+		wideTeleCBW.setCheckBox((timsquad.isWideTeleCBW()));
+		narrowTeleCBW.setCheckBox((timsquad.isNarrowTeleCBW()));
+		stepTeleCBW.setCheckBox((timsquad.isStepTeleCBW()));
+		landfillTeleCBW.setCheckBox((timsquad.isLandfillTeleCBW()));
+		humanPlayerTeleCBW.setCheckBox((timsquad.isHumanPlayerTeleCBW()));
+		//highestPossibleStackField.setText(timsquad.getHighestPossibleStackSpinner());
+		teleComment.setText(timsquad.getTeleComment());
+		autoZoneAutoCBW.setCheckBox((timsquad.isAutoZoneAutoCBW()));
+		totesAutoCBW.setCheckBox((timsquad.isTotesAutoCBW()));
+		containersAutoCBW.setCheckBox((timsquad.isContainersAbilityCBW()));
+		flexibleAutoCBW.setCheckBox((timsquad.isFlexibleAutoCBW()));
+		autoComment.setText(timsquad.getAutoComment());
+		totesAbilityCBW.setCheckBox((timsquad.isTotesAbilityCBW()));
+		containersAbilityCBW.setCheckBox((timsquad.isContainersAbilityCBW()));
+		noodlesAbilityCBW.setCheckBox((timsquad.isNoodlesAbilityCBW()));
+		shiftingAbilityCBW.setCheckBox((timsquad.isShiftingAbilityCBW()));
+		coopAbilityCBW.setCheckBox((timsquad.isCoopAbilityCBW()));
+		abilitiesComment.setText(timsquad.getAbilitiesComment());
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
 	@Override
@@ -153,3 +167,4 @@ public class ViewPitScout extends ActionBarActivity {
 		return true;
 	}
 }
+
