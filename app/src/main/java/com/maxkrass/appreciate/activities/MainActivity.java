@@ -119,7 +119,7 @@ public class MainActivity extends ActionBarActivity {
                                     }
                                     case 2: {
 
-                                        startActivity(new Intent(MainActivity.this, MatchScout.class));
+                                        startActivity(new Intent(MainActivity.this, MatchScoutOneTeam.class));
                                         break;
                                     }
                                 }
