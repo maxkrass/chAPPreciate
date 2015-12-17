@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -19,7 +20,7 @@ import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 
-public class ViewPitScout extends ActionBarActivity {
+public class ViewPitScout extends AppCompatActivity {
 	LinearLayout abilitiesList;
 	LinearLayout autoList;
 	LinearLayout teleList;
@@ -56,11 +57,6 @@ public class ViewPitScout extends ActionBarActivity {
 	Toolbar toolbar;
 
 	Intent intent;
-	/**
-	 * ATTENTION: This was auto-generated to implement the App Indexing API.
-	 * See https://g.co/AppIndexing/AndroidStudio for more information.
-	 */
-	private GoogleApiClient client;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -131,17 +127,17 @@ public class ViewPitScout extends ActionBarActivity {
 		teamNumber.setText(timsquad.getTeamNumber());
 		teamName.setText(timsquad.getTeamName());
 		driveField.setText(String.valueOf(timsquad.getDriveSpinner()));
-		//wheelTypeField.setText(timsquad.getWheelTypeSpinner());
-		//wheelNumField.setText(timsquad.getWheelNumSpinner());
-		//cimNumField.setText(timsquad.getCimNumSpinner());
-		//maxSpeed.setText(timsquad.getMaxSpeed());
+		wheelTypeField.setText(getResources().getStringArray(R.array.wheel_type)[timsquad.getWheelTypeSpinner()]);
+		wheelNumField.setText(getResources().getStringArray(R.array.num_wheels)[timsquad.getWheelNumSpinner()]);
+		cimNumField.setText(getResources().getStringArray(R.array.num_cims)[timsquad.getCimNumSpinner()]);
+		maxSpeed.setText(getResources().getStringArray(R.array.speeds)[timsquad.getMaxSpeed()]);
 		mainComment.setText(timsquad.getMainComment());
 		wideTeleCBW.setCheckBox((timsquad.isWideTeleCBW()));
 		narrowTeleCBW.setCheckBox((timsquad.isNarrowTeleCBW()));
 		stepTeleCBW.setCheckBox((timsquad.isStepTeleCBW()));
 		landfillTeleCBW.setCheckBox((timsquad.isLandfillTeleCBW()));
 		humanPlayerTeleCBW.setCheckBox((timsquad.isHumanPlayerTeleCBW()));
-		//highestPossibleStackField.setText(timsquad.getHighestPossibleStackSpinner());
+		highestPossibleStackField.setText(getResources().getStringArray(R.array.highest_possible_stack)[timsquad.getHighestPossibleStackSpinner()]);
 		teleComment.setText(timsquad.getTeleComment());
 		autoZoneAutoCBW.setCheckBox((timsquad.isAutoZoneAutoCBW()));
 		totesAutoCBW.setCheckBox((timsquad.isTotesAutoCBW()));
@@ -154,9 +150,6 @@ public class ViewPitScout extends ActionBarActivity {
 		shiftingAbilityCBW.setCheckBox((timsquad.isShiftingAbilityCBW()));
 		coopAbilityCBW.setCheckBox((timsquad.isCoopAbilityCBW()));
 		abilitiesComment.setText(timsquad.getAbilitiesComment());
-		// ATTENTION: This was auto-generated to implement the App Indexing API.
-		// See https://g.co/AppIndexing/AndroidStudio for more information.
-		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
 	@Override
