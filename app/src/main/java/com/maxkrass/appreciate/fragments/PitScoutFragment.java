@@ -40,9 +40,19 @@ public class PitScoutFragment extends Fragment {
 				getActivity().startActivity(timIntent);
 			}
 		};
-		teamAdapter = new PitScoutTeamAdapter(getActivity(), TimClickListener, null, SugarRecord.listAll(PitRecord.class));
+		View.OnLongClickListener SarahClickListener = new View.OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				//Intent sarahIntent = new Intent(getContext(), ViewPitScout.class);
+				//sarahIntent.putExtra("position", recyclerView.getChildAdapterPosition(v) + 1);
+				//getActivity().startActivity(sarahIntent);
+				return true;
+			}
+		};
+		teamAdapter = new PitScoutTeamAdapter(getActivity(), TimClickListener, SarahClickListener, SugarRecord.listAll(PitRecord.class));
 		recyclerView.setAdapter(teamAdapter);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		return v;
 	}
+
 }
