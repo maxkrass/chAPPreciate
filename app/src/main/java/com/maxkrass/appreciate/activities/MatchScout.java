@@ -5,8 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Xml;
@@ -23,7 +24,6 @@ import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.adapter.MainPagerAdapter;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
-import com.maxkrass.appreciate.views.SlidingTabLayout;
 import com.maxkrass.appreciate.adapter.AlliancePagerAdapter;
 
 import org.xmlpull.v1.XmlSerializer;
@@ -34,11 +34,11 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
-public class MatchScout extends ActionBarActivity implements View.OnClickListener {
+public class MatchScout extends AppCompatActivity implements View.OnClickListener {
 
 	ViewPager viewPager;
 	AlliancePagerAdapter alliance;
-	SlidingTabLayout tabLayout;
+	TabLayout tabLayout;
 	SharedPreferences settings;
 
 	FileOutputStream fOut;
@@ -63,14 +63,8 @@ public class MatchScout extends ActionBarActivity implements View.OnClickListene
 		viewPager = (ViewPager) findViewById(R.id.viewPager);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(alliance);
-		tabLayout = (SlidingTabLayout) findViewById(R.id.tabStrip);
-		tabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-			@Override
-			public int getIndicatorColor(int position) {
-				return 0xfff44336;
-			}
-		});
-		tabLayout.setViewPager(viewPager);
+		tabLayout = (TabLayout) findViewById(R.id.tabStrip);
+		tabLayout.setupWithViewPager(viewPager);
 	}
 
 	@Override

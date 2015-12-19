@@ -1,49 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:fab="http://schemas.android.com/apk/res-auto"
-	android:layout_height="fill_parent"
-	android:layout_width="fill_parent"
-	android:focusableInTouchMode="true"
-	android:focusable="true"
-	android:id="@+id/content">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
-	<android.support.v7.widget.Toolbar
-		android:layout_height="@dimen/abc_action_bar_default_height_material"
-		android:layout_width="match_parent"
-		android:id="@+id/main_toolbar"
-		android:layout_alignParentTop="true"
-		android:background="@color/primary"
-		android:theme="@style/Toolbar.Style"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/scouts_pager"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="wrap_content" />
 
-	<com.maxkrass.appreciate.views.SlidingTabLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/main_toolbar"
-		android:background="@color/primary"
-		android:id="@+id/main_tabs"/>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/main_app_bar_layout"
+        android:layout_height="wrap_content">
 
-	<android.support.v4.view.ViewPager
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/main_tabs"
-		android:id="@+id/scouts_pager"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/abc_action_bar_default_height_material"
+            android:background="@color/primary"
+            android:theme="@style/Toolbar.Style"
+            app:layout_scrollFlags="scroll|enterAlways" />
 
+        <android.support.design.widget.TabLayout
+            android:id="@+id/main_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary" />
 
-	<android.support.design.widget.FloatingActionButton
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:src="@drawable/ic_game"
-		android:scaleType="fitStart"
-		android:onClick="createScout" />
+    </android.support.design.widget.AppBarLayout>
 
-	<!--<android.support.design.widget.FloatingActionButton
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:scaleType="fitStart"
-		android:src="@drawable/ic_pit"
-		android:onClick="createNewPitScout" />-->
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:onClick="createScout"
+        android:scaleType="fitStart"
+        android:src="@drawable/ic_add"
+        android:tint="@color/textColorPrimary" />
 
-
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

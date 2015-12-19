@@ -41,7 +41,13 @@ public class PitScoutTeamAdapter extends RecyclerView.Adapter<PitScoutTeamAdapte
 	public void add(PitRecord t) {
 		teamList.add(t);
 		Collections.sort(teamList);
-		notifyDataSetChanged();
+		notifyItemInserted(teamList.indexOf(t));
+	}
+
+	public PitRecord remove(int position) {
+		PitRecord pitRecord = teamList.remove(position);
+		notifyItemRemoved(position);
+		return pitRecord;
 	}
 
 	@Override

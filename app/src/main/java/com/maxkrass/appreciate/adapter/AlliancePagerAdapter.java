@@ -4,13 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.maxkrass.appreciate.activities.MainActivity;
-import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.fragments.TeamFragment;
-import com.nispok.snackbar.Snackbar;
-import com.nispok.snackbar.SnackbarManager;
-import com.nispok.snackbar.listeners.ActionClickListener;
-import com.nispok.snackbar.listeners.EventListener;
 
 public class AlliancePagerAdapter extends FragmentStatePagerAdapter {
 

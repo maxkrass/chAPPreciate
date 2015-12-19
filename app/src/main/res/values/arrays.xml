@@ -61,8 +61,12 @@
 		<item>fast</item>
 	</string-array>
 	<string-array name="mode">
-		<item>pit</item>
-		<item>match (one alliance)</item>
-		<item>match (one team)</item>
+		<item>Pit</item>
+		<item>Match (one alliance)</item>
+		<item>Match (one team)</item>
+	</string-array>
+	<string-array name="pit_scout_options">
+		<item>Edit</item>
+		<item>Delete</item>
 	</string-array>
 </resources>

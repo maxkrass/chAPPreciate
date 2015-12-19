@@ -1,7 +1,6 @@
 package com.maxkrass.appreciate.activities;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,27 +17,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
-import android.support.design.widget.*;
-
 import com.maxkrass.appreciate.R;
-import com.maxkrass.appreciate.Team;
-import com.maxkrass.appreciate.views.SlidingTabLayout;
+import com.maxkrass.appreciate.adapter.IconArrayAdapter;
 import com.maxkrass.appreciate.adapter.MainPagerAdapter;
-import com.maxkrass.appreciate.fragments.CreateMatchDialog;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.security.Timestamp;
-import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -46,12 +38,8 @@ public class MainActivity extends ActionBarActivity {
 
     private String lastSavedTeam = "";
 
-    FileOutputStream fOut;
-    File localScoutFolder;
-    File newScout;
-
     MainPagerAdapter scouts;
-    SlidingTabLayout tabLayout;
+    TabLayout tabLayout;
     String exportedFileName = "";
     ViewPager viewPager;
     Intent intent;
@@ -69,67 +57,29 @@ public class MainActivity extends ActionBarActivity {
         this.lastSavedTeam = lastSavedTeam;
     }
 
-    public void writeDataToFile(String team, boolean localData, String... s) {
-        localScoutFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/" + (localData ? "local" : "received"));
-        if (!localScoutFolder.exists() && !localScoutFolder.mkdir()) {
-            Log.w("File directory", "Failed to create directory");
-        }
-        File file1 = localScoutFolder;
-        newScout = new File(file1, team + ".xml");
-        try {
-            fOut = new FileOutputStream(newScout);
-            for (int i = 1; i < s.length; i++) {
-                s[i] = "\n" + s[i];
-            }
-            for (String string : s) {
-                fOut.write(string.getBytes());
-            }
-            fOut.close();
-        } catch (IOException ioexception) {
-            ioexception.printStackTrace();
-        }
-    }
-
-    public void createNewPitScout(View view) {
-        startActivity(new Intent(this, PitScout.class));
-
-    }
-
     public void createScout(View view) {
-        //
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        builder.setTitle("What would you like to do?")
-                .setItems(R.array.mode, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // The 'which' argument contains the index position
-                                // of the selected item
-                                switch (which) {
-                                    case 0: {
-                                        startActivity(new Intent(MainActivity.this, PitScout.class));
-                                        break;
-
-                                    }
-                                    case 1: {
-
-                                        startActivity(new Intent(MainActivity.this, MatchScout.class));
-                                        break;
-
-
-                                    }
-                                    case 2: {
-
-                                        startActivity(new Intent(MainActivity.this, MatchScoutOneTeam.class));
-                                        break;
-                                    }
-                                }
+        Integer[] icons = new Integer[]{R.drawable.ic_pit_icon, R.drawable.ic_game, R.drawable.ic_game};
+        ListAdapter adapter = new IconArrayAdapter(MainActivity.this, getResources().getStringArray(R.array.mode), icons);
+        new AlertDialog.Builder(this)
+                .setTitle("What would you like to do?")
+                .setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0: {
+                                startActivity(new Intent(MainActivity.this, PitScout.class));
+                                break;
+                            }
+                            case 1: {
+                                startActivity(new Intent(MainActivity.this, MatchScout.class));
+                                break;
+                            }
+                            case 2: {
+                                startActivity(new Intent(MainActivity.this, MatchScoutOneTeam.class));
+                                break;
                             }
                         }
-                );
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
+                    }
+                }).show();
 
     }
 
@@ -178,16 +128,9 @@ public class MainActivity extends ActionBarActivity {
         scouts = new MainPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.scouts_pager);
         viewPager.setAdapter(scouts);
-        tabLayout = (SlidingTabLayout) findViewById(R.id.main_tabs);
-        tabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return 0xfff44336;
-            }
-        });
-        tabLayout.setViewPager(viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.main_tabs);
+        tabLayout.setupWithViewPager(viewPager);
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-
         setSupportActionBar(toolbar);
         intent = getIntent();
         checkForInput();
@@ -310,7 +253,7 @@ public class MainActivity extends ActionBarActivity {
 
     private boolean export() {
         /*File outputFileDir = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting"));
-		if (!outputFileDir.exists() && !outputFileDir.mkdirs()){
+        if (!outputFileDir.exists() && !outputFileDir.mkdirs()){
 
 		}
 		File[] inputFiles = outputFileDir.listFiles();
@@ -417,12 +360,6 @@ public class MainActivity extends ActionBarActivity {
     public String getLastPathComponent(String filePath) {
         String[] segments = filePath.split("/");
         return segments[segments.length - 1];
-    }
-
-    public void createNewMatchScout(View view) {
-        DialogFragment createDialog = new CreateMatchDialog();
-        createDialog.show(getFragmentManager(), "teams");
-
     }
 
 

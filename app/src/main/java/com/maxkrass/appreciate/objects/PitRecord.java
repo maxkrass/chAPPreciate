@@ -6,9 +6,9 @@ import com.orm.SugarRecord;
 /**
  * Created by Sarah, Calyx, and Tim... and Max:) on 12/8/15.
  */
-public class PitRecord extends SugarRecord implements Comparable {
+public class PitRecord extends SugarRecord implements Comparable<PitRecord> {
     int maxSpeed;
-    String teamNumber;
+    int teamNumber;
     String teamName;
     String mainComment;
     String teleComment;
@@ -40,7 +40,7 @@ public class PitRecord extends SugarRecord implements Comparable {
     public PitRecord() {
     }
 
-    public PitRecord(int maxSpeed, String teamNumber, String teamName, String mainComment, String teleComment, String autoComment, String abilitiesComment, boolean wideTeleCBW, boolean autoZoneAutoCBW, boolean flexibleAutoCBW, boolean containersAbilityCBW, boolean containersAutoCBW, boolean coopAbilityCBW, boolean humanPlayerTeleCBW, boolean landfillTeleCBW, boolean noodlesAbilityCBW, boolean narrowTeleCBW, boolean shiftingAbilityCBW, boolean stepTeleCBW, boolean totesAbilityCBW, boolean totesAutoCBW, int cimNumSpinner, int driveSpinner, int highestPossibleStackSpinner, int wheelNumSpinner, int wheelTypeSpinner) {
+    public PitRecord(int maxSpeed, int teamNumber, String teamName, String mainComment, String teleComment, String autoComment, String abilitiesComment, boolean wideTeleCBW, boolean autoZoneAutoCBW, boolean flexibleAutoCBW, boolean containersAbilityCBW, boolean containersAutoCBW, boolean coopAbilityCBW, boolean humanPlayerTeleCBW, boolean landfillTeleCBW, boolean noodlesAbilityCBW, boolean narrowTeleCBW, boolean shiftingAbilityCBW, boolean stepTeleCBW, boolean totesAbilityCBW, boolean totesAutoCBW, int cimNumSpinner, int driveSpinner, int highestPossibleStackSpinner, int wheelNumSpinner, int wheelTypeSpinner) {
         this.maxSpeed = maxSpeed;
         this.teamNumber = teamNumber;
         this.teamName = teamName;
@@ -78,11 +78,11 @@ public class PitRecord extends SugarRecord implements Comparable {
         this.maxSpeed = maxSpeed;
     }
 
-    public String getTeamNumber() {
+    public int getTeamNumber() {
         return teamNumber;
     }
 
-    public void setTeamNumber(String teamNumber) {
+    public void setTeamNumber(int teamNumber) {
         this.teamNumber = teamNumber;
     }
 
@@ -280,7 +280,11 @@ public class PitRecord extends SugarRecord implements Comparable {
 
 
     @Override
-    public int compareTo(Object another) {
-        return this.getId().compareTo(((PitRecord) another).getId());
+    public int compareTo(PitRecord another) {
+        if (this.teamNumber < another.teamNumber)
+            return -1;
+        else if (this.teamNumber == another.teamNumber)
+            return 0;
+        else return 1;
     }
 }

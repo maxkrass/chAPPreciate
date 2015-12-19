@@ -17,6 +17,7 @@ import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.objects.PitRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
 import com.orm.SugarRecord;
+import com.orm.query.Select;
 
 import java.util.ArrayList;
 
@@ -123,8 +124,8 @@ public class ViewPitScout extends AppCompatActivity {
 		abilitiesList.addView(shiftingAbilityCBW);
 		abilitiesList.addView(coopAbilityCBW);
 		intent = getIntent();
-		PitRecord timsquad = SugarRecord.findById(PitRecord.class, (long) intent.getIntExtra("position", 1));
-		teamNumber.setText(timsquad.getTeamNumber());
+		PitRecord timsquad = (PitRecord) Select.from(PitRecord.class).orderBy("CAST(team_number AS int)").list().get(intent.getIntExtra("position", 0));
+		teamNumber.setText(String.valueOf(timsquad.getTeamNumber()));
 		teamName.setText(timsquad.getTeamName());
 		driveField.setText(String.valueOf(timsquad.getDriveSpinner()));
 		wheelTypeField.setText(getResources().getStringArray(R.array.wheel_type)[timsquad.getWheelTypeSpinner()]);

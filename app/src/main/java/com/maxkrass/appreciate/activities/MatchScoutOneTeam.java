@@ -192,7 +192,7 @@ public class MatchScoutOneTeam extends ActionBarActivity implements View.OnClick
         record.setAutoZoneAutoCBW(driveToAuto.isChecked());
         record.setContainersAbilityCBW(containersIntoAutoZone.isChecked());
 
-        record.setTeamNumber(teamNumber.getText().toString());
+        record.setTeamNumber(Integer.parseInt(teamNumber.getText().toString()));
         record.save();
         finish();
 
