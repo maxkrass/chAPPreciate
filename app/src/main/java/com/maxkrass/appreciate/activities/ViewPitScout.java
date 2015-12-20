@@ -1,25 +1,17 @@
 package com.maxkrass.appreciate.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.objects.PitRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
-import com.orm.SugarRecord;
 import com.orm.query.Select;
-
-import java.util.ArrayList;
 
 public class ViewPitScout extends AppCompatActivity {
 	LinearLayout abilitiesList;
@@ -124,33 +116,33 @@ public class ViewPitScout extends AppCompatActivity {
 		abilitiesList.addView(shiftingAbilityCBW);
 		abilitiesList.addView(coopAbilityCBW);
 		intent = getIntent();
-		PitRecord timsquad = (PitRecord) Select.from(PitRecord.class).orderBy("CAST(team_number AS int)").list().get(intent.getIntExtra("position", 0));
-		teamNumber.setText(String.valueOf(timsquad.getTeamNumber()));
-		teamName.setText(timsquad.getTeamName());
-		driveField.setText(String.valueOf(timsquad.getDriveSpinner()));
-		wheelTypeField.setText(getResources().getStringArray(R.array.wheel_type)[timsquad.getWheelTypeSpinner()]);
-		wheelNumField.setText(getResources().getStringArray(R.array.num_wheels)[timsquad.getWheelNumSpinner()]);
-		cimNumField.setText(getResources().getStringArray(R.array.num_cims)[timsquad.getCimNumSpinner()]);
-		maxSpeed.setText(getResources().getStringArray(R.array.speeds)[timsquad.getMaxSpeed()]);
-		mainComment.setText(timsquad.getMainComment());
-		wideTeleCBW.setCheckBox((timsquad.isWideTeleCBW()));
-		narrowTeleCBW.setCheckBox((timsquad.isNarrowTeleCBW()));
-		stepTeleCBW.setCheckBox((timsquad.isStepTeleCBW()));
-		landfillTeleCBW.setCheckBox((timsquad.isLandfillTeleCBW()));
-		humanPlayerTeleCBW.setCheckBox((timsquad.isHumanPlayerTeleCBW()));
-		highestPossibleStackField.setText(getResources().getStringArray(R.array.highest_possible_stack)[timsquad.getHighestPossibleStackSpinner()]);
-		teleComment.setText(timsquad.getTeleComment());
-		autoZoneAutoCBW.setCheckBox((timsquad.isAutoZoneAutoCBW()));
-		totesAutoCBW.setCheckBox((timsquad.isTotesAutoCBW()));
-		containersAutoCBW.setCheckBox((timsquad.isContainersAbilityCBW()));
-		flexibleAutoCBW.setCheckBox((timsquad.isFlexibleAutoCBW()));
-		autoComment.setText(timsquad.getAutoComment());
-		totesAbilityCBW.setCheckBox((timsquad.isTotesAbilityCBW()));
-		containersAbilityCBW.setCheckBox((timsquad.isContainersAbilityCBW()));
-		noodlesAbilityCBW.setCheckBox((timsquad.isNoodlesAbilityCBW()));
-		shiftingAbilityCBW.setCheckBox((timsquad.isShiftingAbilityCBW()));
-		coopAbilityCBW.setCheckBox((timsquad.isCoopAbilityCBW()));
-		abilitiesComment.setText(timsquad.getAbilitiesComment());
+		PitRecord timSquad = (PitRecord) Select.from(PitRecord.class).orderBy("CAST(team_number AS int)").list().get(intent.getIntExtra("position", 0));
+		teamNumber.setText(String.valueOf(timSquad.getTeamNumber()));
+		teamName.setText(timSquad.getTeamName());
+		driveField.setText(getResources().getStringArray(R.array.drive_type)[timSquad.getDriveSpinner()]);
+		wheelTypeField.setText(getResources().getStringArray(R.array.wheel_type)[timSquad.getWheelTypeSpinner()]);
+		wheelNumField.setText(getResources().getStringArray(R.array.num_wheels)[timSquad.getWheelNumSpinner()]);
+		cimNumField.setText(getResources().getStringArray(R.array.num_cims)[timSquad.getCimNumSpinner()]);
+		maxSpeed.setText(getResources().getStringArray(R.array.speeds)[timSquad.getMaxSpeed()]);
+		mainComment.setText(timSquad.getMainComment());
+		wideTeleCBW.setCheckBox((timSquad.isWideTeleCBW()));
+		narrowTeleCBW.setCheckBox((timSquad.isNarrowTeleCBW()));
+		stepTeleCBW.setCheckBox((timSquad.isStepTeleCBW()));
+		landfillTeleCBW.setCheckBox((timSquad.isLandfillTeleCBW()));
+		humanPlayerTeleCBW.setCheckBox((timSquad.isHumanPlayerTeleCBW()));
+		highestPossibleStackField.setText(getResources().getStringArray(R.array.highest_possible_stack)[timSquad.getHighestPossibleStackSpinner()]);
+		teleComment.setText(timSquad.getTeleComment());
+		autoZoneAutoCBW.setCheckBox((timSquad.isAutoZoneAutoCBW()));
+		totesAutoCBW.setCheckBox((timSquad.isTotesAutoCBW()));
+		containersAutoCBW.setCheckBox((timSquad.isContainersAbilityCBW()));
+		flexibleAutoCBW.setCheckBox((timSquad.isFlexibleAutoCBW()));
+		autoComment.setText(timSquad.getAutoComment());
+		totesAbilityCBW.setCheckBox((timSquad.isTotesAbilityCBW()));
+		containersAbilityCBW.setCheckBox((timSquad.isContainersAbilityCBW()));
+		noodlesAbilityCBW.setCheckBox((timSquad.isNoodlesAbilityCBW()));
+		shiftingAbilityCBW.setCheckBox((timSquad.isShiftingAbilityCBW()));
+		coopAbilityCBW.setCheckBox((timSquad.isCoopAbilityCBW()));
+		abilitiesComment.setText(timSquad.getAbilitiesComment());
 	}
 
 	@Override

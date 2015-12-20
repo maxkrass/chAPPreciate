@@ -34,7 +34,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
 
     private String lastSavedTeam = "";
 
@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void createScout(View view) {
-        Integer[] icons = new Integer[]{R.drawable.ic_pit_icon, R.drawable.ic_game, R.drawable.ic_game};
+        Integer[] icons = new Integer[]{R.drawable.ic_pit_black, R.drawable.ic_game, R.drawable.ic_game};
         ListAdapter adapter = new IconArrayAdapter(MainActivity.this, getResources().getStringArray(R.array.mode), icons);
         new AlertDialog.Builder(this)
                 .setTitle("What would you like to do?")
