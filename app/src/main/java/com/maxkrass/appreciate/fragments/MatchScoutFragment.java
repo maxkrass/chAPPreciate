@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//TODO renew data storage system; take a look at PitScoutFragment for that
 public class MatchScoutFragment extends Fragment {
 	RecyclerView recyclerView;
 	public MatchScoutTeamAdapter teamAdapter;

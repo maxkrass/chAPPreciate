@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.objects.PitRecord;
+import com.orm.query.Select;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,13 +36,24 @@ public class PitScoutTeamAdapter extends RecyclerView.Adapter<PitScoutTeamAdapte
 
 	@Override
 	public void onBindViewHolder(TeamViewHolder holder, int position) {
-		holder.textView.setText("Team " + teamList.get(position).getTeamNumber());
+		holder.textView.setText("Team " + teamList.get(position).getTeamNumber() + (teamList.get(position).getTeamName().equals("") ? "" : ": " + teamList.get(position).getTeamName()));
 	}
 
 	public void add(PitRecord t) {
 		teamList.add(t);
 		Collections.sort(teamList);
 		notifyItemInserted(teamList.indexOf(t));
+	}
+
+	public void update(int from, PitRecord pitRecord) {
+		teamList = Select.from(PitRecord.class).orderBy("CAST(team_number AS int)").list();
+		int to = teamList.indexOf(pitRecord);
+		notifyItemMoved(from, to);
+		notifyItemChanged(to);
+	}
+
+	public int indexOf(PitRecord pitRecord) {
+		return teamList.indexOf(pitRecord);
 	}
 
 	public PitRecord remove(int position) {

@@ -1,6 +1,8 @@
 package com.maxkrass.appreciate.objects;
 
 
+import android.support.annotation.NonNull;
+
 import com.orm.SugarRecord;
 
 /**
@@ -280,11 +282,16 @@ public class PitRecord extends SugarRecord implements Comparable<PitRecord> {
 
 
     @Override
-    public int compareTo(PitRecord another) {
+    public int compareTo(@NonNull PitRecord another) {
         if (this.teamNumber < another.teamNumber)
             return -1;
         else if (this.teamNumber == another.teamNumber)
             return 0;
         else return 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return getId().equals(((PitRecord) o).getId());
     }
 }

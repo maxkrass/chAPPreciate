@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.activities.PitScout;
 import com.maxkrass.appreciate.activities.ViewPitScout;
 import com.maxkrass.appreciate.adapter.IconArrayAdapter;
 import com.maxkrass.appreciate.adapter.PitScoutTeamAdapter;
@@ -57,6 +58,9 @@ public class PitScoutFragment extends Fragment {
 							public void onClick(DialogInterface dialog, int which) {
 								switch (which) {
 									case 0:
+										Intent intent = new Intent(getContext(), PitScout.class);
+										intent.putExtra("teamNumber", String.valueOf(clickedPitScout.getTeamNumber()));
+										startActivity(intent);
 										break;
 									case 1:
 										final PitRecord temporaryPitRecord = ((PitScoutTeamAdapter) recyclerView.getAdapter()).remove(position);

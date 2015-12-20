@@ -10,17 +10,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.adapter.MainPagerAdapter;
@@ -128,7 +126,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     private void initSpinners() {
         driveSpinner = (Spinner) findViewById(R.id.driveTypeSpinner);
         wheelTypeSpinner = (Spinner) findViewById(R.id.wheelTypeSpinner);
-        ;
         wheelNumSpinner = (Spinner) findViewById(R.id.wheelNumSpinner);
         cimNumSpinner = (Spinner) findViewById(R.id.cimNumSpinner);
         highestPossibleStackSpinner = (Spinner) findViewById(R.id.highestStackSpinner);
@@ -193,8 +190,10 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
         initTeleCBWs();
         if (edit = getIntent().hasExtra("teamNumber")) {
             editablePitRecord = SugarRecord.find(PitRecord.class, "team_number = ?", getIntent().getStringExtra("teamNumber")).get(0);
+            ((CollapsingToolbarLayout) toolbar.getParent()).setTitle("Edit Team " + editablePitRecord.getTeamNumber());
             fillEditTexts();
             checkTeleCBWs();
+            //TODO fill all UI Elements
         }
     }
 
@@ -207,7 +206,7 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void fillEditTexts() {
-        teamNumber.setText(editablePitRecord.getTeamNumber());
+        teamNumber.setText(String.valueOf(editablePitRecord.getTeamNumber()));
         teamName.setText(editablePitRecord.getTeamName());
         mainComment.setText(editablePitRecord.getMainComment());
         teleComment.setText(editablePitRecord.getTeleComment());
@@ -277,7 +276,7 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
             File photoFile = null;
             try {
                 photoFile = createTempImage();
-            } catch (IOException ex) {
+            } catch (IOException ignored) {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -315,7 +314,7 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
 
     public void savePitScoutToDatabase() {
 
-        if (SugarRecord.count(PitRecord.class, "team_Number=?", new String[]{teamNumber.getText().toString()}) > 0) {
+        if (!edit && SugarRecord.count(PitRecord.class, "team_Number=?", new String[]{teamNumber.getText().toString()}) > 0) {
             new AlertDialog.Builder(this)
                     .setTitle("Team number already exists")
                     .setMessage("Would you like to edit the existing Pit Scout?")
@@ -334,7 +333,13 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
                         }
                     }).show();
         } else {
-            PitRecord record = new PitRecord();
+            PitRecord record;
+
+            if (edit) {
+                record = editablePitRecord;
+            } else {
+                record = new PitRecord();
+            }
 
             record.setAbilitiesComment(abilitiesComment.getText().toString());
             record.setAutoComment(autoComment.getText().toString());
@@ -367,18 +372,17 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
 
             record.setTeamName(teamName.getText().toString());
             record.setTeamNumber(Integer.parseInt(teamNumber.getText().toString()));
-            record.save();
+
+            if (edit) {
+                int from = MainPagerAdapter.pitScouts.teamAdapter.indexOf(record);
+                record.save();
+                MainPagerAdapter.pitScouts.teamAdapter.update(from, record);
+            } else {
+                record.save();
+                MainPagerAdapter.pitScouts.teamAdapter.add(record);
+            }
             finish();
 
-            Toast.makeText(this, "PitScout " + MainActivity.singleton.getLastSavedTeam() + " saved successfully", Toast.LENGTH_LONG).show();
-            MainPagerAdapter.pitScouts.teamAdapter.add(record);
-
-            Log.e("Tim", "Saved 1");
-            Log.e("Tim", record.toString());
-
-
         }
-
-
     }
 }
