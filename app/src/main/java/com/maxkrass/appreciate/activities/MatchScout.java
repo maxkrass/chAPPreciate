@@ -54,7 +54,7 @@ public class MatchScout extends AppCompatActivity implements View.OnClickListene
 		setContentView(R.layout.match_save_dialog);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.match_toolbar);
 		matchNumber = intent.getStringExtra("matchNumber");
-		toolbar.setTitle("Match " + matchNumber);
+		//toolbar.setTitle("Match " + matchNumber);
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
@@ -69,6 +69,7 @@ public class MatchScout extends AppCompatActivity implements View.OnClickListene
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		//TODO create appropriate menu
 		getMenuInflater().inflate(R.menu.save_menu, menu);
 		return true;
 	}

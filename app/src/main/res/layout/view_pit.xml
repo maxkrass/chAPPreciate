@@ -7,28 +7,6 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<!--<com.maxkrass.appreciate.views.ObservableScrollView
-		android:layout_height="wrap_content"
-		android:layout_width="fill_parent"
-		android:focusableInTouchMode="true"
-		android:focusable="true"
-		android:id="@+id/scroll_view"
-		android:background="@android:color/background_light">
-
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
-
-			<ImageView
-				android:layout_width="fill_parent"
-				android:layout_height="200dp"
-				android:contentDescription="Robot Image"
-				android:scaleType="centerCrop"
-				android:src="@android:drawable/ic_menu_report_image"
-				android:background="@color/primary"
-				android:id="@+id/pit_scout_image"/>-->
-
 	<android.support.v7.widget.Toolbar
 		android:layout_height="@dimen/abc_action_bar_default_height_material"
 		android:layout_width="match_parent"
@@ -377,8 +355,6 @@
 			</LinearLayout>
 
 		</LinearLayout>
-
-	<!--</com.maxkrass.appreciate.views.ObservableScrollView>-->
 
 	</ScrollView>
 

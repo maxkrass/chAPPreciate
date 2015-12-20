@@ -3,8 +3,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:paddingStart="16dp"
-              android:paddingEnd="16dp">
+	android:paddingStart="24dp"
+	android:paddingEnd="24dp">
 
 	<FrameLayout
 		android:layout_height="48.0dip"

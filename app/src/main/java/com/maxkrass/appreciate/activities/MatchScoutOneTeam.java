@@ -46,6 +46,7 @@ import java.util.List;
 /**
  * Created by Sarah on 12/17/15.
  */
+//TODO use TeamFragment as the layout here
 public class MatchScoutOneTeam extends ActionBarActivity implements View.OnClickListener {
 
     String matchNumber = "";

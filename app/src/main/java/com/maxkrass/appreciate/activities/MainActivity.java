@@ -10,13 +10,14 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Time;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -69,12 +70,57 @@ public class MainActivity extends BaseActivity {
                                 startActivity(new Intent(MainActivity.this, PitScout.class));
                                 break;
                             }
-                            case 1: {
-                                startActivity(new Intent(MainActivity.this, MatchScout.class));
-                                break;
-                            }
                             case 2: {
                                 startActivity(new Intent(MainActivity.this, MatchScoutOneTeam.class));
+                                break;
+                            }
+                            case 1: {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+                                View v = inflater.inflate(R.layout.dialog_layout, null);
+                                final EditText matchNumber = (EditText) v.findViewById(R.id.match_number);
+                                final EditText firstTeamNumber = (EditText) v.findViewById(R.id.first_team);
+                                final EditText secondTeamNumber = (EditText) v.findViewById(R.id.second_team);
+                                final EditText thirdTeamNumber = (EditText) v.findViewById(R.id.third_team);
+                                builder.setView(v)
+                                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                boolean error = false;
+                                                if (matchNumber.getText().toString().equals("")) {
+                                                    matchNumber.setError("A match number is required");
+                                                    error = true;
+                                                }
+                                                if (firstTeamNumber.getText().toString().equals("")) {
+                                                    firstTeamNumber.setError("Team number one is required");
+                                                    error = true;
+                                                }
+                                                if (secondTeamNumber.getText().toString().equals("")) {
+                                                    secondTeamNumber.setError("Team number two is required");
+                                                    error = true;
+                                                } else if (firstTeamNumber.getText().toString().equals(secondTeamNumber.getText().toString())) {
+                                                    secondTeamNumber.setError("Team numbers must not be equal");
+                                                    error = true;
+                                                }
+                                                if (thirdTeamNumber.getText().toString().equals("")) {
+                                                    thirdTeamNumber.setError("Team number three is required");
+                                                    error = true;
+                                                } else if (secondTeamNumber.getText().toString().equals(thirdTeamNumber.getText().toString()) || firstTeamNumber.getText().toString().equals(thirdTeamNumber.getText().toString())) {
+                                                    thirdTeamNumber.setError("Team numbers must no be equal");
+                                                    error = true;
+                                                }
+                                                if (!error) {
+                                                    Intent matchScout = new Intent(MainActivity.this, MatchScout.class);
+                                                    matchScout.putExtra("matchNumber", matchNumber.getText() + "");
+                                                    matchScout.putExtra("team1", firstTeamNumber.getText() + "");
+                                                    matchScout.putExtra("team2", secondTeamNumber.getText() + "");
+                                                    matchScout.putExtra("team3", thirdTeamNumber.getText() + "");
+                                                    startActivity(matchScout);
+                                                }
+                                            }
+                                        })
+                                        .setNegativeButton(android.R.string.cancel, null)
+                                        .setTitle("Define teams").show();
                                 break;
                             }
                         }

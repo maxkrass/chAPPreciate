@@ -77,6 +77,11 @@
 			android:name=".activities.ViewPitScout"
 			android:label="View Pit"
 			android:exported="false"/>
+		<activity
+			android:name=".activities.MatchScoutOneTeam"
+			android:configChanges="orientation|screenSize"
+			android:label="View Pit"
+			android:exported="false" />
 	</application>
 
 </manifest>
