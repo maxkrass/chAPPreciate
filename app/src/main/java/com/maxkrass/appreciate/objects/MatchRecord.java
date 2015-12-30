@@ -8,6 +8,9 @@ import com.orm.SugarRecord;
 public class MatchRecord extends SugarRecord {
 
 	//TODO add all attributes a match has
-	//TODO add getters, setter, and default constructor
+	//TODO add getters, setter
 
+
+	public MatchRecord() {
+	}
 }
