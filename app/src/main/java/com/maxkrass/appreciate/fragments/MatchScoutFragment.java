@@ -12,11 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.maxkrass.appreciate.AlphanumComparator;
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.adapter.MatchScoutTeamAdapter;
-import com.maxkrass.appreciate.adapter.PitScoutTeamAdapter;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -61,7 +59,7 @@ public class MatchScoutFragment extends Fragment {
 				teams.add(new Team(teamFile.getName().substring(5)));
 			}
 		}
-		Collections.sort(teams, new AlphanumComparator());
+		Collections.sort(teams);
 		return teams;
 	}
 

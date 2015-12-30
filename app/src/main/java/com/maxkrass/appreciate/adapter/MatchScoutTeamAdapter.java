@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.maxkrass.appreciate.AlphanumComparator;
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.activities.MainActivity;
@@ -40,7 +39,7 @@ public class MatchScoutTeamAdapter extends RecyclerView.Adapter<MatchScoutTeamAd
 
 	public void add(Team t) {
 		teamList.add(t);
-		Collections.sort(teamList, new AlphanumComparator());
+		Collections.sort(teamList);
 		notifyDataSetChanged();
 	}
 

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
 
 public class TeamFragment extends Fragment implements android.view.View.OnClickListener {
@@ -19,7 +20,6 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	LinearLayout teleList;
 	public LinearLayout teleMatchList;
 
-	public EditText teamName;
 	public EditText autoPoints;
 	public EditText totalPoints;
 	public EditText autoComment;
@@ -96,6 +96,9 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 
 	public void saveMatchTeam() {
 		//TODO save this team's match to the database
+		MatchRecord matchRecord = new MatchRecord();
+		//...
+		matchRecord.save();
 	}
 
 	/*public void putDataIntoFields(String[] data) {

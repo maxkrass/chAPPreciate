@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.TypedValue;
 
 /**
- * Created by Max on 19.12.2015.
+ * Max made this for APPreciate on 19.12.2015.
  */
 public class Tools {
 

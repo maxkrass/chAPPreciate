@@ -23,124 +23,98 @@ import com.orm.SugarRecord;
 import java.util.List;
 
 /**
- * Created by Sarah on 12/17/15.
+ * Sarah made this for APPreciate on 12/17/15.
  */
 //TODO use TeamFragment as the layout here
 public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListener {
 
-    String matchNumber = "";
-    public LinearLayout auto;
-    LinearLayout tele;
-    LinearLayout endgame;
-    private CheckBoxWidget driveToAuto;
-    private CheckBoxWidget stacksTotesInAuto;
-    private CheckBoxWidget containersIntoAutoZone;
-    EditText teamNumber;
-    EditText teleComment;
-    EditText autoComment;
-    Toolbar toolbar;
-    private Drawable mActionBarBackgroundDrawable;
-    private ImageView robotImage;
-    SharedPreferences settings;
+	String matchNumber = "";
+	public LinearLayout auto;
+	LinearLayout tele;
+	LinearLayout endgame;
+	private CheckBoxWidget driveToAuto;
+	private CheckBoxWidget stacksTotesInAuto;
+	private CheckBoxWidget containersIntoAutoZone;
+	EditText teamNumber;
+	EditText teleComment;
+	EditText autoComment;
+	Toolbar toolbar;
+	private Drawable mActionBarBackgroundDrawable;
+	private ImageView robotImage;
+	SharedPreferences settings;
 
-    public void onClick(View view) {
-        if (view instanceof CheckBoxWidget) {
-            CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
-            checkboxwidget.setCheckBox(!checkboxwidget.isChecked());
-        }
-    }
+	public void onClick(View view) {
+		if (view instanceof CheckBoxWidget) {
+			CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
+			checkboxwidget.setCheckBox(!checkboxwidget.isChecked());
+		}
+	}
 
-    private void initAutoCBWs() {
-        auto = (LinearLayout) findViewById(R.id.abilities_list);
-        driveToAuto = new CheckBoxWidget(this);
-        driveToAuto.setTitleView(getString(R.string.auto_zone_match_label));
-        driveToAuto.setOnClickListener(this);
-        stacksTotesInAuto = new CheckBoxWidget(this);
-        stacksTotesInAuto.setTitleView(getString(R.string.program_auto_worked));
-        stacksTotesInAuto.setOnClickListener(this);
-        containersIntoAutoZone = new CheckBoxWidget(this);
-        containersIntoAutoZone.setTitleView(getString(R.string.totes_auto_label));
-        containersIntoAutoZone.setOnClickListener(this);
-        auto.addView(driveToAuto);
-        auto.addView(stacksTotesInAuto);
-        auto.addView(containersIntoAutoZone);
-    }
+	private void initAutoCBWs() {
+		auto = (LinearLayout) findViewById(R.id.abilities_list);
+		driveToAuto = new CheckBoxWidget(this);
+		driveToAuto.setTitleView(getString(R.string.auto_zone_match_label));
+		driveToAuto.setOnClickListener(this);
+		stacksTotesInAuto = new CheckBoxWidget(this);
+		stacksTotesInAuto.setTitleView(getString(R.string.program_auto_worked));
+		stacksTotesInAuto.setOnClickListener(this);
+		containersIntoAutoZone = new CheckBoxWidget(this);
+		containersIntoAutoZone.setTitleView(getString(R.string.totes_auto_label));
+		containersIntoAutoZone.setOnClickListener(this);
+		auto.addView(driveToAuto);
+		auto.addView(stacksTotesInAuto);
+		auto.addView(containersIntoAutoZone);
+	}
 
-    private void initEditTexts() {
-        teamNumber = (EditText) findViewById(R.id.teamNumberEditText);
-        teleComment = (EditText) findViewById(R.id.tele_comment);
-        autoComment = (EditText) findViewById(R.id.auto_comment);
-    }
+	private void initEditTexts() {
+		teamNumber = (EditText) findViewById(R.id.teamNumberEditText);
+		teleComment = (EditText) findViewById(R.id.tele_comment);
+		autoComment = (EditText) findViewById(R.id.auto_comment);
+	}
 
-    private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.pit_toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_close);
+	private void initToolbar() {
+		toolbar = (Toolbar) findViewById(R.id.pit_toolbar);
+		setSupportActionBar(toolbar);
+		ActionBar actionBar = getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeAsUpIndicator(R.drawable.ic_close);
 
 
-    }
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.save_menu, menu);
-        return true;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.save_menu, menu);
+		return true;
+	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.pit_save_dialog);
-        settings = PreferenceManager.getDefaultSharedPreferences(this);
-        initToolbar();
-        initEditTexts();
-        //initSpinners();
-        initAutoCBWs();
-        //initAbilitiesCBWs();
-        // initTeleCBWs();
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.pit_save_dialog);
+		settings = PreferenceManager.getDefaultSharedPreferences(this);
+		initToolbar();
+		initEditTexts();
+		//initSpinners();
+		initAutoCBWs();
+		//initAbilitiesCBWs();
+		// initTeleCBWs();
+	}
 
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.save_action:
-                if (teamNumber.getText().toString().equals("")) {
-                    teamNumber.setError("A Team Number is required");
-                } else {
-                    savePitScoutToDatabase();
-                }
-                break;
-            case R.id.clear_action:
-                clearFields();
-                break;
-            case R.id.pic_action:
-                dispatchTakePictureIntent();
-                break;
-            case android.R.id.home:
-                finish();
-                break;
-            case R.id.settings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }*/
-    private void clearFields() {
-        driveToAuto.setCheckBox(false);
-        stacksTotesInAuto.setCheckBox(false);
-        containersIntoAutoZone.setCheckBox(false);
+	private void clearFields() {
+		driveToAuto.setCheckBox(false);
+		stacksTotesInAuto.setCheckBox(false);
+		containersIntoAutoZone.setCheckBox(false);
 
-        //scrollView.scrollTo(0, 0);
-    }
+		//scrollView.scrollTo(0, 0);
+	}
 
-    public void saveMatchScoutToDatabase() {
+	public void saveMatchScoutToDatabase() {
 
-        List<PitRecord> listTest = SugarRecord.find(PitRecord.class, "team_Number=?", teamNumber.getText().toString());
-       /* if (listTest.size() > 0) {
-            System.out.println("it works!");
+		List<PitRecord> listTest = SugarRecord.find(PitRecord.class, "team_Number=?", teamNumber.getText().toString());
+	   /* if (listTest.size() > 0) {
+	        System.out.println("it works!");
             Log.e("Sarah1", String.valueOf(listTest.size()));
 
             // 1. Instantiate an AlertDialog.Builder with its constructor
@@ -156,31 +130,31 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
             AlertDialog dialog = builder.create();
             dialog.show();
         }*/
-        System.out.print(listTest.size());
-        Log.e("Sarah2", String.valueOf(listTest.size()));
-        PitRecord record = new PitRecord();
+		System.out.print(listTest.size());
+		Log.e("Sarah2", String.valueOf(listTest.size()));
+		PitRecord record = new PitRecord();
 
 
-        record.setAutoComment(autoComment.getText().toString());
+		record.setAutoComment(autoComment.getText().toString());
 
-        record.setTeleComment(teleComment.getText().toString());
-
-
-        record.setCoopAbilityCBW(stacksTotesInAuto.isChecked());
-        record.setAutoZoneAutoCBW(driveToAuto.isChecked());
-        record.setContainersAbilityCBW(containersIntoAutoZone.isChecked());
-
-        record.setTeamNumber(Integer.parseInt(teamNumber.getText().toString()));
-        record.save();
-        finish();
-
-        Toast.makeText(this, "Match Scout " + MainActivity.singleton.getLastSavedTeam() + " saved successfully", Toast.LENGTH_LONG).show();
-        MainPagerAdapter.pitScouts.teamAdapter.add(record);
-
-        Log.e("Sarah", "Saved 1");
-        Log.e("Sarah", record.toString());
+		record.setTeleComment(teleComment.getText().toString());
 
 
-    }
+		record.setCoopAbilityCBW(stacksTotesInAuto.isChecked());
+		record.setAutoZoneAutoCBW(driveToAuto.isChecked());
+		record.setContainersAbilityCBW(containersIntoAutoZone.isChecked());
+
+		record.setTeamNumber(Integer.parseInt(teamNumber.getText().toString()));
+		record.save();
+		finish();
+
+		Toast.makeText(this, "Match Scout " + MainActivity.singleton.getLastSavedTeam() + " saved successfully", Toast.LENGTH_LONG).show();
+		MainPagerAdapter.pitScouts.teamAdapter.add(record);
+
+		Log.e("Sarah", "Saved 1");
+		Log.e("Sarah", record.toString());
+
+
+	}
 
 }

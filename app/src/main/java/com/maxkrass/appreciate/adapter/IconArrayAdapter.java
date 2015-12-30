@@ -2,6 +2,7 @@ package com.maxkrass.appreciate.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Max on 18.12.2015 for APPreciate for APPreciate.
+ * Max made this for APPreciate on 18.12.2015.
  */
 public class IconArrayAdapter extends ArrayAdapter<String> {
 
@@ -28,7 +29,7 @@ public class IconArrayAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
         TextView textView = (TextView) view.findViewById(android.R.id.text1);
-        Drawable d = getContext().getResources().getDrawable(images.get(position));
+        Drawable d = ContextCompat.getDrawable(getContext(), images.get(position));
         if (d != null) {
             d.setAlpha(0x8a);
             textView.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
