@@ -1,53 +1,32 @@
 package com.maxkrass.appreciate.activities;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.manuelpeinado.fadingactionbar.view.ObservableScrollable;
-import com.manuelpeinado.fadingactionbar.view.OnScrollChangedCallback;
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.adapter.MainPagerAdapter;
 import com.maxkrass.appreciate.objects.PitRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
 import com.orm.SugarRecord;
 
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by Sarah on 12/17/15.
  */
 //TODO use TeamFragment as the layout here
-public class MatchScoutOneTeam extends ActionBarActivity implements View.OnClickListener {
+public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListener {
 
     String matchNumber = "";
     public LinearLayout auto;
@@ -99,8 +78,6 @@ public class MatchScoutOneTeam extends ActionBarActivity implements View.OnClick
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_close);
-        mActionBarBackgroundDrawable = toolbar.getBackground();
-        robotImage = (ImageView) findViewById(R.id.pit_scout_image);
 
 
     }

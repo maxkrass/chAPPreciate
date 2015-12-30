@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context=".MainActivity">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context=".MainActivity">
 
 	<item
+		android:id="@+id/settings_menu"
 		android:title="@string/action_settings"
-		app:showAsAction="never"
-		android:id="@+id/settings_menu"/>
+		app:showAsAction="never" />
 
 	<item
+		android:id="@+id/exit_menu"
 		android:title="@string/action_exit"
-		app:showAsAction="never"
-		android:id="@+id/exit_menu"/>
+		app:showAsAction="never" />
 
 	<item
+		android:id="@+id/search_menu"
+		android:icon="@drawable/ic_assessment_white"
 		android:title="@string/search"
-		app:showAsAction="ifRoom"
-		android:icon="@drawable/ic_add"
-		android:id="@+id/search_menu"/>
+		app:showAsAction="ifRoom" />
 
 	<item
+		android:id="@+id/export_menu"
 		android:title="Export"
-		app:showAsAction="never"
-		android:id="@+id/export_menu"/>
+		app:showAsAction="never" />
 </menu>

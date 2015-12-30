@@ -1,8 +1,8 @@
 package com.maxkrass.appreciate.fragments;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +12,6 @@ import android.widget.ScrollView;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
-
-import java.util.Arrays;
 
 public class TeamFragment extends Fragment implements android.view.View.OnClickListener {
 
@@ -34,8 +32,6 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public CheckBoxWidget coopertitionCBW;
 
 	ScrollView scrollView;
-
-	int i=0;
 
 	public void onClick(View view) {
 		if (view instanceof CheckBoxWidget) {
@@ -96,6 +92,10 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 		autoComment.setText("");
 		teleComment.setText("");
 		teleMatchList.removeAllViews();
+	}
+
+	public void saveMatchTeam() {
+		//TODO save this team's match to the database
 	}
 
 	/*public void putDataIntoFields(String[] data) {
