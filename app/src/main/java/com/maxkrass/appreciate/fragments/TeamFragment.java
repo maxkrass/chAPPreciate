@@ -24,6 +24,8 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public EditText totalPoints;
 	public EditText autoComment;
 	public EditText teleComment;
+    int teamNumber;
+    int matchNumber;
 
 	public CheckBoxWidget stackedTotesCBW;
 	public CheckBoxWidget autoZoneCBW;
@@ -33,7 +35,12 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 
 	ScrollView scrollView;
 
-	public void onClick(View view) {
+    public TeamFragment(int teamNumber, int matchNumber) {
+        this.teamNumber = teamNumber;
+        this.matchNumber = matchNumber;
+    }
+
+    public void onClick(View view) {
 		if (view instanceof CheckBoxWidget) {
 			CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
 			boolean flag;
@@ -95,11 +102,16 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	}
 
 	public void saveMatchTeam() {
-		//TODO save this team's match to the database
 		MatchRecord matchRecord = new MatchRecord();
-		//...
-		matchRecord.save();
-	}
+        matchRecord.setAutoComment(autoComment.getText().toString());
+        matchRecord.setAutoPoints(Integer.parseInt(autoPoints.getText().toString()));
+        matchRecord.setTeleComment(teleComment.getText().toString());
+        matchRecord.setTotalPoints(Integer.parseInt(totalPoints.getText().toString()));
+        matchRecord.setTeamNumber(teamNumber);
+        matchRecord.setMatchNumber(matchNumber);
+        matchRecord.save();
+        getActivity().finish();
+    }
 
 	/*public void putDataIntoFields(String[] data) {
 		String driveTypeArray[];

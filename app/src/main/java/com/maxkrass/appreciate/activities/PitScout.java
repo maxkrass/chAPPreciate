@@ -193,7 +193,10 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
             ((CollapsingToolbarLayout) toolbar.getParent()).setTitle("Edit Team " + editablePitRecord.getTeamNumber());
             fillEditTexts();
             checkTeleCBWs();
-            //TODO fill all UI Elements
+            checkAutoCBWs();
+            setSpinners();
+            checkAbilitiesCBWs();
+
         }
     }
 
@@ -214,6 +217,29 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
         abilitiesComment.setText(editablePitRecord.getAbilitiesComment());
     }
 
+    private void checkAutoCBWs() {
+        autoZoneAutoCBW.setCheckBox(editablePitRecord.isAutoZoneAutoCBW());
+        totesAutoCBW.setCheckBox(editablePitRecord.isTotesAutoCBW());
+        containersAutoCBW.setCheckBox(editablePitRecord.isContainersAutoCBW());
+        flexibleAutoCBW.setCheckBox(editablePitRecord.isFlexibleAutoCBW());
+    }
+
+    private void setSpinners() {
+        driveSpinner.setSelection(editablePitRecord.getDriveSpinner());
+        wheelTypeSpinner.setSelection(editablePitRecord.getWheelTypeSpinner());
+        wheelNumSpinner.setSelection(editablePitRecord.getWheelNumSpinner());
+        cimNumSpinner.setSelection(editablePitRecord.getCimNumSpinner());
+        highestPossibleStackSpinner.setSelection(editablePitRecord.getHighestPossibleStackSpinner());
+
+    }
+
+    private void checkAbilitiesCBWs() {
+        totesAbilityCBW.setCheckBox(editablePitRecord.isTotesAbilityCBW());
+        containersAbilityCBW.setCheckBox(editablePitRecord.isContainersAbilityCBW());
+        noodlesAbilityCBW.setCheckBox(editablePitRecord.isNoodlesAbilityCBW());
+        shiftingAbilityCBW.setCheckBox(editablePitRecord.isShiftingAbilityCBW());
+        coopAbilityCBW.setCheckBox(editablePitRecord.isCoopAbilityCBW());
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

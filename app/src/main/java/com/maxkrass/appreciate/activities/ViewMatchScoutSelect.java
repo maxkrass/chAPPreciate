@@ -18,11 +18,15 @@ import android.widget.TextView;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
+import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewMatchScoutSelect extends ActionBarActivity {
 
@@ -62,16 +66,8 @@ public class ViewMatchScoutSelect extends ActionBarActivity {
 		LinearLayout view = new LinearLayout(this);
 		view.setOrientation(LinearLayout.VERTICAL);
 		view.setPadding(0, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0, 0);
-		File teamFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + MainActivity.singleton.settings.getString("folder_name", "FRCScouting") + "/data/" + teamNumber);
-		FilenameFilter filter = new FilenameFilter() {
-			@Override
-			public boolean accept(File dir, String filename) {
-				return filename.startsWith("Match ") && filename.endsWith(".match");
-			}
-		};
-		allMatchFiles = teamFolder.listFiles(filter);
-		if (allMatchFiles != null && allMatchFiles.length > 0) {
-			for (File file : allMatchFiles) {
+		List<MatchRecord> leroy = Select.from(MatchRecord.class).where(Condition.prop("team_number").eq(teamNumber)).orderBy("CAST(team_number AS int)").list();
+		for (MatchRecord record : leroy) {
 				View v = inflater.inflate(R.layout.match_card, null);
 				stackList = (LinearLayout) v.findViewById(R.id.stack_list);
 				pointsAutoLabel = (TextView) v.findViewById(R.id.points_auto_label);
@@ -95,36 +91,19 @@ public class ViewMatchScoutSelect extends ActionBarActivity {
 				coopertitionCBW = new CheckBoxWidget(this);
 				coopertitionCBW.setTitleView(getString(R.string.coopertition_tele_match));
 				teleMatchList.addView(coopertitionCBW);
-				ArrayList<String> matchData = Team.getTextFromFile(file);
-				((TextView) v.findViewById(R.id.match_number)).setText(file.getName().substring(0, file.getName().length() - 6));
-				autoZoneCBW.setCheckBox(Boolean.parseBoolean(matchData.get(0)));
-				stackedTotesCBW.setCheckBox(Boolean.parseBoolean(matchData.get(1)));
-				workedCBW.setCheckBox(Boolean.parseBoolean(matchData.get(2)));
-				pointsAutoLabel.setText(matchData.get(3));
-				commentAutoLabel.setText(matchData.get(4).equals(" ") ? "No Comments" : matchData.get(4));
-				for (int i = 0; i < Integer.parseInt(matchData.get(5)); i++) {
-					View stackView = inflater.inflate(R.layout.view_stack, stackList);
-					((TextView) stackView.findViewById(R.id.stack_label)).setText("Stack " + (i + 1));
-					((TextView) stackView.findViewById(R.id.totes_label)).setText(matchData.remove(6));
-					((TextView) stackView.findViewById(R.id.containers_label)).setText(matchData.remove(6));
-					FrameLayout noodle_cbw_container = (FrameLayout) stackView.findViewById(R.id.noodle_box);
-					CheckBoxWidget noodle = new CheckBoxWidget(this);
-					noodle.setTitleView("Noodle");
-					noodle.setCheckBox(Boolean.parseBoolean(matchData.remove(6)));
-					noodle_cbw_container.addView(noodle);
-				}
-				functionalCBW.setCheckBox(Boolean.parseBoolean(matchData.get(6)));
-				coopertitionCBW.setCheckBox(Boolean.parseBoolean(matchData.get(7)));
-				pointsTeleLabel.setText(matchData.get(8));
-				commentTeleLabel.setText(matchData.get(9).equals(" ") ? "No Comments" : matchData.get(9));
+			((TextView) v.findViewById(R.id.match_number)).setText(record.getMatchNumber());
+			pointsAutoLabel.setText(String.valueOf(record.getAutoPoints()));
+			commentAutoLabel.setText(record.getAutoComment().equals("") ? "No Comments" : record.getAutoComment());
+			pointsTeleLabel.setText(String.valueOf(record.getTotalPoints()));
+			commentTeleLabel.setText(record.getTeleComment().equals("") ? "No Comments" : record.getTeleComment());
 				view.addView(v);
 			}
-		} else {
-			finish();
-		}
+
 		mainView.addView(view);
+		mainerMainView.addView(mainView);
 		setContentView(mainerMainView);
 	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

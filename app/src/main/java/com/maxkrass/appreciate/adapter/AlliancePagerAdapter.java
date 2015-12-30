@@ -11,22 +11,24 @@ public class AlliancePagerAdapter extends FragmentStatePagerAdapter {
 	public static TeamFragment team1;
 	public static TeamFragment team2;
 	public static TeamFragment team3;
-	public static String[] teamNumbers;
+	public static int[] teamNumbers;
+	int matchNumber;
 
-	public AlliancePagerAdapter(FragmentManager fm, String... teamNumbers) {
+	public AlliancePagerAdapter(FragmentManager fm, int matchNumber, int... teamNumbers) {
 		super(fm);
 		AlliancePagerAdapter.teamNumbers = teamNumbers;
+		this.matchNumber = matchNumber;
 	}
 
 	@Override
 	public Fragment getItem(int position) {
 		switch (position) {
 			case 0:
-				return team1 = new TeamFragment();
+				return team1 = new TeamFragment(teamNumbers[position], matchNumber);
 			case 1:
-				return team2 = new TeamFragment();
+				return team2 = new TeamFragment(teamNumbers[position], matchNumber);
 			case 2:
-				return team3 = new TeamFragment();
+				return team3 = new TeamFragment(teamNumbers[position], matchNumber);
 			default:
 				return null;
 		}

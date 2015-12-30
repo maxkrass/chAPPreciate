@@ -119,7 +119,7 @@ public class SearchActivity extends ActionBarActivity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				updateTeam1(s.toString());
+				//updateTeam1(s.toString());
 			}
 		});
 		team2Input.addTextChangedListener(new TextWatcher() {
@@ -134,7 +134,7 @@ public class SearchActivity extends ActionBarActivity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				updateTeam2(s.toString());
+				//updateTeam2(s.toString());
 			}
 		});
 		team3Input.addTextChangedListener(new TextWatcher() {
@@ -149,7 +149,7 @@ public class SearchActivity extends ActionBarActivity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				updateTeam3(s.toString());
+				//updateTeam3(s.toString());
 			}
 		});
 	}
@@ -171,7 +171,7 @@ public class SearchActivity extends ActionBarActivity {
 		return maxListSize;
 	}
 
-	private void updateTeam3(String s) {
+	/*private void updateTeam3(String s) {
 		File firstMatchFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + MainActivity.singleton.settings.getString("folder_name", "FRCScouting") + "/data/Team " + s);
 		if (firstMatchFolder.exists()) {
 			FilenameFilter filter = new FilenameFilter() {
@@ -313,9 +313,9 @@ public class SearchActivity extends ActionBarActivity {
 			commentAutoTeam3.setText("");
 			commentTeleTeam3.setText("");
 		}
-	}
+	}*/
 
-	private void updateTeam2(String s) {
+	/*private void updateTeam2(String s) {
 		File firstMatchFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + MainActivity.singleton.settings.getString("folder_name", "FRCScouting") + "/data/Team " + s);
 		if (firstMatchFolder.exists()) {
 			FilenameFilter filter = new FilenameFilter() {
@@ -457,9 +457,9 @@ public class SearchActivity extends ActionBarActivity {
 			commentAutoTeam2.setText("");
 			commentTeleTeam2.setText("");
 		}
-	}
+	}*/
 
-	private void updateTeam1(String teamNumber) {
+	/*private void updateTeam1(String teamNumber) {
 		File firstMatchFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + MainActivity.singleton.settings.getString("folder_name", "FRCScouting") + "/data/Team " + teamNumber);
 		if (firstMatchFolder.exists()) {
 			FilenameFilter filter = new FilenameFilter() {
@@ -601,5 +601,5 @@ public class SearchActivity extends ActionBarActivity {
 			commentAutoTeam1.setText("");
 			commentTeleTeam1.setText("");
 		}
-	}
+	}*/
 }

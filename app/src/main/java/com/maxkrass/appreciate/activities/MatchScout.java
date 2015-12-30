@@ -36,7 +36,7 @@ public class MatchScout extends AppCompatActivity implements View.OnClickListene
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
 		settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.singleton);
-		alliance = new AlliancePagerAdapter(getSupportFragmentManager(), intent.getStringExtra("team1"), intent.getStringExtra("team2"), intent.getStringExtra("team3"));
+		alliance = new AlliancePagerAdapter(getSupportFragmentManager(), Integer.parseInt(matchNumber), Integer.parseInt(intent.getStringExtra("team1")), Integer.parseInt(intent.getStringExtra("team2")), Integer.parseInt(intent.getStringExtra("team3")));
 		viewPager = (ViewPager) findViewById(R.id.viewPager);
 		viewPager.setOffscreenPageLimit(2);
 		viewPager.setAdapter(alliance);

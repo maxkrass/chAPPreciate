@@ -4,14 +4,18 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.maxkrass.appreciate.R;
@@ -25,136 +29,85 @@ import java.util.List;
 /**
  * Sarah made this for APPreciate on 12/17/15.
  */
-//TODO use TeamFragment as the layout here
-public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListener {
 
-	String matchNumber = "";
-	public LinearLayout auto;
-	LinearLayout tele;
-	LinearLayout endgame;
-	private CheckBoxWidget driveToAuto;
-	private CheckBoxWidget stacksTotesInAuto;
-	private CheckBoxWidget containersIntoAutoZone;
-	EditText teamNumber;
-	EditText teleComment;
-	EditText autoComment;
-	Toolbar toolbar;
-	private Drawable mActionBarBackgroundDrawable;
-	private ImageView robotImage;
-	SharedPreferences settings;
+public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListener {
+    LinearLayout autoList;
+    LinearLayout teleList;
+    public LinearLayout teleMatchList;
+
+    public EditText autoPoints;
+    public EditText totalPoints;
+    public EditText autoComment;
+    public EditText teleComment;
+
+    public CheckBoxWidget stackedTotesCBW;
+    public CheckBoxWidget autoZoneCBW;
+    public CheckBoxWidget workedCBW;
+    public CheckBoxWidget functionalCBW;
+    public CheckBoxWidget coopertitionCBW;
+
+    ScrollView scrollView;
 
 	public void onClick(View view) {
 		if (view instanceof CheckBoxWidget) {
 			CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
-			checkboxwidget.setCheckBox(!checkboxwidget.isChecked());
-		}
+            boolean flag;
+            flag = !checkboxwidget.isChecked();
+            checkboxwidget.setCheckBox(flag);
+        }
 	}
 
-	private void initAutoCBWs() {
-		auto = (LinearLayout) findViewById(R.id.abilities_list);
-		driveToAuto = new CheckBoxWidget(this);
-		driveToAuto.setTitleView(getString(R.string.auto_zone_match_label));
-		driveToAuto.setOnClickListener(this);
-		stacksTotesInAuto = new CheckBoxWidget(this);
-		stacksTotesInAuto.setTitleView(getString(R.string.program_auto_worked));
-		stacksTotesInAuto.setOnClickListener(this);
-		containersIntoAutoZone = new CheckBoxWidget(this);
-		containersIntoAutoZone.setTitleView(getString(R.string.totes_auto_label));
-		containersIntoAutoZone.setOnClickListener(this);
-		auto.addView(driveToAuto);
-		auto.addView(stacksTotesInAuto);
-		auto.addView(containersIntoAutoZone);
-	}
+    private void initCBWs() {
+        autoList = (LinearLayout) findViewById(R.id.auto_match_list);
+        autoZoneCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
+        autoZoneCBW.setTitleView(getString(R.string.auto_zone_match_label));
+        autoZoneCBW.setOnClickListener(this);
+        autoList.addView(autoZoneCBW);
+        stackedTotesCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
+        stackedTotesCBW.setTitleView(getString(R.string.totes_auto_label));
+        stackedTotesCBW.setOnClickListener(this);
+        autoList.addView(stackedTotesCBW);
+        workedCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
+        workedCBW.setTitleView(getString(R.string.program_auto_worked));
+        workedCBW.setOnClickListener(this);
+        autoList.addView(workedCBW);
+        teleList = (LinearLayout) findViewById(R.id.tele_list);
+        functionalCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
+        functionalCBW.setTitleView(getString(R.string.functional_tele_match));
+        functionalCBW.setOnClickListener(this);
+        teleList.addView(functionalCBW);
+        coopertitionCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
+        coopertitionCBW.setTitleView(getString(R.string.coopertition_tele_match));
+        coopertitionCBW.setOnClickListener(this);
+        teleList.addView(coopertitionCBW);
+    }
 
-	private void initEditTexts() {
-		teamNumber = (EditText) findViewById(R.id.teamNumberEditText);
-		teleComment = (EditText) findViewById(R.id.tele_comment);
-		autoComment = (EditText) findViewById(R.id.auto_comment);
-	}
+    @Nullable
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.team_layout);
+        teleMatchList = (LinearLayout) findViewById(R.id.tele_match_list);
+        autoPoints = (EditText) findViewById(R.id.auto_points_field);
+        autoComment = (EditText) findViewById(R.id.auto_comment_field);
+        totalPoints = (EditText) findViewById(R.id.total_score_field);
+        teleComment = (EditText) findViewById(R.id.tele_comment_field);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
+        initCBWs();
+    }
 
-	private void initToolbar() {
-		toolbar = (Toolbar) findViewById(R.id.pit_toolbar);
-		setSupportActionBar(toolbar);
-		ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeAsUpIndicator(R.drawable.ic_close);
+    public void clearFields() {
+        autoZoneCBW.setCheckBox(false);
+        stackedTotesCBW.setCheckBox(false);
+        workedCBW.setCheckBox(false);
+        functionalCBW.setCheckBox(false);
+        coopertitionCBW.setCheckBox(false);
+        autoPoints.setText("0");
+        totalPoints.setText("0");
+        autoComment.setText("");
+        teleComment.setText("");
+        teleMatchList.removeAllViews();
+    }
 
-
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.save_menu, menu);
-		return true;
-	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pit_save_dialog);
-		settings = PreferenceManager.getDefaultSharedPreferences(this);
-		initToolbar();
-		initEditTexts();
-		//initSpinners();
-		initAutoCBWs();
-		//initAbilitiesCBWs();
-		// initTeleCBWs();
-	}
-
-	private void clearFields() {
-		driveToAuto.setCheckBox(false);
-		stacksTotesInAuto.setCheckBox(false);
-		containersIntoAutoZone.setCheckBox(false);
-
-		//scrollView.scrollTo(0, 0);
-	}
-
-	public void saveMatchScoutToDatabase() {
-
-		List<PitRecord> listTest = SugarRecord.find(PitRecord.class, "team_Number=?", teamNumber.getText().toString());
-	   /* if (listTest.size() > 0) {
-	        System.out.println("it works!");
-            Log.e("Sarah1", String.valueOf(listTest.size()));
-
-            // 1. Instantiate an AlertDialog.Builder with its constructor
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder.setMessage("Team number already entered")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                        }
-                    });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }*/
-		System.out.print(listTest.size());
-		Log.e("Sarah2", String.valueOf(listTest.size()));
-		PitRecord record = new PitRecord();
-
-
-		record.setAutoComment(autoComment.getText().toString());
-
-		record.setTeleComment(teleComment.getText().toString());
-
-
-		record.setCoopAbilityCBW(stacksTotesInAuto.isChecked());
-		record.setAutoZoneAutoCBW(driveToAuto.isChecked());
-		record.setContainersAbilityCBW(containersIntoAutoZone.isChecked());
-
-		record.setTeamNumber(Integer.parseInt(teamNumber.getText().toString()));
-		record.save();
-		finish();
-
-		Toast.makeText(this, "Match Scout " + MainActivity.singleton.getLastSavedTeam() + " saved successfully", Toast.LENGTH_LONG).show();
-		MainPagerAdapter.pitScouts.teamAdapter.add(record);
-
-		Log.e("Sarah", "Saved 1");
-		Log.e("Sarah", record.toString());
-
-
-	}
 
 }
