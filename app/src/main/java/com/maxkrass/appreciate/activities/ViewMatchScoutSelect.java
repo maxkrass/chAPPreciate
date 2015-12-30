@@ -30,7 +30,6 @@ import java.util.List;
 
 public class ViewMatchScoutSelect extends ActionBarActivity {
 
-	File[] allMatchFiles;
 
 	TextView pointsAutoLabel;
 	TextView commentAutoLabel;
@@ -100,7 +99,6 @@ public class ViewMatchScoutSelect extends ActionBarActivity {
 			}
 
 		mainView.addView(view);
-		mainerMainView.addView(mainView);
 		setContentView(mainerMainView);
 	}
 

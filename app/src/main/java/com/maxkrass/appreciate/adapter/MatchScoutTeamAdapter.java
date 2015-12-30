@@ -12,6 +12,7 @@ import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.activities.MainActivity;
 import com.maxkrass.appreciate.activities.ViewMatchScoutSelect;
+import com.maxkrass.appreciate.objects.MatchRecord;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,9 +20,9 @@ import java.util.List;
 public class MatchScoutTeamAdapter extends RecyclerView.Adapter<MatchScoutTeamAdapter.TeamViewHolder> {
 
 	LayoutInflater inflater;
-	List<Team> teamList = Collections.emptyList();
+	List<MatchRecord> teamList = Collections.emptyList();
 
-	public MatchScoutTeamAdapter(Context context, List<Team> teamList) {
+	public MatchScoutTeamAdapter(Context context, List<MatchRecord> teamList) {
 		inflater = LayoutInflater.from(context);
 		this.teamList = teamList;
 	}
@@ -34,12 +35,12 @@ public class MatchScoutTeamAdapter extends RecyclerView.Adapter<MatchScoutTeamAd
 
 	@Override
 	public void onBindViewHolder(TeamViewHolder holder, int position) {
-		holder.textView.setText("Team " + teamList.get(position).teamNumber);
+		holder.textView.setText("Team " + teamList.get(position).getTeamNumber());
 	}
 
-	public void add(Team t) {
+	public void add(MatchRecord t) {
 		teamList.add(t);
-		Collections.sort(teamList);
+		//Collections.sort(teamList);
 		notifyDataSetChanged();
 	}
 

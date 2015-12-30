@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.adapter.MatchScoutTeamAdapter;
+import com.maxkrass.appreciate.objects.MatchRecord;
+import com.orm.query.Select;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -27,41 +29,15 @@ public class MatchScoutFragment extends Fragment {
 	RecyclerView recyclerView;
 	public MatchScoutTeamAdapter teamAdapter;
 
-	public File[] teamFiles;
-	File localScoutFolder;
+
 	SharedPreferences settings;
 
-	public List<Team> getTeams() {
-		List<Team> teams = new ArrayList<>();
-		localScoutFolder =  new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + settings.getString("folder_name", "FRCScouting") + "/data");
-		if (!localScoutFolder.exists() && !localScoutFolder.mkdir()) {
-			teams.add(new Team("0"));
+	public List<MatchRecord> getTeams() {
+
+
+		return Select.from(MatchRecord.class).orderBy("CAST(team_number AS int)").list();
 		}
-		final FilenameFilter filenameFilter = new FilenameFilter() {
-			@Override
-			public boolean accept(File dir, String filename) {
-				return filename.startsWith("Match ") && filename.endsWith(".match");
-			}
-		};
-		FilenameFilter filter = new FilenameFilter() {
-			@Override
-			public boolean accept(File dir, String filename) {
-				File folder = new File(dir, filename);
-				File[] files = folder.listFiles(filenameFilter);
-				return files != null && files.length > 0;
-			}
-		};
-		teamFiles = localScoutFolder.listFiles(filter);
-		if (teamFiles == null || teamFiles.length == 0) {
-			teams.add(new Team("0"));
-		} else {
-			for (File teamFile : teamFiles) {
-				teams.add(new Team(teamFile.getName().substring(5)));
-			}
-		}
-		Collections.sort(teams);
-		return teams;
-	}
+
 
 	@Nullable
 	@Override
