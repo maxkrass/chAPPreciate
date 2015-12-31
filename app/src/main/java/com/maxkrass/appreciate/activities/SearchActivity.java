@@ -1,21 +1,16 @@
 package com.maxkrass.appreciate.activities;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.maxkrass.appreciate.R;
-import com.maxkrass.appreciate.Team;
 
-import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 public class SearchActivity extends ActionBarActivity {
@@ -169,7 +164,7 @@ public class SearchActivity extends ActionBarActivity {
 		}
 
 		return maxListSize;
-	}
+	}/*
 
 	/*private void updateTeam3(String s) {
 		File firstMatchFolder = new File(String.valueOf(Environment.getExternalStorageDirectory()) + "/" + MainActivity.singleton.settings.getString("folder_name", "FRCScouting") + "/data/Team " + s);

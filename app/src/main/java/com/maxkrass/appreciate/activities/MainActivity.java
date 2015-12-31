@@ -177,6 +177,7 @@ public class MainActivity extends BaseActivity {
         tabLayout = (TabLayout) findViewById(R.id.main_tabs);
         tabLayout.setupWithViewPager(viewPager);
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar.setLogo(R.drawable.ic_logo_white);
         setSupportActionBar(toolbar);
         intent = getIntent();
         checkForInput();

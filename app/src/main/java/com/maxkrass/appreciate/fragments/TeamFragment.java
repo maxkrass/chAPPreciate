@@ -24,8 +24,8 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public EditText totalPoints;
 	public EditText autoComment;
 	public EditText teleComment;
-    int teamNumber;
-    int matchNumber;
+	int teamNumber;
+	int matchNumber;
 
 	public CheckBoxWidget stackedTotesCBW;
 	public CheckBoxWidget autoZoneCBW;
@@ -35,12 +35,15 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 
 	ScrollView scrollView;
 
-    public TeamFragment(int teamNumber, int matchNumber) {
-        this.teamNumber = teamNumber;
-        this.matchNumber = matchNumber;
-    }
+	public TeamFragment() {
+	}
 
-    public void onClick(View view) {
+	public TeamFragment(int teamNumber, int matchNumber) {
+		this.teamNumber = teamNumber;
+		this.matchNumber = matchNumber;
+	}
+
+	public void onClick(View view) {
 		if (view instanceof CheckBoxWidget) {
 			CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
 			boolean flag;
@@ -78,40 +81,39 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View mainView = inflater.inflate(R.layout.team_layout, container, false);
-		teleMatchList = (LinearLayout) mainView.findViewById(R.id.tele_match_list);
+		//teleMatchList = (LinearLayout) mainView.findViewById(R.id.tele_match_list);
 		autoPoints = (EditText) mainView.findViewById(R.id.auto_points_field);
 		autoComment = (EditText) mainView.findViewById(R.id.auto_comment_field);
 		totalPoints = (EditText) mainView.findViewById(R.id.total_score_field);
 		teleComment = (EditText) mainView.findViewById(R.id.tele_comment_field);
 		scrollView = (ScrollView) mainView.findViewById(R.id.scrollView);
-		initCBWs(mainView);
+		//initCBWs(mainView);
 		return mainView;
 	}
 
 	public void clearFields() {
-		autoZoneCBW.setCheckBox(false);
-		stackedTotesCBW.setCheckBox(false);
-		workedCBW.setCheckBox(false);
-		functionalCBW.setCheckBox(false);
-		coopertitionCBW.setCheckBox(false);
+		//autoZoneCBW.setCheckBox(false);
+		//stackedTotesCBW.setCheckBox(false);
+		//workedCBW.setCheckBox(false);
+		//functionalCBW.setCheckBox(false);
+		//coopertitionCBW.setCheckBox(false);
 		autoPoints.setText("0");
 		totalPoints.setText("0");
 		autoComment.setText("");
 		teleComment.setText("");
-		teleMatchList.removeAllViews();
+		//teleMatchList.removeAllViews();
 	}
 
-	public void saveMatchTeam() {
+	public MatchRecord fetchMatch() {
 		MatchRecord matchRecord = new MatchRecord();
-        matchRecord.setAutoComment(autoComment.getText().toString());
-        matchRecord.setAutoPoints(Integer.parseInt(autoPoints.getText().toString()));
-        matchRecord.setTeleComment(teleComment.getText().toString());
-        matchRecord.setTotalPoints(Integer.parseInt(totalPoints.getText().toString()));
-        matchRecord.setTeamNumber(teamNumber);
-        matchRecord.setMatchNumber(matchNumber);
-        matchRecord.save();
-        getActivity().finish();
-    }
+		matchRecord.setAutoComment(autoComment.getText().toString());
+		matchRecord.setAutoPoints(Integer.parseInt(autoPoints.getText().toString()));
+		matchRecord.setTeleComment(teleComment.getText().toString());
+		matchRecord.setTotalPoints(Integer.parseInt(totalPoints.getText().toString()));
+		matchRecord.setTeamNumber(teamNumber);
+		matchRecord.setMatchNumber(matchNumber);
+		return matchRecord;
+	}
 
 	/*public void putDataIntoFields(String[] data) {
 		String driveTypeArray[];

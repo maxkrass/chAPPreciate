@@ -173,7 +173,7 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.save_menu, menu);
+        getMenuInflater().inflate(R.menu.pit_save_menu, menu);
         return true;
     }
 

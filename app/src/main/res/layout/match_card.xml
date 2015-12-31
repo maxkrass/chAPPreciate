@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:tools="http://schemas.android.com/tools"
-	android:layout_height="wrap_content"
-	android:layout_width="match_parent"
+<FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	tools:context=".activities.MatchScout">
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
 
 	<android.support.v7.widget.CardView
-		android:layout_height="wrap_content"
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:cardview="http://schemas.android.com/apk/res-auto"
 		android:layout_width="match_parent"
-		android:layout_marginStart="8dp"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="4dp"
 		android:layout_marginEnd="8dp"
-		android:layout_marginBottom="8dp"
-		cardview:cardMaxElevation="2dp"
-		cardview:cardElevation="1dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="4dp"
 		cardview:cardCornerRadius="2dp"
-		>
+		cardview:cardBackgroundColor="@color/white"
+		cardview:cardElevation="2dp">
 
 		<LinearLayout
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			>
+			android:orientation="vertical">
 
 			<FrameLayout
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:padding="16dp"
-				android:background="@color/primary">
+				android:paddingLeft="@dimen/default_padding_keyline"
+				android:paddingStart="@dimen/default_padding_keyline"
+				android:paddingRight="@dimen/default_padding_keyline"
+				android:paddingEnd="@dimen/default_padding_keyline"
+				android:paddingTop="24dp"
+				android:paddingBottom="16dp">
 
 				<TextView
+					android:id="@+id/match_number"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-					android:textColor="@color/textColorPrimary"
-					android:id="@+id/match_number"
-					android:text="Match #"/>
+					android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
 			</FrameLayout>
 
@@ -44,104 +44,43 @@
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical"
-				android:paddingEnd="16dp"
-				android:paddingStart="16dp">
+				android:paddingEnd="@dimen/default_padding_keyline"
+				android:paddingStart="@dimen/default_padding_keyline">
 
 				<LinearLayout
-					android:layout_height="wrap_content"
 					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
 					android:orientation="vertical">
 
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="48dp"
 						android:fontFamily="sans-serif-medium"
-						android:textSize="14sp"
-						android:textColor="@color/primary"
 						android:gravity="center_vertical"
-						android:text="@string/auto_card_title"/>
+						android:text="@string/auto_card_title"
+						android:textColor="@color/primary"
+						android:textSize="14sp"/>
 
 					<LinearLayout
+						android:id="@+id/auto_match_list"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:orientation="vertical"
-						android:id="@+id/auto_match_list"/>
-
-					<FrameLayout
-						android:layout_height="48.0dip"
-						android:layout_width="fill_parent">
-
-						<TextView
-							android:layout_height="wrap_content"
-							android:layout_width="wrap_content"
-							android:text="@string/auto_points"
-							android:layout_gravity="center_vertical"/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:id="@+id/points_auto_label"
-							android:layout_gravity="center_vertical|end"/>
-
-					</FrameLayout>
-
-					<FrameLayout
-						android:layout_width="fill_parent"
-						android:layout_height="wrap_content"
-						android:minHeight="48dp"
-						>
-
-						<TextView
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:id="@+id/comment_auto_label"
-							android:layout_gravity="center_vertical"
-							android:gravity="center"
-							android:text="No Comments"/>
-					</FrameLayout>
-
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_height="wrap_content"
-					android:layout_width="fill_parent"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="48dp"
-						android:fontFamily="sans-serif-medium"
-						android:textSize="14sp"
-						android:textColor="@color/primary"
-						android:gravity="center_vertical"
-						android:text="@string/tele_card_title"/>
-
-					<LinearLayout
-						android:layout_width="fill_parent"
-						android:layout_height="wrap_content"
-						android:orientation="vertical"
-						android:id="@+id/stack_list"/>
-
-					<LinearLayout
-						android:layout_height="wrap_content"
-						android:layout_width="fill_parent"
-						android:id="@+id/tele_match_list"
 						android:orientation="vertical"/>
 
 					<FrameLayout
-						android:layout_width="match_parent"
-						android:layout_height="48dp">
-
-						<TextView
-							android:layout_height="wrap_content"
-							android:layout_width="wrap_content"
-							android:text="@string/total_points"
-							android:layout_gravity="center_vertical"/>
+						android:layout_width="fill_parent"
+						android:layout_height="48.0dip">
 
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:id="@+id/points_total_label"
+							android:layout_gravity="center_vertical"
+							android:text="@string/auto_points"/>
+
+						<TextView
+							android:id="@+id/points_auto_label"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
 							android:layout_gravity="center_vertical|end"/>
 
 					</FrameLayout>
@@ -152,10 +91,62 @@
 						android:minHeight="48dp">
 
 						<TextView
+							android:id="@+id/comment_auto_label"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical"
+							android:gravity="center"/>
+					</FrameLayout>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="48dp"
+						android:fontFamily="sans-serif-medium"
+						android:gravity="center_vertical"
+						android:text="@string/tele_card_title"
+						android:textColor="@color/primary"
+						android:textSize="14sp"/>
+
+					<LinearLayout
+						android:id="@+id/tele_match_list"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"/>
+
+					<FrameLayout
+						android:layout_width="match_parent"
+						android:layout_height="48dp">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical"
+							android:text="@string/total_points"/>
+
+						<TextView
+							android:id="@+id/points_total_label"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical|end"/>
+
+					</FrameLayout>
+
+					<FrameLayout
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:minHeight="48dp">
+
+						<TextView
+							android:id="@+id/comments_tele_label"
 							android:layout_width="fill_parent"
 							android:layout_height="wrap_content"
-							android:text="No Comments"
-							android:id="@+id/comments_tele_label"
 							android:layout_gravity="center_vertical"
 							android:gravity="center"/>
 					</FrameLayout>
@@ -167,4 +158,5 @@
 		</LinearLayout>
 
 	</android.support.v7.widget.CardView>
+
 </FrameLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.maxkrass.appreciate">
+<manifest
+	package="com.maxkrass.appreciate"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.BLUETOOTH"/>
@@ -11,31 +12,30 @@
 		android:required="true"/>
 
 	<application
+		android:name="com.orm.SugarApp"
 		android:allowBackup="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
-		android:theme="@style/AppTheme"
-		android:name="com.orm.SugarApp">
+		android:theme="@style/AppTheme">
 
 		<meta-data
 			android:name="DATABASE"
-			android:value="chAPPreciate.db" />
+			android:value="chAPPreciate.db"/>
 		<meta-data
 			android:name="VERSION"
-			android:value="2" />
+			android:value="2"/>
 		<meta-data
 			android:name="QUERY_LOG"
-			android:value="true" />
+			android:value="true"/>
 		<meta-data
 			android:name="DOMAIN_PACKAGE_NAME"
-			android:value="com.maxkrass.appreciate" />
+			android:value="com.maxkrass.appreciate"/>
 
 
 		<activity
 			android:name=".activities.MainActivity"
-			android:label="@string/app_name"
 			android:configChanges="orientation|screenSize"
-			android:exported="true">
+			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.EDIT"/>
 
@@ -52,36 +52,26 @@
 
 		<activity
 			android:name=".activities.SettingsActivity"
-			android:label="@string/action_settings"
 			android:configChanges="orientation|screenSize"
-			android:exported="false"/>
+			android:label="@string/action_settings"/>
 		<activity
 			android:name=".activities.PitScout"
-			android:label="New Pit Scout"
-			android:configChanges="orientation|screenSize"
-			android:exported="false"/>
+			android:label="New Pit Scout"/>
 		<activity
 			android:name=".activities.MatchScout"
-			android:label="New Match Scout"
 			android:configChanges="orientation|screenSize"
-			android:exported="false"/>
+			android:label="New Match Scout"/>
 		<activity
 			android:name=".activities.SearchActivity"
-			android:label="Search"
-			android:exported="false"/>
+			android:label="Search"/>
 		<activity
 			android:name=".activities.ViewMatchScoutSelect"
-			android:label="View Team"
-			android:exported="false"/>
+			android:label="View Team"/>
 		<activity
 			android:name=".activities.ViewPitScout"
-			android:label="View Pit"
-			android:exported="false"/>
+			android:label="View Pit"/>
 		<activity
-			android:name=".activities.MatchScoutOneTeam"
-			android:configChanges="orientation|screenSize"
-			android:label="View Pit"
-			android:exported="false" />
+			android:name=".activities.MatchScoutOneTeam"/>
 	</application>
 
 </manifest>

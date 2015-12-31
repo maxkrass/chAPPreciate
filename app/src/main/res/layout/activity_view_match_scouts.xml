@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:id="@+id/content"
+	android:layout_height="match_parent">
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:clipToPadding="false"
+		android:paddingTop="4dp"
+		android:paddingBottom="4dp"
+		android:background="@color/grey50"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:orientation="vertical"
+			android:layout_height="wrap_content"
+			android:id="@+id/view_match_cards"/>
+
+	</ScrollView>
+
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/view_match_toolbar"
+			android:layout_width="match_parent"
+			app:navigationIcon="@drawable/ic_arrow_back_white"
+			android:theme="@style/Toolbar.Style"
+			android:layout_height="?actionBarSize"/>
+
+	</android.support.design.widget.AppBarLayout>
+
+</android.support.design.widget.CoordinatorLayout>

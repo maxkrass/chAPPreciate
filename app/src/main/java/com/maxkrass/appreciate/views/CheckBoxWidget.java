@@ -40,6 +40,10 @@ public class CheckBoxWidget extends FrameLayout
         checkBox = (CheckBox)findViewById(R.id.checkbox);
     }
 
+    public void toggle() {
+        checkBox.setChecked(!checkBox.isChecked());
+    }
+
     public boolean isChecked()
     {
         return checkBox.isChecked();

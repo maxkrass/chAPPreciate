@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.maxkrass.appreciate.R;
-import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.activities.MainActivity;
 import com.maxkrass.appreciate.activities.ViewMatchScoutSelect;
 import com.maxkrass.appreciate.objects.MatchRecord;
@@ -67,7 +66,7 @@ public class MatchScoutTeamAdapter extends RecyclerView.Adapter<MatchScoutTeamAd
 				name = name.substring(0, i);
 			}
 			Intent intent = new Intent(MainActivity.singleton, ViewMatchScoutSelect.class);
-			intent.putExtra("teamNumber", name);
+			intent.putExtra("teamNumber", teamList.get(getAdapterPosition()).getTeamNumber());
 			MainActivity.singleton.startActivity(intent);
 		}
 	}

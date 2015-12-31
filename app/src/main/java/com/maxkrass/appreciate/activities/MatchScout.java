@@ -46,8 +46,7 @@ public class MatchScout extends AppCompatActivity implements View.OnClickListene
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		//TODO create appropriate menu
-		getMenuInflater().inflate(R.menu.save_menu, menu);
+		getMenuInflater().inflate(R.menu.match_save_menu, menu);
 		return true;
 	}
 
@@ -58,9 +57,10 @@ public class MatchScout extends AppCompatActivity implements View.OnClickListene
 				finish();
 				break;
 			case R.id.save_action:
-				AlliancePagerAdapter.team1.saveMatchTeam();
-				AlliancePagerAdapter.team2.saveMatchTeam();
-				AlliancePagerAdapter.team3.saveMatchTeam();
+				AlliancePagerAdapter.team1.fetchMatch().save();
+				AlliancePagerAdapter.team2.fetchMatch().save();
+				AlliancePagerAdapter.team3.fetchMatch().save();
+				finish();
 				break;
 			case R.id.clear_action:
 				AlliancePagerAdapter.team1.clearFields();

@@ -5,8 +5,7 @@
 	android:focusableInTouchMode="true"
 	android:focusable="true"
 	android:id="@+id/scrollView"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	>
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<LinearLayout
 		android:layout_height="wrap_content"
@@ -14,9 +13,8 @@
 		android:focusableInTouchMode="true"
 		android:focusable="true"
 		android:orientation="vertical"
-		android:paddingEnd="16dp"
-		android:paddingStart="16dp"
-		>
+		android:paddingEnd="@dimen/default_padding_keyline"
+		android:paddingStart="@dimen/default_padding_keyline">
 
 		<LinearLayout
 			android:layout_height="wrap_content"

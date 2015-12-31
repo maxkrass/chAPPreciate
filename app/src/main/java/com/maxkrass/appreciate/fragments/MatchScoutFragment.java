@@ -2,7 +2,6 @@ package com.maxkrass.appreciate.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,15 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.maxkrass.appreciate.R;
-import com.maxkrass.appreciate.Team;
 import com.maxkrass.appreciate.adapter.MatchScoutTeamAdapter;
 import com.maxkrass.appreciate.objects.MatchRecord;
 import com.orm.query.Select;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 //TODO renew data storage system; take a look at PitScoutFragment for that
@@ -29,14 +23,11 @@ public class MatchScoutFragment extends Fragment {
 	RecyclerView recyclerView;
 	public MatchScoutTeamAdapter teamAdapter;
 
-
 	SharedPreferences settings;
 
 	public List<MatchRecord> getTeams() {
-
-
-		return Select.from(MatchRecord.class).orderBy("CAST(team_number AS int)").list();
-		}
+		return Select.from(MatchRecord.class).groupBy("team_number").orderBy("CAST(team_number AS int)").list();
+	}
 
 
 	@Nullable

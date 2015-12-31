@@ -1,113 +1,77 @@
 package com.maxkrass.appreciate.activities;
 
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.Toast;
 
 import com.maxkrass.appreciate.R;
-import com.maxkrass.appreciate.adapter.MainPagerAdapter;
-import com.maxkrass.appreciate.objects.PitRecord;
+import com.maxkrass.appreciate.fragments.TeamFragment;
+import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
-import com.orm.SugarRecord;
-
-import java.util.List;
 
 /**
  * Sarah made this for APPreciate on 12/17/15.
  */
 
 public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListener {
-    LinearLayout autoList;
-    LinearLayout teleList;
-    public LinearLayout teleMatchList;
 
-    public EditText autoPoints;
-    public EditText totalPoints;
-    public EditText autoComment;
-    public EditText teleComment;
+	TeamFragment fragment;
 
-    public CheckBoxWidget stackedTotesCBW;
-    public CheckBoxWidget autoZoneCBW;
-    public CheckBoxWidget workedCBW;
-    public CheckBoxWidget functionalCBW;
-    public CheckBoxWidget coopertitionCBW;
+	EditText teamNumberField;
+	EditText matchNumberField;
 
-    ScrollView scrollView;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.match_layout_one_team);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.one_team_toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayShowTitleEnabled(false);
+		teamNumberField = (EditText) findViewById(R.id.team_number_field);
+		matchNumberField = (EditText) findViewById(R.id.match_number_field);
+		fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.match_save_menu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				//TODO create a new Dialog Fragment (not simple Alert Dialog) and prompt user if action was intended
+				finish();
+				break;
+			case R.id.save_action:
+				if (!teamNumberField.getText().toString().equals("") && !matchNumberField.getText().toString().equals("")) {
+					MatchRecord matchRecord = fragment.fetchMatch();
+					matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
+					matchRecord.setMatchNumber(Integer.parseInt(matchNumberField.getText().toString()));
+					matchRecord.save();
+					finish();
+				} else if (teamNumberField.getText().toString().equals(""))
+					((TextInputLayout) teamNumberField.getParent()).setError("A team number is required");
+				else if (matchNumberField.getText().toString().equals(""))
+					((TextInputLayout) matchNumberField.getParent()).setError("A match number is required");
+				break;
+			case R.id.clear_action:
+				fragment.clearFields();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	public void onClick(View view) {
 		if (view instanceof CheckBoxWidget) {
-			CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
-            boolean flag;
-            flag = !checkboxwidget.isChecked();
-            checkboxwidget.setCheckBox(flag);
-        }
+			((CheckBoxWidget) view).toggle();
+		}
 	}
-
-    private void initCBWs() {
-        autoList = (LinearLayout) findViewById(R.id.auto_match_list);
-        autoZoneCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
-        autoZoneCBW.setTitleView(getString(R.string.auto_zone_match_label));
-        autoZoneCBW.setOnClickListener(this);
-        autoList.addView(autoZoneCBW);
-        stackedTotesCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
-        stackedTotesCBW.setTitleView(getString(R.string.totes_auto_label));
-        stackedTotesCBW.setOnClickListener(this);
-        autoList.addView(stackedTotesCBW);
-        workedCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
-        workedCBW.setTitleView(getString(R.string.program_auto_worked));
-        workedCBW.setOnClickListener(this);
-        autoList.addView(workedCBW);
-        teleList = (LinearLayout) findViewById(R.id.tele_list);
-        functionalCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
-        functionalCBW.setTitleView(getString(R.string.functional_tele_match));
-        functionalCBW.setOnClickListener(this);
-        teleList.addView(functionalCBW);
-        coopertitionCBW = new CheckBoxWidget(MatchScoutOneTeam.this);
-        coopertitionCBW.setTitleView(getString(R.string.coopertition_tele_match));
-        coopertitionCBW.setOnClickListener(this);
-        teleList.addView(coopertitionCBW);
-    }
-
-    @Nullable
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.team_layout);
-        teleMatchList = (LinearLayout) findViewById(R.id.tele_match_list);
-        autoPoints = (EditText) findViewById(R.id.auto_points_field);
-        autoComment = (EditText) findViewById(R.id.auto_comment_field);
-        totalPoints = (EditText) findViewById(R.id.total_score_field);
-        teleComment = (EditText) findViewById(R.id.tele_comment_field);
-        scrollView = (ScrollView) findViewById(R.id.scrollView);
-        initCBWs();
-    }
-
-    public void clearFields() {
-        autoZoneCBW.setCheckBox(false);
-        stackedTotesCBW.setCheckBox(false);
-        workedCBW.setCheckBox(false);
-        functionalCBW.setCheckBox(false);
-        coopertitionCBW.setCheckBox(false);
-        autoPoints.setText("0");
-        totalPoints.setText("0");
-        autoComment.setText("");
-        teleComment.setText("");
-        teleMatchList.removeAllViews();
-    }
-
 
 }
