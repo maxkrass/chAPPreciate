@@ -12,6 +12,7 @@ import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.activities.MainActivity;
 import com.maxkrass.appreciate.activities.ViewMatchScoutSelect;
 import com.maxkrass.appreciate.objects.MatchRecord;
+import com.orm.SugarRecord;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,10 +39,16 @@ public class MatchScoutTeamAdapter extends RecyclerView.Adapter<MatchScoutTeamAd
 	}
 
 	public void add(MatchRecord t) {
-		teamList.add(t);
-		//Collections.sort(teamList);
-		notifyDataSetChanged();
-	}
+        for (MatchRecord TIA : teamList
+                ) {
+            if (TIA.getTeamNumber() == t.getTeamNumber()) return;
+
+        }
+
+        teamList.add(t);
+        Collections.sort(teamList);
+        notifyItemInserted(teamList.indexOf(t));
+    }
 
 	@Override
 	public int getItemCount() {

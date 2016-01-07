@@ -14,6 +14,8 @@ import android.view.View;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.adapter.AlliancePagerAdapter;
+import com.maxkrass.appreciate.adapter.MainPagerAdapter;
+import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
 
 public class MatchScout extends AppCompatActivity implements View.OnClickListener {
@@ -57,10 +59,17 @@ public class MatchScout extends AppCompatActivity implements View.OnClickListene
 				finish();
 				break;
 			case R.id.save_action:
-				AlliancePagerAdapter.team1.fetchMatch().save();
-				AlliancePagerAdapter.team2.fetchMatch().save();
-				AlliancePagerAdapter.team3.fetchMatch().save();
-				finish();
+
+                MatchRecord team1 = AlliancePagerAdapter.team1.fetchMatch();
+                MatchRecord team2 = AlliancePagerAdapter.team2.fetchMatch();
+                MatchRecord team3 = AlliancePagerAdapter.team3.fetchMatch();
+                team1.save();
+                team2.save();
+                team3.save();
+                MainPagerAdapter.matchScouts.teamAdapter.add(team1);
+                MainPagerAdapter.matchScouts.teamAdapter.add(team2);
+                MainPagerAdapter.matchScouts.teamAdapter.add(team3);
+                finish();
 				break;
 			case R.id.clear_action:
 				AlliancePagerAdapter.team1.clearFields();

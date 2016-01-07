@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.adapter.AlliancePagerAdapter;
+import com.maxkrass.appreciate.adapter.MainPagerAdapter;
 import com.maxkrass.appreciate.fragments.TeamFragment;
 import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
@@ -55,7 +57,8 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 					matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
 					matchRecord.setMatchNumber(Integer.parseInt(matchNumberField.getText().toString()));
 					matchRecord.save();
-					finish();
+                    MainPagerAdapter.matchScouts.teamAdapter.add(matchRecord);
+                    finish();
 				} else if (teamNumberField.getText().toString().equals(""))
 					((TextInputLayout) teamNumberField.getParent()).setError("A team number is required");
 				else if (matchNumberField.getText().toString().equals(""))
