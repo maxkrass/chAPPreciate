@@ -34,7 +34,6 @@
 
 		<activity
 			android:name=".activities.MainActivity"
-			android:configChanges="orientation|screenSize"
 			android:label="@string/app_name">
 			<intent-filter>
 				<action android:name="android.intent.action.EDIT"/>
@@ -52,14 +51,12 @@
 
 		<activity
 			android:name=".activities.SettingsActivity"
-			android:configChanges="orientation|screenSize"
 			android:label="@string/action_settings"/>
 		<activity
 			android:name=".activities.PitScout"
 			android:label="New Pit Scout"/>
 		<activity
 			android:name=".activities.MatchScout"
-			android:configChanges="orientation|screenSize"
 			android:label="New Match Scout"/>
 		<activity
 			android:name=".activities.SearchActivity"

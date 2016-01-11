@@ -1,20 +1,15 @@
 package com.maxkrass.appreciate.objects;
 
 
-import android.support.annotation.NonNull;
-
-import com.orm.SugarRecord;
-
 /**
  * Max made this for APPreciate on 18.12.2015 for APPreciate.
  */
-public class MatchRecord extends SugarRecord implements Comparable<MatchRecord> {
+public class MatchRecord extends Record {
 
 
     int autoPoints;
     int totalPoints;
     int matchNumber;
-    int teamNumber;
     String autoComment;
     String teleComment;
 
@@ -24,10 +19,6 @@ public class MatchRecord extends SugarRecord implements Comparable<MatchRecord> 
 
     public void setMatchNumber(int matchNumber) {
         this.matchNumber = matchNumber;
-    }
-
-    public int getTeamNumber() {
-        return teamNumber;
     }
 
     public void setTeamNumber(int teamNumber) {
@@ -70,18 +61,4 @@ public class MatchRecord extends SugarRecord implements Comparable<MatchRecord> 
     public MatchRecord() {
 
 	}
-
-    @Override
-    public int compareTo(@NonNull MatchRecord another) {
-        if (this.teamNumber < another.teamNumber)
-            return -1;
-        else if (this.teamNumber == another.teamNumber)
-            return 0;
-        else return 1;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return getId().equals(((MatchRecord) o).getId());
-    }
 }

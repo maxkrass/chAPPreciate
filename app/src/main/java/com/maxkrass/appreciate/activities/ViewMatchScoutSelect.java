@@ -2,13 +2,13 @@ package com.maxkrass.appreciate.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.maxkrass.appreciate.R;
+import com.maxkrass.appreciate.adapter.MatchCardAdapter;
 import com.maxkrass.appreciate.objects.MatchRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -32,9 +32,12 @@ public class ViewMatchScoutSelect extends BaseActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.view_match_toolbar);
 		toolbar.setTitle("Team " + teamNumber);
 		setSupportActionBar(toolbar);
-		LinearLayout view = (LinearLayout) findViewById(R.id.view_match_cards);
+		RecyclerView recyclerView = (RecyclerView) findViewById(R.id.match_card_list);
 		List<MatchRecord> leroy = Select.from(MatchRecord.class).where(Condition.prop("team_number").eq(teamNumber)).orderBy("CAST(team_number AS int)").list();
-		if (leroy.size() > 0)
+		if (leroy.size() < 1) finish();
+		recyclerView.setAdapter(new MatchCardAdapter(ViewMatchScoutSelect.this, leroy));
+		recyclerView.setHasFixedSize(true);         //Subject to change as card get fuller and information might be collapsed at first
+		/*if (leroy.size() > 0)
 			for (MatchRecord record : leroy) {
 				View v = getLayoutInflater().inflate(R.layout.match_card, null);
 				pointsAutoLabel = (TextView) v.findViewById(R.id.points_auto_label);
@@ -54,7 +57,7 @@ public class ViewMatchScoutSelect extends BaseActivity {
 				commentTeleLabel.setText(record.getTeleComment().equals("") ? "No Comments" : record.getTeleComment());
 				view.addView(v);
 			}
-		else finish();
+		else finish();*/
 	}
 
 

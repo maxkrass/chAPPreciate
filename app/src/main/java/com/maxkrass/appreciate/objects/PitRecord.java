@@ -1,297 +1,242 @@
 package com.maxkrass.appreciate.objects;
 
-
-import android.support.annotation.NonNull;
-
 import com.orm.SugarRecord;
+
+import java.util.List;
 
 /**
  * Created by Sarah, Calyx, and Tim... and Max:) on 12/8/15.
  */
-public class PitRecord extends SugarRecord implements Comparable<PitRecord> {
-    int maxSpeed;
-    int teamNumber;
-    String teamName;
-    String mainComment;
-    String teleComment;
-    String autoComment;
-    String abilitiesComment;
+public class PitRecord extends Record {
+	int maxSpeed;
+	String mainComment;
+	String teleComment;
+	String autoComment;
+	String abilitiesComment;
 
-    boolean wideTeleCBW;
-    boolean autoZoneAutoCBW;
-    boolean flexibleAutoCBW;
-    boolean containersAbilityCBW;
-    boolean containersAutoCBW;
-    boolean coopAbilityCBW;
-    boolean humanPlayerTeleCBW;
-    boolean landfillTeleCBW;
-    boolean noodlesAbilityCBW;
-    boolean narrowTeleCBW;
-    boolean shiftingAbilityCBW;
-    boolean stepTeleCBW;
-    boolean totesAbilityCBW;
-    boolean totesAutoCBW;
+	boolean wideTeleCBW;
+	boolean autoZoneAutoCBW;
+	boolean flexibleAutoCBW;
+	boolean containersAbilityCBW;
+	boolean containersAutoCBW;
+	boolean coopAbilityCBW;
+	boolean humanPlayerTeleCBW;
+	boolean landfillTeleCBW;
+	boolean noodlesAbilityCBW;
+	boolean narrowTeleCBW;
+	boolean shiftingAbilityCBW;
+	boolean stepTeleCBW;
+	boolean totesAbilityCBW;
+	boolean totesAutoCBW;
 
 
-    int cimNumSpinner;
-    int driveSpinner;
-    int highestPossibleStackSpinner;
-    int wheelNumSpinner;
-    int wheelTypeSpinner;
+	int cimNumSpinner;
+	int driveSpinner;
+	int highestPossibleStackSpinner;
+	int wheelNumSpinner;
+	int wheelTypeSpinner;
 
-    public PitRecord() {
-    }
+	public PitRecord() {
+	}
 
-    public PitRecord(int maxSpeed, int teamNumber, String teamName, String mainComment, String teleComment, String autoComment, String abilitiesComment, boolean wideTeleCBW, boolean autoZoneAutoCBW, boolean flexibleAutoCBW, boolean containersAbilityCBW, boolean containersAutoCBW, boolean coopAbilityCBW, boolean humanPlayerTeleCBW, boolean landfillTeleCBW, boolean noodlesAbilityCBW, boolean narrowTeleCBW, boolean shiftingAbilityCBW, boolean stepTeleCBW, boolean totesAbilityCBW, boolean totesAutoCBW, int cimNumSpinner, int driveSpinner, int highestPossibleStackSpinner, int wheelNumSpinner, int wheelTypeSpinner) {
-        this.maxSpeed = maxSpeed;
-        this.teamNumber = teamNumber;
-        this.teamName = teamName;
-        this.mainComment = mainComment;
-        this.teleComment = teleComment;
-        this.autoComment = autoComment;
-        this.abilitiesComment = abilitiesComment;
-        this.wideTeleCBW = wideTeleCBW;
-        this.autoZoneAutoCBW = autoZoneAutoCBW;
-        this.flexibleAutoCBW = flexibleAutoCBW;
-        this.containersAbilityCBW = containersAbilityCBW;
-        this.containersAutoCBW = containersAutoCBW;
-        this.coopAbilityCBW = coopAbilityCBW;
-        this.humanPlayerTeleCBW = humanPlayerTeleCBW;
-        this.landfillTeleCBW = landfillTeleCBW;
-        this.noodlesAbilityCBW = noodlesAbilityCBW;
-        this.narrowTeleCBW = narrowTeleCBW;
-        this.shiftingAbilityCBW = shiftingAbilityCBW;
-        this.stepTeleCBW = stepTeleCBW;
-        this.totesAbilityCBW = totesAbilityCBW;
-        this.totesAutoCBW = totesAutoCBW;
-        this.cimNumSpinner = cimNumSpinner;
-        this.driveSpinner = driveSpinner;
-        this.highestPossibleStackSpinner = highestPossibleStackSpinner;
-        this.wheelNumSpinner = wheelNumSpinner;
-        this.wheelTypeSpinner = wheelTypeSpinner;
-    }
+	@Override
+	public void setTeamNumber(int teamNumber) {
+		super.setTeamNumber(teamNumber);
+		List<PitRecord> pitRecords = SugarRecord.find(PitRecord.class, "team_number = ?", String.valueOf(teamNumber));
+		if (pitRecords.size() == 1)
+			super.setTeamName(pitRecords.get(0).getTeamName());
+	}
 
-    public int getMaxSpeed() {
+	public int getMaxSpeed() {
 
-        return maxSpeed;
-    }
+		return maxSpeed;
+	}
 
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
 
-    public int getTeamNumber() {
-        return teamNumber;
-    }
+	public String getMainComment() {
+		return mainComment;
+	}
 
-    public void setTeamNumber(int teamNumber) {
-        this.teamNumber = teamNumber;
-    }
+	public void setMainComment(String mainComment) {
+		this.mainComment = mainComment;
+	}
 
-    public String getTeamName() {
-        return teamName;
-    }
+	public String getTeleComment() {
+		return teleComment;
+	}
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
+	public void setTeleComment(String teleComment) {
+		this.teleComment = teleComment;
+	}
 
-    public String getMainComment() {
-        return mainComment;
-    }
+	public String getAutoComment() {
+		return autoComment;
+	}
 
-    public void setMainComment(String mainComment) {
-        this.mainComment = mainComment;
-    }
+	public void setAutoComment(String autoComment) {
+		this.autoComment = autoComment;
+	}
 
-    public String getTeleComment() {
-        return teleComment;
-    }
+	public String getAbilitiesComment() {
+		return abilitiesComment;
+	}
 
-    public void setTeleComment(String teleComment) {
-        this.teleComment = teleComment;
-    }
+	public void setAbilitiesComment(String abilitiesComment) {
+		this.abilitiesComment = abilitiesComment;
+	}
 
-    public String getAutoComment() {
-        return autoComment;
-    }
+	public boolean isWideTeleCBW() {
+		return wideTeleCBW;
+	}
 
-    public void setAutoComment(String autoComment) {
-        this.autoComment = autoComment;
-    }
+	public void setWideTeleCBW(boolean wideTeleCBW) {
+		this.wideTeleCBW = wideTeleCBW;
+	}
 
-    public String getAbilitiesComment() {
-        return abilitiesComment;
-    }
+	public boolean isAutoZoneAutoCBW() {
+		return autoZoneAutoCBW;
+	}
 
-    public void setAbilitiesComment(String abilitiesComment) {
-        this.abilitiesComment = abilitiesComment;
-    }
+	public void setAutoZoneAutoCBW(boolean autoZoneAutoCBW) {
+		this.autoZoneAutoCBW = autoZoneAutoCBW;
+	}
 
-    public boolean isWideTeleCBW() {
-        return wideTeleCBW;
-    }
+	public boolean isFlexibleAutoCBW() {
+		return flexibleAutoCBW;
+	}
 
-    public void setWideTeleCBW(boolean wideTeleCBW) {
-        this.wideTeleCBW = wideTeleCBW;
-    }
+	public void setFlexibleAutoCBW(boolean flexibleAutoCBW) {
+		this.flexibleAutoCBW = flexibleAutoCBW;
+	}
 
-    public boolean isAutoZoneAutoCBW() {
-        return autoZoneAutoCBW;
-    }
+	public boolean isContainersAbilityCBW() {
+		return containersAbilityCBW;
+	}
 
-    public void setAutoZoneAutoCBW(boolean autoZoneAutoCBW) {
-        this.autoZoneAutoCBW = autoZoneAutoCBW;
-    }
+	public void setContainersAbilityCBW(boolean containersAbilityCBW) {
+		this.containersAbilityCBW = containersAbilityCBW;
+	}
 
-    public boolean isFlexibleAutoCBW() {
-        return flexibleAutoCBW;
-    }
+	public boolean isContainersAutoCBW() {
+		return containersAutoCBW;
+	}
 
-    public void setFlexibleAutoCBW(boolean flexibleAutoCBW) {
-        this.flexibleAutoCBW = flexibleAutoCBW;
-    }
+	public void setContainersAutoCBW(boolean containersAutoCBW) {
+		this.containersAutoCBW = containersAutoCBW;
+	}
 
-    public boolean isContainersAbilityCBW() {
-        return containersAbilityCBW;
-    }
+	public boolean isCoopAbilityCBW() {
+		return coopAbilityCBW;
+	}
 
-    public void setContainersAbilityCBW(boolean containersAbilityCBW) {
-        this.containersAbilityCBW = containersAbilityCBW;
-    }
+	public void setCoopAbilityCBW(boolean coopAbilityCBW) {
+		this.coopAbilityCBW = coopAbilityCBW;
+	}
 
-    public boolean isContainersAutoCBW() {
-        return containersAutoCBW;
-    }
+	public boolean isHumanPlayerTeleCBW() {
+		return humanPlayerTeleCBW;
+	}
 
-    public void setContainersAutoCBW(boolean containersAutoCBW) {
-        this.containersAutoCBW = containersAutoCBW;
-    }
+	public void setHumanPlayerTeleCBW(boolean humanPlayerTeleCBW) {
+		this.humanPlayerTeleCBW = humanPlayerTeleCBW;
+	}
 
-    public boolean isCoopAbilityCBW() {
-        return coopAbilityCBW;
-    }
+	public boolean isLandfillTeleCBW() {
+		return landfillTeleCBW;
+	}
 
-    public void setCoopAbilityCBW(boolean coopAbilityCBW) {
-        this.coopAbilityCBW = coopAbilityCBW;
-    }
+	public void setLandfillTeleCBW(boolean landfillTeleCBW) {
+		this.landfillTeleCBW = landfillTeleCBW;
+	}
 
-    public boolean isHumanPlayerTeleCBW() {
-        return humanPlayerTeleCBW;
-    }
+	public boolean isNoodlesAbilityCBW() {
+		return noodlesAbilityCBW;
+	}
 
-    public void setHumanPlayerTeleCBW(boolean humanPlayerTeleCBW) {
-        this.humanPlayerTeleCBW = humanPlayerTeleCBW;
-    }
+	public void setNoodlesAbilityCBW(boolean noodlesAbilityCBW) {
+		this.noodlesAbilityCBW = noodlesAbilityCBW;
+	}
 
-    public boolean isLandfillTeleCBW() {
-        return landfillTeleCBW;
-    }
+	public boolean isNarrowTeleCBW() {
+		return narrowTeleCBW;
+	}
 
-    public void setLandfillTeleCBW(boolean landfillTeleCBW) {
-        this.landfillTeleCBW = landfillTeleCBW;
-    }
+	public void setNarrowTeleCBW(boolean narrowTeleCBW) {
+		this.narrowTeleCBW = narrowTeleCBW;
+	}
 
-    public boolean isNoodlesAbilityCBW() {
-        return noodlesAbilityCBW;
-    }
+	public boolean isShiftingAbilityCBW() {
+		return shiftingAbilityCBW;
+	}
 
-    public void setNoodlesAbilityCBW(boolean noodlesAbilityCBW) {
-        this.noodlesAbilityCBW = noodlesAbilityCBW;
-    }
+	public void setShiftingAbilityCBW(boolean shiftingAbilityCBW) {
+		this.shiftingAbilityCBW = shiftingAbilityCBW;
+	}
 
-    public boolean isNarrowTeleCBW() {
-        return narrowTeleCBW;
-    }
+	public boolean isStepTeleCBW() {
+		return stepTeleCBW;
+	}
 
-    public void setNarrowTeleCBW(boolean narrowTeleCBW) {
-        this.narrowTeleCBW = narrowTeleCBW;
-    }
+	public void setStepTeleCBW(boolean stepTeleCBW) {
+		this.stepTeleCBW = stepTeleCBW;
+	}
 
-    public boolean isShiftingAbilityCBW() {
-        return shiftingAbilityCBW;
-    }
+	public boolean isTotesAbilityCBW() {
+		return totesAbilityCBW;
+	}
 
-    public void setShiftingAbilityCBW(boolean shiftingAbilityCBW) {
-        this.shiftingAbilityCBW = shiftingAbilityCBW;
-    }
+	public void setTotesAbilityCBW(boolean totesAbilityCBW) {
+		this.totesAbilityCBW = totesAbilityCBW;
+	}
 
-    public boolean isStepTeleCBW() {
-        return stepTeleCBW;
-    }
+	public boolean isTotesAutoCBW() {
+		return totesAutoCBW;
+	}
 
-    public void setStepTeleCBW(boolean stepTeleCBW) {
-        this.stepTeleCBW = stepTeleCBW;
-    }
+	public void setTotesAutoCBW(boolean totesAutoCBW) {
+		this.totesAutoCBW = totesAutoCBW;
+	}
 
-    public boolean isTotesAbilityCBW() {
-        return totesAbilityCBW;
-    }
+	public int getCimNumSpinner() {
+		return cimNumSpinner;
+	}
 
-    public void setTotesAbilityCBW(boolean totesAbilityCBW) {
-        this.totesAbilityCBW = totesAbilityCBW;
-    }
+	public void setCimNumSpinner(int cimNumSpinner) {
+		this.cimNumSpinner = cimNumSpinner;
+	}
 
-    public boolean isTotesAutoCBW() {
-        return totesAutoCBW;
-    }
+	public int getDriveSpinner() {
+		return driveSpinner;
+	}
 
-    public void setTotesAutoCBW(boolean totesAutoCBW) {
-        this.totesAutoCBW = totesAutoCBW;
-    }
+	public void setDriveSpinner(int driveSpinner) {
+		this.driveSpinner = driveSpinner;
+	}
 
-    public int getCimNumSpinner() {
-        return cimNumSpinner;
-    }
+	public int getHighestPossibleStackSpinner() {
+		return highestPossibleStackSpinner;
+	}
 
-    public void setCimNumSpinner(int cimNumSpinner) {
-        this.cimNumSpinner = cimNumSpinner;
-    }
+	public void setHighestPossibleStackSpinner(int highestPossibleStackSpinner) {
+		this.highestPossibleStackSpinner = highestPossibleStackSpinner;
+	}
 
-    public int getDriveSpinner() {
-        return driveSpinner;
-    }
+	public int getWheelNumSpinner() {
+		return wheelNumSpinner;
+	}
 
-    public void setDriveSpinner(int driveSpinner) {
-        this.driveSpinner = driveSpinner;
-    }
+	public void setWheelNumSpinner(int wheelNumSpinner) {
+		this.wheelNumSpinner = wheelNumSpinner;
+	}
 
-    public int getHighestPossibleStackSpinner() {
-        return highestPossibleStackSpinner;
-    }
+	public int getWheelTypeSpinner() {
+		return wheelTypeSpinner;
+	}
 
-    public void setHighestPossibleStackSpinner(int highestPossibleStackSpinner) {
-        this.highestPossibleStackSpinner = highestPossibleStackSpinner;
-    }
-
-    public int getWheelNumSpinner() {
-        return wheelNumSpinner;
-    }
-
-    public void setWheelNumSpinner(int wheelNumSpinner) {
-        this.wheelNumSpinner = wheelNumSpinner;
-    }
-
-    public int getWheelTypeSpinner() {
-        return wheelTypeSpinner;
-    }
-
-    public void setWheelTypeSpinner(int wheelTypeSpinner) {
-        this.wheelTypeSpinner = wheelTypeSpinner;
-    }
-
-
-    @Override
-    public int compareTo(@NonNull PitRecord another) {
-        if (this.teamNumber < another.teamNumber)
-            return -1;
-        else if (this.teamNumber == another.teamNumber)
-            return 0;
-        else return 1;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return getId().equals(((PitRecord) o).getId());
-    }
+	public void setWheelTypeSpinner(int wheelTypeSpinner) {
+		this.wheelTypeSpinner = wheelTypeSpinner;
+	}
 }

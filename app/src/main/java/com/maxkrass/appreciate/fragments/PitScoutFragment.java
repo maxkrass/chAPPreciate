@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,11 +37,12 @@ public class PitScoutFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.main_layout, container, false);
 		settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		recyclerView = (RecyclerView) v.findViewById(R.id.scouts_list);
+		recyclerView = new RecyclerView(getActivity());
 		recyclerView.setPadding(0, (int) Tools.dpToPixels(getContext(), 8), 0, 0);
 		recyclerView.setClipToPadding(false);
+		recyclerView.setHasFixedSize(true);
+		recyclerView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.grey50));
 		View.OnClickListener TimClickListener = new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -96,7 +98,7 @@ public class PitScoutFragment extends Fragment {
 		teamAdapter = new PitScoutTeamAdapter(getActivity(), TimClickListener, SarahClickListener, Select.from(PitRecord.class).orderBy("CAST(team_number AS int)").list());
 		recyclerView.setAdapter(teamAdapter);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-		return v;
+		return recyclerView;
 	}
 
 }
