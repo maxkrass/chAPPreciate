@@ -6,7 +6,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.adapter.AlliancePagerAdapter;
@@ -25,6 +28,77 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
 	EditText teamNumberField;
 	EditText matchNumberField;
+
+
+	private CheckBoxWidget pickPort;
+	private CheckBoxWidget pickChevel;
+	private CheckBoxWidget pickMoat;
+	private CheckBoxWidget pickRamp;
+	private CheckBoxWidget pickSally;
+	private CheckBoxWidget pickRock;
+	private CheckBoxWidget pickRough;
+	private CheckBoxWidget startBall;
+	private CheckBoxWidget autoSpy;
+	private CheckBoxWidget reachDefense;
+
+	Spinner defenseReach;
+
+	Button autoLowGoalMinus;
+	TextView autoLowGoal;
+	Button getAutoLowGoalPlus;
+
+	TextView lowGoal;
+
+	Spinner defenseTwoSpinner;
+	Spinner defenseThreeSpinner;
+	Spinner defenseFourSpinner;
+	Spinner defenseFiveSpinner;
+
+	Button defenseOneMinus;
+	TextView defenseOne;
+	Button defenseOnePlus;
+
+	Button defenseTwoMinus;
+	TextView defenseTwo;
+	Button defenseTwoPlus;
+
+	Button defenseThreeMinus;
+	TextView defenseThree;
+	Button defenseThreePlus;
+
+	Button defenseFourMinus;
+	TextView defenseFour;
+	Button defenseFourPlus;
+
+	Button defenseFiveMinus;
+	TextView defenseFive;
+	Button defenseFivePlus;
+
+
+	Button lowShotMinus;
+	TextView lowShotScreen;
+	Button lowShotPlus;
+
+
+	Button highShotMinus;
+	TextView highShotScreen;
+	Button highShotPlus;
+
+	private CheckBoxWidget secretPassage;
+	private CheckBoxWidget netural;
+	private CheckBoxWidget courtyard;
+	private CheckBoxWidget Steal;
+
+	private CheckBoxWidget block;
+	private CheckBoxWidget push;
+
+	private CheckBoxWidget canPickUp;
+	private CheckBoxWidget fast;
+	private CheckBoxWidget penalty;
+	private CheckBoxWidget breach;
+
+	private CheckBoxWidget capture;
+	private CheckBoxWidget scale;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

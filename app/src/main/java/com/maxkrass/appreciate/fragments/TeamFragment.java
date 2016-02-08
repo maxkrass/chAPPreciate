@@ -48,7 +48,7 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 			CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
 			boolean flag;
 			flag = !checkboxwidget.isChecked();
-			checkboxwidget.setCheckBox(flag);
+			checkboxwidget.setChecked(flag);
 		}
 	}
 

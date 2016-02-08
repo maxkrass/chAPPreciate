@@ -28,7 +28,37 @@
 				android:textSize="14sp"
 				android:textColor="@color/primary"
 				android:gravity="center_vertical"
+				android:text="Defemse Picked"/>
+
+			<com.maxkrass.appreciate.views.CheckBoxWidget
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:text="Port"
+				custom:label="port"
+				xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+
+			</com.maxkrass.appreciate.views.CheckBoxWidget>
+
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:textSize="14sp"
+				android:textColor="@color/primary"
+				android:gravity="center_vertical"
 				android:text="@string/auto_card_title"/>
+
+			<com.maxkrass.appreciate.views.CheckBoxWidget
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:text="Port">
+
+
+			</com.maxkrass.appreciate.views.CheckBoxWidget>
 
 			<LinearLayout
 				android:layout_width="match_parent"

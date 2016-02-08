@@ -75,7 +75,7 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view instanceof CheckBoxWidget) {
             CheckBoxWidget checkboxwidget = (CheckBoxWidget) view;
-            checkboxwidget.setCheckBox(!checkboxwidget.isChecked());
+            checkboxwidget.setChecked(!checkboxwidget.isChecked());
         }
     }
 
@@ -201,11 +201,11 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkTeleCBWs() {
-        wideTeleCBW.setCheckBox(editablePitRecord.isWideTeleCBW());
-        narrowTeleCBW.setCheckBox(editablePitRecord.isNarrowTeleCBW());
-        stepTeleCBW.setCheckBox(editablePitRecord.isStepTeleCBW());
-        landfillTeleCBW.setCheckBox(editablePitRecord.isLandfillTeleCBW());
-        humanPlayerTeleCBW.setCheckBox(editablePitRecord.isHumanPlayerTeleCBW());
+        wideTeleCBW.setChecked(editablePitRecord.isWideTeleCBW());
+        narrowTeleCBW.setChecked(editablePitRecord.isNarrowTeleCBW());
+        stepTeleCBW.setChecked(editablePitRecord.isStepTeleCBW());
+        landfillTeleCBW.setChecked(editablePitRecord.isLandfillTeleCBW());
+        humanPlayerTeleCBW.setChecked(editablePitRecord.isHumanPlayerTeleCBW());
     }
 
     private void fillEditTexts() {
@@ -218,10 +218,10 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkAutoCBWs() {
-        autoZoneAutoCBW.setCheckBox(editablePitRecord.isAutoZoneAutoCBW());
-        totesAutoCBW.setCheckBox(editablePitRecord.isTotesAutoCBW());
-        containersAutoCBW.setCheckBox(editablePitRecord.isContainersAutoCBW());
-        flexibleAutoCBW.setCheckBox(editablePitRecord.isFlexibleAutoCBW());
+        autoZoneAutoCBW.setChecked(editablePitRecord.isAutoZoneAutoCBW());
+        totesAutoCBW.setChecked(editablePitRecord.isTotesAutoCBW());
+        containersAutoCBW.setChecked(editablePitRecord.isContainersAutoCBW());
+        flexibleAutoCBW.setChecked(editablePitRecord.isFlexibleAutoCBW());
     }
 
     private void setSpinners() {
@@ -234,11 +234,11 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkAbilitiesCBWs() {
-        totesAbilityCBW.setCheckBox(editablePitRecord.isTotesAbilityCBW());
-        containersAbilityCBW.setCheckBox(editablePitRecord.isContainersAbilityCBW());
-        noodlesAbilityCBW.setCheckBox(editablePitRecord.isNoodlesAbilityCBW());
-        shiftingAbilityCBW.setCheckBox(editablePitRecord.isShiftingAbilityCBW());
-        coopAbilityCBW.setCheckBox(editablePitRecord.isCoopAbilityCBW());
+        totesAbilityCBW.setChecked(editablePitRecord.isTotesAbilityCBW());
+        containersAbilityCBW.setChecked(editablePitRecord.isContainersAbilityCBW());
+        noodlesAbilityCBW.setChecked(editablePitRecord.isNoodlesAbilityCBW());
+        shiftingAbilityCBW.setChecked(editablePitRecord.isShiftingAbilityCBW());
+        coopAbilityCBW.setChecked(editablePitRecord.isCoopAbilityCBW());
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -269,20 +269,20 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void clearFields() {
-        autoZoneAutoCBW.setCheckBox(false);
-        totesAutoCBW.setCheckBox(false);
-        containersAutoCBW.setCheckBox(false);
-        flexibleAutoCBW.setCheckBox(false);
-        wideTeleCBW.setCheckBox(false);
-        narrowTeleCBW.setCheckBox(false);
-        stepTeleCBW.setCheckBox(false);
-        landfillTeleCBW.setCheckBox(false);
-        humanPlayerTeleCBW.setCheckBox(false);
-        totesAbilityCBW.setCheckBox(false);
-        containersAbilityCBW.setCheckBox(false);
-        noodlesAbilityCBW.setCheckBox(false);
-        shiftingAbilityCBW.setCheckBox(false);
-        coopAbilityCBW.setCheckBox(false);
+        autoZoneAutoCBW.setChecked(false);
+        totesAutoCBW.setChecked(false);
+        containersAutoCBW.setChecked(false);
+        flexibleAutoCBW.setChecked(false);
+        wideTeleCBW.setChecked(false);
+        narrowTeleCBW.setChecked(false);
+        stepTeleCBW.setChecked(false);
+        landfillTeleCBW.setChecked(false);
+        humanPlayerTeleCBW.setChecked(false);
+        totesAbilityCBW.setChecked(false);
+        containersAbilityCBW.setChecked(false);
+        noodlesAbilityCBW.setChecked(false);
+        shiftingAbilityCBW.setChecked(false);
+        coopAbilityCBW.setChecked(false);
         driveSpinner.setSelection(0);
         wheelTypeSpinner.setSelection(0);
         wheelNumSpinner.setSelection(0);

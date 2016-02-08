@@ -88,7 +88,7 @@ public class MatchScout extends AppCompatActivity implements View.OnClickListene
 	@Override
 	public void onClick(View v) {
 		if (v instanceof CheckBoxWidget) {
-			((CheckBoxWidget) v).setCheckBox(!((CheckBoxWidget) v).isChecked());
+			((CheckBoxWidget) v).setChecked(!((CheckBoxWidget) v).isChecked());
 		}
 	}
 }
