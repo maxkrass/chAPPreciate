@@ -8,6 +8,17 @@
 		<item>Swerve</item>
 		<item>Holonomical</item>
 	</string-array>
+	<string-array name="defense">
+		<item>Portcullis</item>
+		<item>Cheval de Frise</item>
+		<item>Ramparts</item>
+		<item>Moat</item>
+		<item>Drawbridge</item>
+		<item>Sally port</item>
+		<item>Rock Wall</item>
+		<item>Rough Terrain</item>
+		<item>Low Bar</item>
+	</string-array>
 	<string-array name="highest_possible_stack">
 		<item>0</item>
 		<item>1</item>

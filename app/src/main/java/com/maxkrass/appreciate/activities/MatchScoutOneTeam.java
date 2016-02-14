@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,16 +31,16 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 	EditText matchNumberField;
 
 
-	private CheckBoxWidget pickPort;
-	private CheckBoxWidget pickChevel;
-	private CheckBoxWidget pickMoat;
-	private CheckBoxWidget pickRamp;
-	private CheckBoxWidget pickSally;
-	private CheckBoxWidget pickRock;
-	private CheckBoxWidget pickRough;
-	private CheckBoxWidget startBall;
-	private CheckBoxWidget autoSpy;
-	private CheckBoxWidget reachDefense;
+	private CheckBox pickPort;
+	private CheckBox pickChevel;
+	private CheckBox pickMoat;
+	private CheckBox pickRamp;
+	private CheckBox pickSally;
+	private CheckBox pickRock;
+	private CheckBox pickRough;
+	private CheckBox startBall;
+	private CheckBox autoSpy;
+	private CheckBox reachDefense;
 
 	Spinner defenseReach;
 
@@ -109,6 +110,9 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		teamNumberField = (EditText) findViewById(R.id.team_number_field);
 		matchNumberField = (EditText) findViewById(R.id.match_number_field);
+
+
+
 		fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
 	}
 
