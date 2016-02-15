@@ -41,7 +41,7 @@
 				android:layout_height="wrap_content"
 				android:maxLength="5"
 				android:id="@+id/team_number_field"
-				android:textAppearance="@style/TextAppearance.AppCompat.Display2"/>
+				android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
 		</android.support.design.widget.TextInputLayout>
 
@@ -62,7 +62,7 @@
 				android:inputType="numberSigned"
 				android:maxLength="3"
 				android:id="@+id/match_number_field"
-				android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+				android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
 		</android.support.design.widget.TextInputLayout>
 
