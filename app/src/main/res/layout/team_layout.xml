@@ -347,7 +347,7 @@
                     android:id="@+id/defenseBreachSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/wheel_type">
+                    android:entries="@array/defense">
 
                 </Spinner>
 
@@ -432,11 +432,126 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Spinner
+                            android:id="@+id/defense2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/defense">
+
+                        </Spinner>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fast"
+                            android:layout_margin="3dp" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/fast2" />
+                        />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Spinner
+                            android:id="@+id/defense3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/defense">
+
+                        </Spinner>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fast"
+                            android:layout_margin="3dp" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/fast3" />
+                        />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Spinner
+                            android:id="@+id/defense4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/defense">
+
+                        </Spinner>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fast"
+                            android:layout_margin="3dp" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/fast4" />
+                        />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Spinner
+                            android:id="@+id/defense5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/defense">
+
+                        </Spinner>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fast"
+                            android:layout_margin="3dp" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/fast5" />
+                        />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/total_points"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                     />
 
                 <EditText
                     android:layout_height="wrap_content"
@@ -448,7 +563,8 @@
                     android:textColor="@color/textColor"
                     android:inputType="numberSigned|numberDecimal"
                     android:maxLength="5"
-                    android:text="@string/zero"/>
+                    android:text="@string/zero"
+                    />
 
             </FrameLayout>
 

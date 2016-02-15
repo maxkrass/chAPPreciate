@@ -40,9 +40,38 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 	private CheckBox pickRough;
 	private CheckBox startBall;
 	private CheckBox autoSpy;
-	private CheckBox reachDefense;
-
+    private CheckBox didReachDefense;
 	Spinner defenseReach;
+
+    Spinner defenseTwoSpinner;
+    Spinner defenseThreeSpinner;
+    Spinner defenseFourSpinner;
+    Spinner defenseFiveSpinner;
+
+
+    private CheckBox secretPassage;
+    private CheckBox netural;
+    private CheckBox courtyard;
+    private CheckBox steal;
+
+    private CheckBox block;
+    private CheckBox push;
+
+    private CheckBox canPickUp;
+    private CheckBox fast;
+    private CheckBox penalty;
+    private CheckBox breach;
+
+    private CheckBox capture;
+    private CheckBox scale;
+
+    private CheckBox fast1;
+    private CheckBox fast2;
+    private CheckBox fast3;
+    private CheckBox fast4;
+    private CheckBox fast5;
+
+
 
 	Button autoLowGoalMinus;
 	TextView autoLowGoal;
@@ -50,56 +79,10 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
 	TextView lowGoal;
 
-	Spinner defenseTwoSpinner;
-	Spinner defenseThreeSpinner;
-	Spinner defenseFourSpinner;
-	Spinner defenseFiveSpinner;
-
-	Button defenseOneMinus;
-	TextView defenseOne;
-	Button defenseOnePlus;
-
-	Button defenseTwoMinus;
-	TextView defenseTwo;
-	Button defenseTwoPlus;
-
-	Button defenseThreeMinus;
-	TextView defenseThree;
-	Button defenseThreePlus;
-
-	Button defenseFourMinus;
-	TextView defenseFour;
-	Button defenseFourPlus;
-
-	Button defenseFiveMinus;
-	TextView defenseFive;
-	Button defenseFivePlus;
 
 
-	Button lowShotMinus;
-	TextView lowShotScreen;
-	Button lowShotPlus;
 
 
-	Button highShotMinus;
-	TextView highShotScreen;
-	Button highShotPlus;
-
-	private CheckBoxWidget secretPassage;
-	private CheckBoxWidget netural;
-	private CheckBoxWidget courtyard;
-	private CheckBoxWidget Steal;
-
-	private CheckBoxWidget block;
-	private CheckBoxWidget push;
-
-	private CheckBoxWidget canPickUp;
-	private CheckBoxWidget fast;
-	private CheckBoxWidget penalty;
-	private CheckBoxWidget breach;
-
-	private CheckBoxWidget capture;
-	private CheckBoxWidget scale;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +93,41 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		teamNumberField = (EditText) findViewById(R.id.team_number_field);
 		matchNumberField = (EditText) findViewById(R.id.match_number_field);
+        pickPort = (CheckBox) findViewById(R.id.portcheckbox);
+        pickChevel = (CheckBox) findViewById(R.id.chevel_checkbox);
+        pickMoat = (CheckBox) findViewById(R.id.moat_checkbox);
+        pickRamp = (CheckBox) findViewById(R.id.ramp_checkbox);
+        pickSally = (CheckBox) findViewById(R.id.sally_checkbox);
+        pickRock = (CheckBox) findViewById(R.id.rock_checkbox);
+        pickRough = (CheckBox) findViewById(R.id.rough_checkbox);
+        startBall = (CheckBox) findViewById(R.id.start_ball_checkbox);
+        autoSpy = (CheckBox) findViewById(R.id.autospy_checkbox);
+        defenseReach = (Spinner) findViewById(R.id.defenseBreachSpinner);
+        didReachDefense = (CheckBox) findViewById(R.id.reach_def_checkbox);
 
+        secretPassage = (CheckBox) findViewById(R.id.secret_passage_checkbox);
+        netural = (CheckBox) findViewById(R.id.neutral_checkbox);
+        courtyard = (CheckBox) findViewById(R.id.courtyard_checkbox);
+        steal = (CheckBox) findViewById(R.id.steal_checkbox);
+        block = (CheckBox) findViewById(R.id.block_checkbox);
+        push = (CheckBox) findViewById(R.id.push_checkbox);
+        canPickUp = (CheckBox) findViewById(R.id.can_pick_up_checkbox);
+        fast = (CheckBox) findViewById(R.id.fast_checkbox);
+        penalty = (CheckBox) findViewById(R.id.penalty_checkbox);
+        breach = (CheckBox) findViewById(R.id.breach_checkbox);
+
+        capture = (CheckBox) findViewById(R.id.capture_checkbox);
+        scale = (CheckBox) findViewById(R.id.scale_checkbox);
+
+        defenseTwoSpinner = (Spinner) findViewById(R.id.defense2);
+        defenseThreeSpinner = (Spinner) findViewById(R.id.defense3);
+        defenseFourSpinner = (Spinner) findViewById(R.id.defense4);
+        defenseFiveSpinner = (Spinner) findViewById(R.id.defense5);
+
+        fast2 = (CheckBox) findViewById(R.id.fast2);
+        fast3 = (CheckBox) findViewById(R.id.fast3);
+        fast4 = (CheckBox) findViewById(R.id.fast4);
+        fast5 = (CheckBox) findViewById(R.id.fast5);
 
 
 		fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
@@ -134,6 +151,43 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 					MatchRecord matchRecord = fragment.fetchMatch();
 					matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
 					matchRecord.setMatchNumber(Integer.parseInt(matchNumberField.getText().toString()));
+                    //////
+                    pickPort.setChecked(matchRecord.getPickPort());
+                    pickChevel.setChecked(matchRecord.getPickChevel());
+                    pickMoat.setChecked(matchRecord.getPickMoat());
+                    pickRamp.setChecked(matchRecord.getPickRamp());
+                    pickSally.setChecked(matchRecord.getPickSally());
+                    pickRock.setChecked(matchRecord.getPickRock());
+                    pickRough.setChecked(matchRecord.getPickRough());
+                    startBall.setChecked(matchRecord.getStartWithBall());
+                    autoSpy.setChecked(matchRecord.getAutoSpy());
+                    defenseReach.setSelection(matchRecord.getDefenseSpinner());
+                    didReachDefense.setChecked(matchRecord.getReachedDefense());
+
+
+                    defenseTwoSpinner.setSelection(matchRecord.getSpinner2());
+                    defenseThreeSpinner.setSelection(matchRecord.getSpinner3());
+                    defenseFourSpinner.setSelection(matchRecord.getSpinner4());
+                    defenseFiveSpinner.setSelection(matchRecord.getSpinner5());
+
+                    secretPassage.setChecked(matchRecord.getSecreatPassage());
+                    netural.setChecked(matchRecord.getNetural());
+                    courtyard.setChecked(matchRecord.getCourtYard());
+                    steal.setChecked(matchRecord.getSteal());
+                    block.setChecked(matchRecord.getBlock());
+                    fast.setChecked(matchRecord.getFast());
+                    penalty.setChecked(matchRecord.getPenalty());
+                    breach.setChecked(matchRecord.getBreach());
+                    capture.setChecked(matchRecord.getCapture());
+                    scale.setChecked(matchRecord.getScale());
+
+                    fast2.setChecked(matchRecord.isFast2());
+                    fast3.setChecked(matchRecord.isFast3());
+                    fast4.setChecked(matchRecord.isFast4());
+                    fast5.setChecked(matchRecord.isFast5());
+
+
+                    /////
 					matchRecord.save();
                     MainPagerAdapter.matchScouts.teamAdapter.add(matchRecord);
                     finish();
@@ -148,6 +202,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
 
 	public void onClick(View view) {
 		if (view instanceof CheckBoxWidget) {
