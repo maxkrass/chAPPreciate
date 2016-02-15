@@ -12,32 +12,32 @@ public class MatchRecord extends Record {
     int matchNumber;
     String autoComment;
     String teleComment;
-    Boolean pickPort;
-    Boolean pickChevel;
-    Boolean pickMoat;
-    Boolean pickRamp;
-    Boolean pickSally;
-    Boolean pickRock;
-    Boolean pickRough;
-    Boolean startWithBall;
-    Boolean autoSpy;
+    boolean pickPort;
+    boolean pickChevel;
+    boolean pickMoat;
+    boolean pickRamp;
+    boolean pickSally;
+    boolean pickRock;
+    boolean pickRough;
+    boolean startWithBall;
+    boolean autoSpy;
 
-    Boolean reachedDefense;
+    boolean reachedDefense;
     String defenseReach;
     int lowGoalAuto;
     int highGoalAuto;
-    Boolean secreatPassage;
-    Boolean netural;
-    Boolean courtYard;
-    Boolean steal;
-    Boolean block;
-    Boolean push;
-    Boolean canPickUp;
-    Boolean fast;
-    Boolean penalty;
-    Boolean breach;
-    Boolean capture;
-    Boolean scale;
+    boolean secreatPassage;
+    boolean netural;
+    boolean courtYard;
+    boolean steal;
+    boolean block;
+    boolean push;
+    boolean canPickUp;
+    boolean fast;
+    boolean penalty;
+    boolean breach;
+    boolean capture;
+    boolean scale;
 
     public boolean isFast2() {
         return fast2;
@@ -125,83 +125,83 @@ public class MatchRecord extends Record {
 
 
 
-    public Boolean getPickPort() {
+    public boolean getPickPort() {
         return pickPort;
     }
 
-    public void setPickPort(Boolean pickPort) {
+    public void setPickPort(boolean pickPort) {
         this.pickPort = pickPort;
     }
 
-    public Boolean getPickChevel() {
+    public boolean getPickChevel() {
         return pickChevel;
     }
 
-    public void setPickChevel(Boolean pickChevel) {
+    public void setPickChevel(boolean pickChevel) {
         this.pickChevel = pickChevel;
     }
 
-    public Boolean getPickMoat() {
+    public boolean getPickMoat() {
         return pickMoat;
     }
 
-    public void setPickMoat(Boolean pickMoat) {
+    public void setPickMoat(boolean pickMoat) {
         this.pickMoat = pickMoat;
     }
 
-    public Boolean getPickRamp() {
+    public boolean getPickRamp() {
         return pickRamp;
     }
 
-    public void setPickRamp(Boolean pickRamp) {
+    public void setPickRamp(boolean pickRamp) {
         this.pickRamp = pickRamp;
     }
 
-    public Boolean getPickSally() {
+    public boolean getPickSally() {
         return pickSally;
     }
 
-    public void setPickSally(Boolean pickSally) {
+    public void setPickSally(boolean pickSally) {
         this.pickSally = pickSally;
     }
 
-    public Boolean getPickRock() {
+    public boolean getPickRock() {
         return pickRock;
     }
 
-    public void setPickRock(Boolean pickRock) {
+    public void setPickRock(boolean pickRock) {
         this.pickRock = pickRock;
     }
 
-    public Boolean getPickRough() {
+    public boolean getPickRough() {
         return pickRough;
     }
 
-    public void setPickRough(Boolean pickRough) {
+    public void setPickRough(boolean pickRough) {
         this.pickRough = pickRough;
     }
 
-    public Boolean getStartWithBall() {
+    public boolean getStartWithBall() {
         return startWithBall;
     }
 
-    public void setStartWithBall(Boolean startWithBall) {
+    public void setStartWithBall(boolean startWithBall) {
         this.startWithBall = startWithBall;
     }
 
-    public Boolean getAutoSpy() {
+    public boolean getAutoSpy() {
         return autoSpy;
     }
 
-    public void setAutoSpy(Boolean autoSpy) {
+    public void setAutoSpy(boolean autoSpy) {
         this.autoSpy = autoSpy;
     }
 
-    public Boolean getReachedDefense() {
+    public boolean getReachedDefense() {
         return reachedDefense;
     }
 
-    public void setReachedDefense(Boolean reachedDefense) {
+    public void setReachedDefense(boolean reachedDefense) {
         this.reachedDefense = reachedDefense;
     }
 
@@ -229,99 +229,99 @@ public class MatchRecord extends Record {
         this.highGoalAuto = highGoalAuto;
     }
 
-    public Boolean getSecreatPassage() {
+    public boolean getSecreatPassage() {
         return secreatPassage;
     }
 
-    public void setSecreatPassage(Boolean secreatPassage) {
+    public void setSecreatPassage(boolean secreatPassage) {
         this.secreatPassage = secreatPassage;
     }
 
-    public Boolean getNetural() {
+    public boolean getNetural() {
         return netural;
     }
 
-    public void setNetural(Boolean netural) {
+    public void setNetural(boolean netural) {
         this.netural = netural;
     }
 
-    public Boolean getCourtYard() {
+    public boolean getCourtYard() {
         return courtYard;
     }
 
-    public void setCourtYard(Boolean courtYard) {
+    public void setCourtYard(boolean courtYard) {
         this.courtYard = courtYard;
     }
 
-    public Boolean getSteal() {
+    public boolean getSteal() {
         return steal;
     }
 
-    public void setSteal(Boolean steal) {
+    public void setSteal(boolean steal) {
         this.steal = steal;
     }
 
-    public Boolean getBlock() {
+    public boolean getBlock() {
         return block;
     }
 
-    public void setBlock(Boolean block) {
+    public void setBlock(boolean block) {
         this.block = block;
     }
 
-    public Boolean getPush() {
+    public boolean getPush() {
         return push;
     }
 
-    public void setPush(Boolean push) {
+    public void setPush(boolean push) {
         this.push = push;
     }
 
-    public Boolean getCanPickUp() {
+    public boolean getCanPickUp() {
         return canPickUp;
     }
 
-    public void setCanPickUp(Boolean canPickUp) {
+    public void setCanPickUp(boolean canPickUp) {
         this.canPickUp = canPickUp;
     }
 
-    public Boolean getFast() {
+    public boolean getFast() {
         return fast;
     }
 
-    public void setFast(Boolean fast) {
+    public void setFast(boolean fast) {
         this.fast = fast;
     }
 
-    public Boolean getPenalty() {
+    public boolean getPenalty() {
         return penalty;
     }
 
-    public void setPenalty(Boolean penalty) {
+    public void setPenalty(boolean penalty) {
         this.penalty = penalty;
     }
 
-    public Boolean getBreach() {
+    public boolean getBreach() {
         return breach;
     }
 
-    public void setBreach(Boolean breach) {
+    public void setBreach(boolean breach) {
         this.breach = breach;
     }
 
-    public Boolean getCapture() {
+    public boolean getCapture() {
         return capture;
     }
 
-    public void setCapture(Boolean capture) {
+    public void setCapture(boolean capture) {
         this.capture = capture;
     }
 
-    public Boolean getScale() {
+    public boolean getScale() {
         return scale;
     }
 
-    public void setScale(Boolean scale) {
+    public void setScale(boolean scale) {
         this.scale = scale;
     }
 
