@@ -30,12 +30,186 @@
 			android:textSize="14sp"/>
 
 
+		<RelativeLayout
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
 		<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:scaleType="fitCenter"
 			android:src="@drawable/field"
 			android:adjustViewBounds="true"/>
+
+		<!-- Buttons not aligned-->
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:tag="1"
+			android:id="@+id/button"
+			android:text="1"
+
+			android:layout_below="@+id/button5"
+			android:layout_alignLeft="@+id/button5"
+			android:layout_alignStart="@+id/button5"
+			android:onClick="defenseButtonClicked"/>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:tag="2"
+			android:text="2"
+			android:onClick="defenseButtonClicked"
+			android:layout_below="@+id/button4"
+			android:layout_alignLeft="@+id/button4"
+			android:layout_alignStart="@+id/button4"
+			android:layout_marginTop="17dp"
+			android:id="@+id/button5" />
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:tag="3"
+			android:text="3"
+			android:onClick="defenseButtonClicked"
+			android:id="@+id/button4"
+			android:layout_below="@+id/button3"
+			android:layout_alignLeft="@+id/button3"
+			android:layout_alignStart="@+id/button3" />
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:tag="4"
+			android:text="4"
+			android:onClick="defenseButtonClicked"
+			android:layout_marginTop="22dp"
+			android:id="@+id/button3"
+			android:layout_below="@+id/button2"
+			android:layout_alignLeft="@+id/button2"
+			android:layout_alignStart="@+id/button2" />
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:tag="5"
+			android:text="5"
+			android:onClick="defenseButtonClicked"
+			android:layout_marginRight="43dp"
+			android:layout_marginEnd="43dp"
+			android:layout_marginTop="70dp"
+			android:id="@+id/button2"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Defense Selected:"
+			android:id="@+id/defense_selected_text_view"/>
+
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="High"/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="-"
+					android:tag = "HIGH"
+					android:onClick="subtractShotClicked"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/high_text_view"
+					/>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="+"
+					android:tag="HIGH"
+					android:onClick="addShotClicked"/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Low"/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="-"
+					android:tag="LOW"
+					android:onClick="subtractShotClicked"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/low_text_view"
+					/>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="+"
+					android:tag="LOW"
+					android:onClick="addShotClicked"/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Miss"/>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="-"
+					android:tag="MISS"
+					android:onClick="subtractShotClicked"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/miss_text_view"
+					/>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="+"
+					android:tag="MISS"
+					android:onClick="addShotClicked"/>
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:layout_column="0"
+			android:layout_row="0"
+			android:fontFamily="sans-serif-medium"
+			android:gravity="center_vertical"
+			android:text="Defenses Picked"
+			android:textColor="@color/primary"
+			android:textSize="14sp"/>
 
 
 		<GridLayout
