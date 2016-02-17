@@ -18,19 +18,8 @@
 		android:paddingStart="@dimen/default_padding_keyline">
 
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="48dp"
-			android:layout_column="0"
-			android:layout_row="0"
-			android:fontFamily="sans-serif-medium"
-			android:gravity="center_vertical"
-			android:text="Defense Picked"
-			android:textColor="@color/primary"
-			android:textSize="14sp"/>
 
-
-		<RelativeLayout
+<RelativeLayout
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content">
 		<ImageView
@@ -210,7 +199,6 @@
 			android:text="Defenses Picked"
 			android:textColor="@color/primary"
 			android:textSize="14sp"/>
-
 
 		<GridLayout
 			android:layout_width="match_parent"
@@ -612,17 +600,20 @@
 				android:orientation="vertical"/>
 
 
-			<FrameLayout
+			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="48dp">
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
 
 				<LinearLayout
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
 
 					<LinearLayout
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
 
 						<Spinner
 							android:id="@+id/defense2"
@@ -734,27 +725,32 @@
 				</LinearLayout>
 
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:text="@string/total_points"
-					/>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical"
+						android:text="@string/total_points"
+						/>
 
-				<EditText
-					android:id="@+id/total_score_field"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center|end"
-					android:ems="4"
-					android:inputType="numberSigned|numberDecimal"
-					android:maxLength="5"
-					android:singleLine="true"
-					android:text="@string/zero"
-					android:textColor="@color/textColor"
-					/>
+					<EditText
+						android:id="@+id/total_score_field"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center|end"
+						android:ems="4"
+						android:inputType="numberSigned|numberDecimal"
+						android:maxLength="5"
+						android:singleLine="true"
+						android:text="@string/zero"
+						android:textColor="@color/textColor"
+						/>
+				</LinearLayout>
+				
 
-			</FrameLayout>
+			</LinearLayout>
 
 			<FrameLayout
 				android:layout_width="fill_parent"
