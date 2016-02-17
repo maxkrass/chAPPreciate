@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<!-- Card Titles-->
 	<string name="abilities_card_title">Abilities</string>
-	<string name="accept">Accept</string>
-	<string name="action_settings">Settings</string>
-	<string name="action_exit">Exit</string>
-	<string name="app_name">ChAPPreciate</string>
 	<string name="auto_card_title">Autonomous</string>
-	<string name="auto_zone_auto_label">Makes it into Auto Zone</string>
+	<string name="main_card_title">Main</string>
+	<string name="tele_card_title">Teleoperated</string>
+	
+	<!--bluetooth-->
 	<string name="bluetooth_receiver">Receive during Bluetooth</string>
 	<string name="bluetooth_receiving_summary">Your device will receive files via Bluetooth</string>
 	<string name="bluetooth_sending_summary">Your device will send files to a receiver via Bluetooth</string>
+	<string name="use_bluetooth">Use Bluetooth</string>
+	<string name="use_bluetooth_summary">Use Bluetooth to transfer files</string>
+	
+	<!--clear-->
 	<string name="clear_button_text">Clear</string>
 	<string name="clear_dialog_message">Clear entries?</string>
 	<string name="clear_dialog_negative">Cancel</string>
 	<string name="clear_dialog_positive">OK</string>
-	<string name="containers_abilities_label">Can pickup/stack containers</string>
-	<string name="containers_auto_label">Gets containers during Auto</string>
-	<string name="coop_abilities_label">Can make a co-op stack</string>
-	<string name="drive_label">Drive Type</string>
-	<string name="flexible_auto_label">The Auto program is flexible</string>
-	<string name="gear_ratio_label">Gear Ratio</string>
-	<string name="highest_stack_tele_label">Highest stack of totes</string>
-	<string name="landfill_tele_label">Gets totes from landfill zone</string>
-	<string name="main_card_title">Main</string>
-	<string name="max_speed_label">Max Speed</string>
-	<string name="narrow_tele_label">Picks up totes form narrow side</string>
-	<string name="noodles_abilities_label">Can pickup/place noodles</string>
-	<string name="num_cims_label">Number of CIMs</string>
-	<string name="num_wheel_label">Number of Wheels</string>
+	
+	<!--save-->
 	<string name="save_button_text">Save</string>
 	<string name="save_dialog_message">"This scout will be uploaded and there won't be a possibility to edit it."</string>
 	<string name="save_dialog_negative">Edit</string>
@@ -36,20 +28,56 @@
 	<string name="save_dialog_title">Do you want to save or edit?</string>
 	<string name="save_snackbar_action">Undo</string>
 	<string name="save_snackbar_text">Scout has been saved</string>
-	<string name="shifting_abilities_label">Can shift</string>
-	<string name="step_tele_label">Gets totes from step</string>
-	<string name="team_number_label">Team Number</string>
-	<string name="tele_card_title">Teleoperated</string>
-	<string name="tote_chute_tele_label">Gets totes from tote chute</string>
-	<string name="totes_abilities_label">Can pickup/stack totes</string>
+	
+	
+	
+	<!--Auto Labels-->
+	<string name="auto_zone_auto_label">Makes it into Auto Zone</string>
+	<string name="containers_auto_label">Gets containers during Auto</string>
+	<string name="flexible_auto_label">The Auto program is flexible</string>
 	<string name="totes_auto_label">Stacks totes during Auto</string>
-	<string name="use_bluetooth">Use Bluetooth</string>
-	<string name="use_bluetooth_summary">Use Bluetooth to transfer files</string>
-	<string name="wheel_label">Wheel Type</string>
+	
+	<!--Tele Labels-->
+	<string name="highest_stack_tele_label">Highest stack of totes</string>
+	<string name="landfill_tele_label">Gets totes from landfill zone</string>
+	<string name="narrow_tele_label">Picks up totes form narrow side</string>
+	<string name="step_tele_label">Gets totes from step</string>
+	<string name="tote_chute_tele_label">Gets totes from tote chute</string>
 	<string name="wide_tele_label">Picks up totes from wide side</string>
+	
+	<!--Abillities Labels-->
+	<string name="containers_abilities_label">Can pickup/stack containers</string>
+	<string name="coop_abilities_label">Can make a co-op stack</string>
+	<string name="noodles_abilities_label">Can pickup/place noodles</string>
+	<string name="shifting_abilities_label">Can shift</string>
+	<string name="totes_abilities_label">Can pickup/stack totes</string>
+	
+	<!--Misc Labels-->
+	<string name="drive_label">Drive Type</string>
+	<string name="gear_ratio_label">Gear Ratio</string>
+	<string name="max_speed_label">Max Speed</string>
+	<string name="num_cims_label">Number of CIMs</string>
+	<string name="num_wheel_label">Number of Wheels</string>
+	<string name="team_number_label">Team Number</string>
+	<string name="wheel_label">Wheel Type</string>
+	<string name="team_name_label">Team Name</string>
+	<string name="auto_zone_match_label">Drives to Auto Zone</string>
+	
+	<!--Comments-->
+	<string name="tele_comment">Comment on Teleoperated</string>
+	<string name="auto_comment">Comment on Autonomous</string>
+	
+	<!--list titles-->
 	<string name="pit_scouts_list_title">Pit Scouts</string>
 	<string name="game_scouts_lis_title">Game Scouts</string>
-	<string name="team_name_label">Team Name</string>
+	
+	
+	
+	<!-- unorginized strings -->
+	<string name="accept">Accept</string>
+	<string name="action_settings">Settings</string>
+	<string name="action_exit">Exit</string>
+	<string name="app_name">ChAPPreciate</string>
 	<string name="none_found">None found</string>
 	<string name="select_device">Select device</string>
 	<string name="none_paired">None paired</string>
@@ -72,11 +100,8 @@
 	<string name="coopertition">Coopertition:</string>
 	<string name="total_points">Totel Points:</string>
 	<string name="new_match_scout">New Match Scout</string>
-	<string name="tele_comment">Comment on Teleoperated</string>
 	<string name="zero">0</string>
 	<string name="add_stack">Add another stack…</string>
-	<string name="auto_comment">Comment on Autonomous</string>
-	<string name="auto_zone_match_label">Drives to Auto Zone</string>
 	<string name="program_auto_worked">Containers into Auto Zone</string>
 	<string name="coopertition_tele_match">Contributes to the coopertition stack</string>
 	<string name="functional_tele_match">Works all the way through</string>
