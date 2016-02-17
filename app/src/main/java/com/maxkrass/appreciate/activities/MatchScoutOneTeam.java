@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.adapter.AlliancePagerAdapter;
@@ -19,6 +20,7 @@ import com.maxkrass.appreciate.fragments.TeamFragment;
 import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
 
+import java.util.ArrayList;
 /**
  * Sarah made this for APPreciate on 12/17/15.
  */
@@ -70,14 +72,22 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     private CheckBox fast3;
     private CheckBox fast4;
     private CheckBox fast5;
-
-
-
-	Button autoLowGoalMinus;
-	TextView autoLowGoal;
-	Button getAutoLowGoalPlus;
-
-	TextView lowGoal;
+   
+    Button autoLowGoalMinus;
+    TextView autoLowGoal;
+    Button getAutoLowGoalPlus;
+    
+    TextView lowGoal;
+    
+    int defenseNumber;
+    ArrayList<String> shots;
+    TextView highTextView;
+    TextView lowTextView;
+    TextView missTextView;
+    TextView defenseSelectedTextView;
+    final String defenseSelectedString = "Defense Selected:";
+	
+	
 
 
 
@@ -128,6 +138,18 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         fast3 = (CheckBox) findViewById(R.id.fast3);
         fast4 = (CheckBox) findViewById(R.id.fast4);
         fast5 = (CheckBox) findViewById(R.id.fast5);
+        
+        defenseNumber = -1;
+        shots = new ArrayList<>();
+        highTextView = (TextView)findViewById(R.id.high_text_view);
+        lowTextView = (TextView)findViewById(R.id.low_text_view);
+        missTextView = (TextView)findViewById(R.id.miss_text_view);
+        defenseSelectedTextView = (TextView)findViewById(R.id.defense_selected_text_view);
+
+        highTextView.setText(0 + "");
+        lowTextView.setText(0 + "");
+        missTextView.setText(0 + "");
+        defenseSelectedTextView.setText(defenseSelectedString +  " None");
 
 
 		fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
@@ -209,5 +231,114 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 			((CheckBoxWidget) view).toggle();
 		}
 	}
+	
+	public void addShotClicked(View v)
+    {
+        String tag = v.getTag().toString();
+        if(defenseNumber == -1)// no defense selected
+        {
+            Toast.makeText(this, "Must select a defense", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(tag.equals("HIGH"))
+        {
+            shots.add(defenseNumber + "H");
+            highTextView.setText(Integer.parseInt(highTextView.getText().toString()) + 1 + "");
+            defenseNumber = -1;
+            defenseSelectedTextView.setText(defenseSelectedString + " None");
+
+        }
+        else if(tag.equals("LOW"))
+        {
+            shots.add(defenseNumber + "L");
+            lowTextView.setText(Integer.parseInt(lowTextView.getText().toString()) + 1 + "");
+            defenseNumber = -1;
+            defenseSelectedTextView.setText(defenseSelectedString + " None");
+        }
+        else if(tag.equals("MISS"))
+        {
+            shots.add(defenseNumber + "M");
+            missTextView.setText(Integer.parseInt(missTextView.getText().toString()) + 1 + "");
+            defenseNumber = -1;
+            defenseSelectedTextView.setText(defenseSelectedString + " None");
+
+        }
+        else
+        {
+            System.out.println("Could not find tag " + tag);
+        }
+
+
+    }
+
+    public void defenseButtonClicked(View v)
+    {
+        defenseNumber = Integer.parseInt(((Button)v).getTag().toString());
+        defenseSelectedTextView.setText(((Button)v).getTag().toString());
+        defenseSelectedTextView.setText(defenseSelectedString + " " + defenseNumber);
+    }
+
+
+
+    public void subtractShotClicked(View v)
+    {
+        String tag = v.getTag().toString();
+        if(tag.equals("HIGH"))
+        {
+            boolean removedItem = false;
+            for(int i = shots.size() - 1; i >= 0; i--)
+            {
+                if(shots.get(i).charAt(1) == 'H')
+                {
+                    shots.remove(i);
+                    removedItem = true;
+                    break;
+                }
+            }
+            if(removedItem)
+            {
+                highTextView.setText(Integer.parseInt(highTextView.getText().toString()) - 1 + "");
+            }
+        }
+        else if(tag.equals("LOW"))
+        {
+            boolean removedItem = false;
+            for(int i = shots.size() - 1; i >= 0; i--)
+            {
+                if(shots.get(i).charAt(1) == 'L')
+                {
+                    shots.remove(i);
+                    removedItem = true;
+                    break;
+                }
+            }
+            if(removedItem)
+            {
+                lowTextView.setText(Integer.parseInt(lowTextView.getText().toString()) - 1 + "");
+            }
+        }
+        else if (tag.equals("MISS"))
+        {
+            boolean removedItem = false;
+            for(int i = shots.size() - 1; i >= 0; i--)
+            {
+                if(shots.get(i).charAt(1) == 'M')
+                {
+                    shots.remove(i);
+                    removedItem = true;
+                    break;
+                }
+            }
+            if(removedItem)
+            {
+                missTextView.setText(Integer.parseInt(missTextView.getText().toString()) - 1 + "");
+            }
+        }
+        else
+        {
+            System.out.println("Could not fing tag " + tag);
+        }
+    }
 
 }
