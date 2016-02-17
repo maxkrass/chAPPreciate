@@ -15,80 +15,82 @@
 		android:focusableInTouchMode="true"
 		android:orientation="vertical"
 		android:paddingEnd="@dimen/default_padding_keyline"
-		android:paddingStart="@dimen/default_padding_keyline">
+		android:paddingStart="@dimen/default_padding_keyline"
+		android:id="@+id/main_layout">
 
 
 
-<RelativeLayout
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content">
-		<ImageView
+		<RelativeLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:scaleType="fitCenter"
-			android:src="@drawable/field"
-			android:adjustViewBounds="true"/>
+			android:id="@+id/defense_image_layout">
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:scaleType="fitCenter"
+				android:src="@drawable/field"
+				android:adjustViewBounds="true"/>
 
-		<!-- Buttons not aligned-->
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:tag="1"
-			android:id="@+id/button"
-			android:text="1"
+			<!-- Buttons not aligned-->
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="1"
+				android:id="@+id/button1"
+				android:text="1"
 
-			android:layout_below="@+id/button5"
-			android:layout_alignLeft="@+id/button5"
-			android:layout_alignStart="@+id/button5"
-			android:onClick="defenseButtonClicked"/>
+				android:layout_below="@+id/button2"
+				android:layout_alignLeft="@+id/button2"
+				android:layout_alignStart="@+id/button2"
+				android:onClick="defenseButtonClicked"/>
 
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:tag="2"
-			android:text="2"
-			android:onClick="defenseButtonClicked"
-			android:layout_below="@+id/button4"
-			android:layout_alignLeft="@+id/button4"
-			android:layout_alignStart="@+id/button4"
-			android:layout_marginTop="17dp"
-			android:id="@+id/button5" />
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:tag="3"
-			android:text="3"
-			android:onClick="defenseButtonClicked"
-			android:id="@+id/button4"
-			android:layout_below="@+id/button3"
-			android:layout_alignLeft="@+id/button3"
-			android:layout_alignStart="@+id/button3" />
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:tag="4"
-			android:text="4"
-			android:onClick="defenseButtonClicked"
-			android:layout_marginTop="22dp"
-			android:id="@+id/button3"
-			android:layout_below="@+id/button2"
-			android:layout_alignLeft="@+id/button2"
-			android:layout_alignStart="@+id/button2" />
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:tag="5"
-			android:text="5"
-			android:onClick="defenseButtonClicked"
-			android:layout_marginRight="43dp"
-			android:layout_marginEnd="43dp"
-			android:layout_marginTop="70dp"
-			android:id="@+id/button2"
-			android:layout_alignParentTop="true"
-			android:layout_alignParentRight="true"
-			android:layout_alignParentEnd="true" />
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="2"
+				android:text="2"
+				android:onClick="defenseButtonClicked"
+				android:layout_below="@+id/button3"
+				android:layout_alignLeft="@+id/button3"
+				android:layout_alignStart="@+id/button3"
+				android:layout_marginTop="17dp"
+				android:id="@+id/button2" />
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="3"
+				android:text="3"
+				android:onClick="defenseButtonClicked"
+				android:id="@+id/button3"
+				android:layout_below="@+id/button4"
+				android:layout_alignLeft="@+id/button4"
+				android:layout_alignStart="@+id/button4" />
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="4"
+				android:text="4"
+				android:onClick="defenseButtonClicked"
+				android:layout_marginTop="22dp"
+				android:id="@+id/button4"
+				android:layout_below="@+id/button5"
+				android:layout_alignLeft="@+id/button5"
+				android:layout_alignStart="@+id/button5" />
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="5"
+				android:text="5"
+				android:onClick="defenseButtonClicked"
+				android:layout_marginRight="43dp"
+				android:layout_marginEnd="43dp"
+				android:layout_marginTop="70dp"
+				android:id="@+id/button5"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentEnd="true" />
 
-</RelativeLayout>
+		</RelativeLayout>
 
 		<TextView
 			android:layout_width="wrap_content"
@@ -100,7 +102,8 @@
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:id="@+id/shots_layout">
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -198,13 +201,15 @@
 			android:gravity="center_vertical"
 			android:text="Defenses Picked"
 			android:textColor="@color/primary"
-			android:textSize="14sp"/>
+			android:textSize="14sp"
+			android:id="@+id/defenses_picked_text_view" />
 
 		<GridLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:columnCount="9"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:id="@+id/defenses_picked_layout">
 
 
 			<TextView
@@ -748,7 +753,7 @@
 						android:textColor="@color/textColor"
 						/>
 				</LinearLayout>
-				
+
 
 			</LinearLayout>
 
@@ -1046,24 +1051,67 @@
 						android:layout_height="wrap_content"/>
 				</LinearLayout>
 
+				
+
+
+			</LinearLayout>
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center_vertical"
+				android:text="Scale"
+				android:textColor="@color/primary"
+				android:textSize="14sp"/>
+			
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				
 				<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
-
 					<TextView
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="Scale   "/>
-
+						android:layout_height="wrap_content" 
+						android:text="Left   "/>
 					<CheckBox
-						android:id="@+id/scale_checkbox"
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"/>
-
+						android:layout_height="wrap_content" 
+						android:id="@+id/hang_left_checkbox"/>
 				</LinearLayout>
-
-
+				
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content" 
+						android:text="Middle   "/>
+					<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/hang_middle_checkbox"/>
+				</LinearLayout>
+				
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content" 
+						android:text="Right"/>
+					<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content" 
+						android:id="@+id/hang_right_checkbox"/>
+				</LinearLayout>
+				
 			</LinearLayout>
 
 		</LinearLayout>
