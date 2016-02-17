@@ -275,7 +275,6 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     public void defenseButtonClicked(View v)
     {
         defenseNumber = Integer.parseInt(((Button)v).getTag().toString());
-        defenseSelectedTextView.setText(((Button)v).getTag().toString());
         defenseSelectedTextView.setText(defenseSelectedString + " " + defenseNumber);
     }
 
