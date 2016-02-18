@@ -24,6 +24,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:id="@+id/defense_image_layout">
+
 			<ImageView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
 				android:src="@drawable/field"
 				android:adjustViewBounds="true"/>
 
-			<!-- Buttons not aligned-->
+
 			<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -42,7 +43,8 @@
 				android:layout_below="@+id/button2"
 				android:layout_alignLeft="@+id/button2"
 				android:layout_alignStart="@+id/button2"
-				android:onClick="defenseButtonClicked"/>
+				android:onClick="defenseButtonClicked"
+				android:layout_marginTop="@dimen/defenses_button_distance" />
 
 			<Button
 				android:layout_width="wrap_content"
@@ -53,7 +55,7 @@
 				android:layout_below="@+id/button3"
 				android:layout_alignLeft="@+id/button3"
 				android:layout_alignStart="@+id/button3"
-				android:layout_marginTop="17dp"
+				android:layout_marginTop="@dimen/defenses_button_distance"
 				android:id="@+id/button2" />
 			<Button
 				android:layout_width="wrap_content"
@@ -64,14 +66,15 @@
 				android:id="@+id/button3"
 				android:layout_below="@+id/button4"
 				android:layout_alignLeft="@+id/button4"
-				android:layout_alignStart="@+id/button4" />
+				android:layout_alignStart="@+id/button4"
+				android:layout_marginTop="@dimen/defenses_button_distance" />
 			<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:tag="4"
 				android:text="4"
 				android:onClick="defenseButtonClicked"
-				android:layout_marginTop="22dp"
+				android:layout_marginTop="@dimen/defenses_button_distance"
 				android:id="@+id/button4"
 				android:layout_below="@+id/button5"
 				android:layout_alignLeft="@+id/button5"
@@ -82,9 +85,9 @@
 				android:tag="5"
 				android:text="5"
 				android:onClick="defenseButtonClicked"
-				android:layout_marginRight="43dp"
-				android:layout_marginEnd="43dp"
-				android:layout_marginTop="70dp"
+				android:layout_marginRight="41dp"
+				android:layout_marginEnd="41dp"
+				android:layout_marginTop="76dp"
 				android:id="@+id/button5"
 				android:layout_alignParentTop="true"
 				android:layout_alignParentRight="true"
@@ -1051,11 +1054,11 @@
 						android:layout_height="wrap_content"/>
 				</LinearLayout>
 
-				
+
 
 
 			</LinearLayout>
-			
+
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="48dp"
@@ -1064,54 +1067,54 @@
 				android:text="Scale"
 				android:textColor="@color/primary"
 				android:textSize="14sp"/>
-			
+
 			<LinearLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:orientation="horizontal">
-				
+
 				<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
 					<TextView
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content" 
+						android:layout_height="wrap_content"
 						android:text="Left   "/>
 					<CheckBox
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content" 
+						android:layout_height="wrap_content"
 						android:id="@+id/hang_left_checkbox"/>
 				</LinearLayout>
-				
+
 				<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
 					<TextView
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content" 
+						android:layout_height="wrap_content"
 						android:text="Middle   "/>
 					<CheckBox
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:id="@+id/hang_middle_checkbox"/>
 				</LinearLayout>
-				
+
 				<LinearLayout
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
 					<TextView
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content" 
+						android:layout_height="wrap_content"
 						android:text="Right"/>
 					<CheckBox
 						android:layout_width="wrap_content"
-						android:layout_height="wrap_content" 
+						android:layout_height="wrap_content"
 						android:id="@+id/hang_right_checkbox"/>
 				</LinearLayout>
-				
+
 			</LinearLayout>
 
 		</LinearLayout>
