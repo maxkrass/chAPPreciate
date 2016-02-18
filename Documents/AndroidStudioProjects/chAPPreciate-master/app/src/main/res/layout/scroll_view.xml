@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	android:layout_height="wrap_content"
+	android:layout_width="fill_parent"
+	android:focusableInTouchMode="true"
+	android:focusable="true"
+	android:id="@+id/scrollView"
+	android:background="@android:color/background_light"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+		<ImageView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:contentDescription="Robot Image"
+			android:src="@android:drawable/ic_menu_report_image"
+			android:id="@+id/pit_scout_image"/>
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical"
+			android:paddingEnd="16dp"
+			android:paddingStart="16dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:textSize="14sp"
+				android:textColor="@color/primary"
+				android:gravity="center_vertical"
+				android:text="@string/main_card_title"/>
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/teamLabel"
+					android:alpha="0.87"
+					android:text="@string/team_number_label"
+					android:layout_gravity="center_vertical"/>
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/teamNumberEditText"
+					android:alpha="0.87"
+					android:layout_gravity="center|end"
+					android:inputType="number"
+					android:maxLength="4"
+					android:ems="4"
+					android:textColor="@color/textColor"/>
+
+			</FrameLayout>
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="@string/team_name_label"
+					android:layout_gravity="center_vertical"/>
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/team_name_edit_text"
+					android:layout_gravity="center|end"
+					android:inputType="text"
+					android:ems="8"
+					android:textColor="@color/textColor"/>
+
+			</FrameLayout>
+
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/driveLabel"
+					android:alpha="0.87"
+					android:text="@string/drive_label"
+					android:layout_gravity="center_vertical"/>
+
+				<Spinner
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/driveTypeSpinner"
+					android:alpha="0.87"
+					android:layout_gravity="center|end"
+					android:minWidth="100.0dip"/>
+
+			</FrameLayout>
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/wheelLabel"
+					android:alpha="0.87"
+					android:text="@string/wheel_label"
+					android:layout_gravity="center_vertical"/>
+
+				<Spinner
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/wheelTypeSpinner"
+					android:alpha="0.87"
+					android:layout_gravity="center|end"
+					android:minWidth="100.0dip"/>
+
+			</FrameLayout>
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/numWheelLabel"
+					android:alpha="0.87"
+					android:text="@string/num_wheel_label"
+					android:layout_gravity="center_vertical"/>
+
+				<Spinner
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/wheelNumSpinner"
+					android:alpha="0.87"
+					android:layout_gravity="center|end"
+					android:minWidth="100.0dip"/>
+
+			</FrameLayout>
+
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/numCIMsLabel"
+					android:alpha="0.87"
+					android:text="@string/num_cims_label"
+					android:layout_gravity="center_vertical"/>
+
+				<Spinner
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/cimNumSpinner"
+					android:alpha="0.87"
+					android:layout_gravity="center|end"
+					android:minWidth="100.0dip"/>
+
+			</FrameLayout>
+
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:alpha="0.87"
+					android:text="@string/max_speed_label"
+					android:layout_gravity="center_vertical"/>
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/maxSpeedEditText"
+					android:alpha="0.87"
+					android:layout_gravity="center|end"
+					android:inputType="numberDecimal"
+					android:maxLength="4"
+					android:ems="4"
+					android:textColor="@color/textColor"/>
+
+			</FrameLayout>
+
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Comment on the robot"
+				android:singleLine="false"
+				android:id="@+id/main_comment"
+				android:textColor="@color/textColor"
+				android:layout_gravity="center"/>
+
+		</LinearLayout>
+
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="1dp"
+			android:layout_marginTop="16dp"
+			android:background="?android:listDivider"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:orientation="vertical"
+			android:layout_marginEnd="16dp"
+			android:layout_marginStart="16dp">
+
+			<TextView
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:textSize="14sp"
+				android:textColor="@color/primary"
+				android:gravity="center_vertical"
+				android:layout_width="wrap_content"
+				android:text="@string/tele_card_title"/>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:id="@+id/tele_list"
+				android:orientation="vertical"/>
+
+
+			<FrameLayout
+				android:layout_height="48.0dip"
+				android:layout_width="fill_parent">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:alpha="0.87"
+					android:text="@string/highest_stack_tele_label"
+					android:layout_gravity="center_vertical"/>
+
+				<Spinner
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:id="@+id/highestStackSpinner"
+					android:alpha="0.87"
+					android:layout_gravity="center|end"
+					android:minWidth="100.0dip"/>
+
+			</FrameLayout>
+
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Comment on teleoperated"
+				android:singleLine="false"
+				android:id="@+id/tele_comment"/>
+
+		</LinearLayout>
+
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="1dp"
+			android:layout_marginTop="16dp"
+			android:background="?android:listDivider"/>
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:paddingEnd="16dp"
+			android:paddingStart="16dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:textSize="14sp"
+				android:textColor="@color/primary"
+				android:gravity="center_vertical"
+				android:text="@string/auto_card_title"/>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:id="@+id/auto_list"
+				android:orientation="vertical"/>
+
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Comment on Autonomous"
+				android:singleLine="false"
+				android:id="@+id/auto_comment"/>
+
+		</LinearLayout>
+
+		<View
+			android:layout_width="fill_parent"
+			android:layout_height="1dp"
+			android:layout_marginTop="16dp"
+			android:background="?android:listDivider"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:orientation="vertical"
+			android:paddingEnd="16dp"
+			android:paddingStart="16dp">
+
+			<TextView
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:textSize="14sp"
+				android:textColor="@color/primary"
+				android:gravity="center_vertical"
+				android:layout_width="wrap_content"
+				android:text="@string/abilities_card_title"/>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:id="@+id/abilities_list"
+				android:orientation="vertical"/>
+
+			<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Comment on the abilities"
+				android:singleLine="false"
+				android:id="@+id/abilities_comment"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</ScrollView>

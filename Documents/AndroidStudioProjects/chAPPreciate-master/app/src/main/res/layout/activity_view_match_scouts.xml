@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:id="@+id/content"
+	android:layout_height="match_parent">
+
+	<android.support.v7.widget.RecyclerView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/match_card_list"
+		android:padding="4dp"
+		android:clipToPadding="false"
+		app:layoutManager="@string/match_card_layout_manager"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"
+		app:spanCount="2"/>
+
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/view_match_toolbar"
+			android:layout_width="match_parent"
+			app:navigationIcon="@drawable/ic_arrow_back_white"
+			android:theme="@style/Toolbar.Style"
+			android:layout_height="?actionBarSize"/>
+
+	</android.support.design.widget.AppBarLayout>
+
+</android.support.design.widget.CoordinatorLayout>

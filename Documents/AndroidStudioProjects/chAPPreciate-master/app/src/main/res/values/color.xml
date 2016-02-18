@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	<color name="accent">#fff44336</color>
+	<color name="accentDark">#ffD32F2F</color>
+	<color name="black_semi_transparent">#B2000000</color>
+	<color name="half_black">#808080</color>
+	<color name="grey50">#fafafa</color>
+	<color name="white">#ffffffff</color>
+	<color name="white_pressed">#f1f1f1</color>
+	<color name="primary">#ff3f51b5</color>
+	<color name="primaryDark">#ff303f9f</color>
+	<color name="grey800">#ff424242</color>
+	<color name="textColorPrimary">#ffffffff</color>
+	<color name="textColor">#DE000000</color>
+</resources>

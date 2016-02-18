@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView
+	android:id="@+id/scrollView"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:focusable="true"
+	android:focusableInTouchMode="true">
+
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:orientation="vertical"
+		android:paddingEnd="@dimen/default_padding_keyline"
+		android:paddingStart="@dimen/default_padding_keyline"
+		android:id="@+id/main_layout">
+
+
+
+		<RelativeLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/defense_image_layout">
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:scaleType="fitCenter"
+				android:src="@drawable/field"
+				android:adjustViewBounds="true"/>
+
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="1"
+				android:id="@+id/button1"
+				android:text="1"
+
+				android:layout_below="@+id/button2"
+				android:layout_alignLeft="@+id/button2"
+				android:layout_alignStart="@+id/button2"
+				android:onClick="defenseButtonClicked"
+				android:layout_marginTop="@dimen/defenses_button_distance" />
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="2"
+				android:text="2"
+				android:onClick="defenseButtonClicked"
+				android:layout_below="@+id/button3"
+				android:layout_alignLeft="@+id/button3"
+				android:layout_alignStart="@+id/button3"
+				android:layout_marginTop="@dimen/defenses_button_distance"
+				android:id="@+id/button2" />
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="3"
+				android:text="3"
+				android:onClick="defenseButtonClicked"
+				android:id="@+id/button3"
+				android:layout_below="@+id/button4"
+				android:layout_alignLeft="@+id/button4"
+				android:layout_alignStart="@+id/button4"
+				android:layout_marginTop="@dimen/defenses_button_distance" />
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="4"
+				android:text="4"
+				android:onClick="defenseButtonClicked"
+				android:layout_marginTop="@dimen/defenses_button_distance"
+				android:id="@+id/button4"
+				android:layout_below="@+id/button5"
+				android:layout_alignLeft="@+id/button5"
+				android:layout_alignStart="@+id/button5" />
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:tag="5"
+				android:text="5"
+				android:onClick="defenseButtonClicked"
+				android:layout_marginRight="41dp"
+				android:layout_marginEnd="41dp"
+				android:layout_marginTop="76dp"
+				android:id="@+id/button5"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentRight="true"
+				android:layout_alignParentEnd="true" />
+
+		</RelativeLayout>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Defense Selected:"
+			android:id="@+id/defense_selected_text_view"/>
+
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:id="@+id/shots_layout">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="High"/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="-"
+					android:tag = "HIGH"
+					android:onClick="subtractShotClicked"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/high_text_view"
+					/>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="+"
+					android:tag="HIGH"
+					android:onClick="addShotClicked"/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="Low"/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="-"
+					android:tag="LOW"
+					android:onClick="subtractShotClicked"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/low_text_view"
+					/>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="+"
+					android:tag="LOW"
+					android:onClick="addShotClicked"/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Miss"/>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="-"
+					android:tag="MISS"
+					android:onClick="subtractShotClicked"/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/miss_text_view"
+					/>
+				<Button
+					android:layout_width="35dp"
+					android:layout_height="35dp"
+					android:text="+"
+					android:tag="MISS"
+					android:onClick="addShotClicked"/>
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:layout_column="0"
+			android:layout_row="0"
+			android:fontFamily="sans-serif-medium"
+			android:gravity="center_vertical"
+			android:text="Defenses Picked"
+			android:textColor="@color/primary"
+			android:textSize="14sp"
+			android:id="@+id/defenses_picked_text_view" />
+
+		<GridLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:columnCount="9"
+			android:orientation="vertical"
+			android:id="@+id/defenses_picked_layout">
+
+
+			<TextView
+
+				android:layout_column="0"
+				android:layout_row="1"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Port"
+				android:textSize="12sp"/>
+			/>
+
+			<TextView
+
+				android:layout_column="1"
+				android:layout_row="1"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Chevel"
+				android:textSize="12sp"/>
+			/>
+
+			<CheckBox
+				android:id="@+id/portcheckbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_column="0"
+				android:layout_gravity="right"
+				android:layout_row="3"
+				android:checked="false"
+				android:gravity="center_vertical"
+				android:padding="6dp">
+			</CheckBox>
+
+			<CheckBox
+				android:id="@+id/chevel_checkbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_column="1"
+				android:layout_row="3"
+				android:checked="false"
+				android:gravity="center_vertical"
+				android:padding="6dp">
+
+			</CheckBox>
+
+			<TextView
+
+				android:layout_column="2"
+				android:layout_row="1"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Moat"
+				android:textSize="12sp"/>
+			/>
+
+			<CheckBox
+				android:id="@+id/moat_checkbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_column="2"
+				android:layout_gravity="center_horizontal"
+				android:layout_row="3"
+				android:gravity="center_vertical"
+				android:padding="6dp">
+
+			</CheckBox>
+
+			<TextView
+
+				android:layout_column="3"
+				android:layout_row="1"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Ramp"
+				android:textSize="12sp"/>
+			/>
+
+			<CheckBox
+				android:id="@+id/ramp_checkbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_column="3"
+				android:layout_row="3"
+				android:gravity="center_vertical"
+				android:padding="6dp">
+
+			</CheckBox>
+
+			<TextView
+
+				android:layout_column="4"
+				android:layout_row="1"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Sally"
+				android:textSize="12sp"/>
+			/>
+
+			<CheckBox
+				android:id="@+id/sally_checkbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_column="4"
+				android:layout_row="3"
+				android:gravity="center_vertical"
+				android:padding="6dp">
+
+			</CheckBox>
+
+			<TextView
+
+				android:layout_column="5"
+				android:layout_row="1"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Rock"
+				android:textSize="12sp"/>
+			/>
+
+			<CheckBox
+				android:id="@+id/rock_checkbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_column="5"
+				android:layout_row="3"
+				android:gravity="center_vertical"
+				android:padding="6dp">
+
+			</CheckBox>
+
+			<TextView
+
+				android:layout_column="6"
+				android:layout_row="1"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Rough"
+				android:textSize="12sp"/>
+			/>
+
+			<CheckBox
+				android:id="@+id/rough_checkbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_column="6"
+				android:layout_row="3"
+				android:checked="false"
+				android:gravity="center_vertical"
+				android:padding="6dp">
+
+			</CheckBox>
+		</GridLayout>
+
+
+		<LinearLayout
+			android:id="@+id/auto_match_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_column="0"
+			android:layout_row="16"
+			android:orientation="vertical"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="48dp"
+			android:layout_column="0"
+			android:layout_row="15"
+			android:fontFamily="sans-serif-medium"
+			android:gravity="center_vertical"
+			android:text="@string/auto_card_title"
+			android:textColor="@color/primary"
+			android:textSize="14sp"/>
+
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="3dp"
+					android:text="Start ball"/>
+
+				<CheckBox
+					android:id="@+id/start_ball_checkbox"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="3dp"
+					android:text="Auto spy"/>
+
+				<CheckBox
+					android:id="@+id/autospy_checkbox"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="3dp"
+					android:text="Low Goal"/>
+
+				<GridLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<Button
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:text="-"/>
+
+					<TextView/>
+
+					<Button
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:text="+"/>
+
+				</GridLayout>
+
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="3dp"
+					android:text="High Goal"/>
+
+				<GridLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<Button
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:text="-"/>
+
+					<TextView/>
+
+					<Button
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:text="+"/>
+
+				</GridLayout>
+
+
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="3dp"
+					android:text="Reach def"/>
+
+				<CheckBox
+					android:id="@+id/reach_def_checkbox"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"/>
+				/>
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="3dp"
+					android:text="Defense reach"/>
+
+				<Spinner
+					android:id="@+id/defenseBreachSpinner"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:entries="@array/defense">
+
+				</Spinner>
+
+
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+
+		<FrameLayout
+			android:layout_width="fill_parent"
+			android:layout_height="48.0dip"
+			android:layout_column="0"
+			android:layout_row="17">
+
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:text="@string/auto_points"/>
+
+			<EditText
+				android:id="@+id/auto_points_field"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center|end"
+				android:ems="4"
+				android:inputType="number"
+				android:maxLength="4"
+				android:text="@string/zero"
+				android:textColor="@color/textColor"/>
+
+		</FrameLayout>
+
+		<FrameLayout
+			android:layout_width="fill_parent"
+			android:layout_height="48dp"
+			android:layout_column="0"
+			android:layout_row="18">
+
+			<EditText
+				android:id="@+id/auto_comment_field"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:hint="@string/auto_comment"
+				android:inputType="textMultiLine"
+				android:textColor="@color/textColor"/>
+		</FrameLayout>
+
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center_vertical"
+				android:text="@string/tele_card_title"
+				android:textColor="@color/primary"
+				android:textSize="14sp"/>
+
+			<LinearLayout
+				android:id="@+id/tele_match_list"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"/>
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+
+						<Spinner
+							android:id="@+id/defense2"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:entries="@array/defense">
+
+						</Spinner>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_margin="3dp"
+							android:text="Fast"/>
+
+						<CheckBox
+							android:id="@+id/fast2"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"/>
+						/>
+
+					</LinearLayout>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<Spinner
+							android:id="@+id/defense3"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:entries="@array/defense">
+
+						</Spinner>
+
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_margin="3dp"
+							android:text="Fast"/>
+
+						<CheckBox
+							android:id="@+id/fast3"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"/>
+						/>
+
+					</LinearLayout>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<Spinner
+							android:id="@+id/defense4"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:entries="@array/defense">
+
+						</Spinner>
+
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_margin="3dp"
+							android:text="Fast"/>
+
+						<CheckBox
+							android:id="@+id/fast4"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"/>
+						/>
+
+					</LinearLayout>
+
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+
+						<Spinner
+							android:id="@+id/defense5"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:entries="@array/defense">
+
+						</Spinner>
+
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_margin="3dp"
+							android:text="Fast"/>
+
+						<CheckBox
+							android:id="@+id/fast5"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"/>
+						/>
+
+					</LinearLayout>
+
+
+				</LinearLayout>
+
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_vertical"
+						android:text="@string/total_points"
+						/>
+
+					<EditText
+						android:id="@+id/total_score_field"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center|end"
+						android:ems="4"
+						android:inputType="numberSigned|numberDecimal"
+						android:maxLength="5"
+						android:singleLine="true"
+						android:text="@string/zero"
+						android:textColor="@color/textColor"
+						/>
+				</LinearLayout>
+
+
+			</LinearLayout>
+
+			<FrameLayout
+				android:layout_width="fill_parent"
+				android:layout_height="48dp">
+
+				<EditText
+					android:id="@+id/tele_comment_field"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:ems="10"
+					android:hint="@string/tele_comment"
+					android:inputType="textMultiLine"
+					android:textColor="@color/textColor"/>
+			</FrameLayout>
+
+		</LinearLayout>
+
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:layout_column="0"
+				android:layout_row="15"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center_vertical"
+				android:text="Ball"
+				android:textColor="@color/primary"
+				android:textSize="14sp"/>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"><!--Ball-->
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="3dp"
+						android:text="Secret"/>
+
+					<CheckBox
+						android:id="@+id/secret_passage_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="3dp"
+						android:text="Courtyard"/>
+
+					<CheckBox
+						android:id="@+id/courtyard_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:allowUndo="true"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="3dp"
+						android:text="Neutral"/>
+
+					<CheckBox
+						android:id="@+id/neutral_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="3dp"
+						android:text="Steal"/>
+
+					<CheckBox
+						android:id="@+id/steal_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+				</LinearLayout>
+
+			</LinearLayout>
+			<!--End Ball-->
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="48dp"
+						android:layout_column="0"
+						android:layout_row="15"
+						android:fontFamily="sans-serif-medium"
+						android:gravity="center_vertical"
+						android:paddingRight="30dp"
+						android:text="Defense"
+						android:textColor="@color/primary"
+						android:textSize="14sp"/>
+
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="48dp"
+						android:layout_column="0"
+						android:layout_row="0"
+						android:fontFamily="sans-serif-medium"
+						android:gravity="center_vertical"
+						android:paddingLeft="30dp"
+						android:text="Pick up"
+						android:textColor="@color/primary"
+						android:textSize="14sp"/>
+
+				</LinearLayout>
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"><!--Defense-->
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Block   "/>
+
+					<CheckBox
+						android:id="@+id/block_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Push   "/>
+
+					<CheckBox
+						android:id="@+id/push_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+				</LinearLayout>
+
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Can Pick Up   "/>
+
+						<CheckBox
+							android:id="@+id/can_pick_up_checkbox"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"/>
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:orientation="vertical">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Fast   "/>
+
+						<CheckBox
+							android:id="@+id/fast_checkbox"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"/>
+					</LinearLayout>
+
+				</LinearLayout>
+				<!--End Defense-->
+
+
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:layout_column="0"
+				android:layout_row="15"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center_vertical"
+				android:text="Other"
+				android:textColor="@color/primary"
+				android:textSize="14sp"/>
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Penalty   "/>
+
+					<CheckBox
+						android:id="@+id/penalty_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Breach   "/>
+
+					<CheckBox
+						android:id="@+id/breach_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Capture   "/>
+
+					<CheckBox
+						android:id="@+id/capture_checkbox"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+				</LinearLayout>
+
+
+
+
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="48dp"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center_vertical"
+				android:text="Scale"
+				android:textColor="@color/primary"
+				android:textSize="14sp"/>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal">
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Left   "/>
+					<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/hang_left_checkbox"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Middle   "/>
+					<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/hang_middle_checkbox"/>
+				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Right"/>
+					<CheckBox
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/hang_right_checkbox"/>
+				</LinearLayout>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+
+	</LinearLayout>
+
+
+</ScrollView>/

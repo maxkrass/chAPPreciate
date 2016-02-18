@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:focusableInTouchMode="true"
+	android:focusable="true">
+
+	<android.support.v7.widget.Toolbar
+		android:layout_height="@dimen/abc_action_bar_default_height_material"
+		android:layout_width="match_parent"
+		android:id="@+id/search_toolbar"
+		android:layout_alignParentTop="true"
+		android:background="@color/primary"
+		app:title="Analyze Alliance"
+		app:contentInsetStart="72dp"
+		app:navigationIcon="?attr/homeAsUpIndicator"
+		android:theme="@style/Toolbar.Style"/>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@id/search_toolbar"
+		>
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="12dp">
+
+			<TableLayout
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				xmlns:android="http://schemas.android.com/apk/res/android"
+				>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<EditText
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:inputType="number"
+						android:ems="4"
+						android:id="@+id/team1_input"
+						android:layout_column="1"
+						android:hint="@string/team_1"
+						android:textColor="@color/textColor"
+						android:maxLength="4"
+						android:textSize="16sp"/>
+
+					<EditText
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:inputType="number"
+						android:ems="4"
+						android:id="@+id/team2_input"
+						android:hint="@string/team_2"
+						android:textColor="@color/textColor"
+						android:maxLength="4"
+						android:textSize="16sp"/>
+
+					<EditText
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:inputType="number"
+						android:id="@+id/team3_input"
+						android:hint="@string/team_3"
+						android:textColor="@color/textColor"
+						android:maxLength="4"
+						android:textSize="16sp"
+						android:ems="4"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/auto_zone"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/auto_zone_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/auto_zone_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/auto_zone_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/stacked_totes"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/stacked_totes_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/stacked_totes_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/stacked_totes_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/worked"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/worked_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/worked_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/worked_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/auto_points"
+						/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/auto_points_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/auto_points_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/auto_points_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/avg_number_stacks"
+						/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/stacks_number_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/stacks_number_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/stacks_number_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/avg_number_totes_per_stack"
+						/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/totes_per_stack_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/totes_per_stack_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/totes_per_stack_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/avg_number_containers_per_stack"
+						/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/containers_per_stack_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/containers_per_stack_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/containers_per_stack_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/avg_number_noodles_per_stack"
+						/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/noodles_per_stack_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/noodles_per_stack_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/noodles_per_stack_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/functional"
+						/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/functional_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/functional_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/functional_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/coopertition"
+						/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/coopertition_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/coopertition_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/coopertition_team3"
+						android:gravity="end"/>
+				</TableRow>
+
+				<TableRow
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:padding="4dp">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/total_points"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/total_points_team1"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/total_points_team2"
+						android:gravity="end"/>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:id="@+id/total_points_team3"
+						android:gravity="end"/>
+				</TableRow>
+			</TableLayout>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="First team&apos;s comments:"
+				android:layout_marginTop="4dp"
+				android:layout_marginLeft="4dp"
+				android:layout_marginStart="4dp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/first_team_comment_auto"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+			    android:background="#bebebe"
+				/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/first_team_comment_tele"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Second team&apos;s comment:"
+				android:layout_marginLeft="4dp"
+				android:layout_marginStart="4dp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/second_team_comment_auto"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="#bebebe"
+				/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/second_team_comment_tele"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Third team&apos;s comments:"
+				android:layout_marginLeft="4dp"
+				android:layout_marginStart="4dp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/third_team_comment_auto"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="#bebebe"
+				/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/third_team_comment_tele"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"/>
+		</LinearLayout>
+	</ScrollView>
+
+</RelativeLayout>
