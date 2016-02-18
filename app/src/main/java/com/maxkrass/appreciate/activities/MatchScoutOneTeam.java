@@ -1,14 +1,18 @@
 package com.maxkrass.appreciate.activities;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,6 +22,8 @@ import com.maxkrass.appreciate.adapter.MainPagerAdapter;
 import com.maxkrass.appreciate.fragments.TeamFragment;
 import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
+
+import java.lang.reflect.Field;
 
 /**
  * Sarah made this for APPreciate on 12/17/15.
@@ -73,11 +79,27 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
 
 
-	Button autoLowGoalMinus;
 	TextView autoLowGoal;
-	Button getAutoLowGoalPlus;
+    int alg = 0;
 
-	TextView lowGoal;
+    TextView autoHighGoal;
+    int ahg = 0;
+    
+
+    TextView def2;
+    int d2 = 0;
+
+    TextView def3;
+    int d3 = 0;
+
+    TextView def4;
+    int d4 = 0;
+
+    TextView def5;
+    int d5 = 0;
+
+    TextView lowGoal;
+    NumberPicker autoLG;
 
 
 
@@ -124,6 +146,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         defenseFourSpinner = (Spinner) findViewById(R.id.defense4);
         defenseFiveSpinner = (Spinner) findViewById(R.id.defense5);
 
+        fast1 = (CheckBox) findViewById(R.id.fast);
         fast2 = (CheckBox) findViewById(R.id.fast2);
         fast3 = (CheckBox) findViewById(R.id.fast3);
         fast4 = (CheckBox) findViewById(R.id.fast4);
@@ -131,7 +154,22 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
 
 		fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
-	}
+        autoLowGoal = (TextView)findViewById(R.id.auto_lg);
+        autoLowGoal.setText("0");
+        autoHighGoal = (TextView)findViewById(R.id.auto_hg);
+        autoHighGoal.setText("0");
+        def2 = (TextView)findViewById(R.id.def2);
+        def2.setText("0");
+        def3 = (TextView)findViewById(R.id.def3);
+        def3.setText("0");
+        def4 = (TextView)findViewById(R.id.def4);
+        def4.setText("0");
+        def5 = (TextView)findViewById(R.id.def5);
+        def5.setText("0");
+
+
+    }
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -181,12 +219,19 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                     capture.setChecked(matchRecord.getCapture());
                     scale.setChecked(matchRecord.getScale());
 
+                    fast1.setChecked(matchRecord.isFast2());
                     fast2.setChecked(matchRecord.isFast2());
                     fast3.setChecked(matchRecord.isFast3());
                     fast4.setChecked(matchRecord.isFast4());
                     fast5.setChecked(matchRecord.isFast5());
 
+                    matchRecord.setLowGoalAuto(Integer.parseInt(autoLowGoal.getText().toString()));
+                    matchRecord.setHighGoalAuto(Integer.parseInt(autoHighGoal.getText().toString()));
 
+                    matchRecord.setSpinner2(Integer.parseInt(def2.getText().toString()));
+                    matchRecord.setSpinner3(Integer.parseInt(def3.getText().toString()));
+                    matchRecord.setSpinner4(Integer.parseInt(def4.getText().toString()));
+                    matchRecord.setSpinner5(Integer.parseInt(def5.getText().toString()));
                     /////
 					matchRecord.save();
                     MainPagerAdapter.matchScouts.teamAdapter.add(matchRecord);
@@ -210,4 +255,104 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 		}
 	}
 
+    public void algSubClick(View view)
+    {
+        alg--;
+        if (alg<0)
+        {
+            alg=0;
+        }
+        autoLowGoal.setText(Integer.toString(alg));
+    }
+
+    public void algPlusClick(View view)
+    {
+        alg++;
+        autoLowGoal.setText(Integer.toString(alg));
+
+    }
+
+    public void ahgSubClick(View view)
+    {
+        ahg--;
+        if (ahg<0)
+        {
+            ahg=0;
+        }
+        autoHighGoal.setText(Integer.toString(ahg));
+    }
+
+    public void ahgPlusClick(View view)
+    {
+        ahg++;
+        autoHighGoal.setText(Integer.toString(ahg));
+
+    }
+
+    public void def2SubClick(View view)
+    {
+        d2--;
+        if (d2<0)
+        {
+            d2=0;
+        }
+        def2.setText(Integer.toString(d2));
+    }
+
+    public void def2PlusClick(View view)
+    {
+        d2++;
+        def2.setText(Integer.toString(d2));
+
+    }
+
+    public void def3SubClick(View view)
+    {
+        d3--;
+        if (d3<0)
+        {
+            d3=0;
+        }
+        def3.setText(Integer.toString(d3));
+    }
+
+    public void def3PlusClick(View view)
+    {
+        d3++;
+        def3.setText(Integer.toString(d3));
+
+    }
+    public void def4SubClick(View view)
+    {
+        d4--;
+        if (d4<0)
+        {
+            d4=0;
+        }
+        def4.setText(Integer.toString(d4));
+    }
+
+    public void def4PlusClick(View view)
+    {
+        d4++;
+        def4.setText(Integer.toString(d4));
+
+    }
+
+    public void def5SubClick(View view)
+    {
+        d5--;
+        if (d5<0)
+        {
+            d5=0;
+        }
+        def5.setText(Integer.toString(d5));
+    }
+
+    public void def5PlusClick(View view)
+    {
+        d5++;
+        def5.setText(Integer.toString(d5));
+
+    }
 }
