@@ -78,8 +78,6 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     private CheckBox fast3;
     private CheckBox fast4;
     private CheckBox fast5;
-<<<<<<< HEAD
-
 
 
 	TextView autoLowGoal;
@@ -103,14 +101,10 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
     TextView lowGoal;
     NumberPicker autoLG;
-=======
-   
+
     Button autoLowGoalMinus;
-    TextView autoLowGoal;
     Button getAutoLowGoalPlus;
-    
-    TextView lowGoal;
-    
+
     int defenseNumber;
     ArrayList<String> shots;
     TextView highTextView;
@@ -120,7 +114,6 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     final String defenseSelectedString = "Defense Selected:";
 	
 	
->>>>>>> 10e122c7707642ebc877d1c3e6cb2f4ccbca8d59
 
 
 
