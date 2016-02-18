@@ -66,7 +66,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     private CheckBox breach;
 
     private CheckBox capture;
-    private CheckBox scale;
+
 
     private CheckBox fast1;
     private CheckBox fast2;
@@ -90,6 +90,10 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     TextView missTextView;
     TextView defenseSelectedTextView;
     final String defenseSelectedString = "Defense Selected:";
+
+    public CheckBox scaleLeftCheckbox;
+    public CheckBox scaleRightCheckbox;
+    public CheckBox scaleMiddleCheckbox;
 
 
 
@@ -127,7 +131,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         breach = (CheckBox) findViewById(R.id.breach_checkbox);
 
         capture = (CheckBox) findViewById(R.id.capture_checkbox);
-        scale = (CheckBox) findViewById(R.id.scale_checkbox);
+
 
         defenseTwoSpinner = (Spinner) findViewById(R.id.defense2);
         defenseThreeSpinner = (Spinner) findViewById(R.id.defense3);
@@ -151,6 +155,9 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         missTextView.setText(0 + "");
         defenseSelectedTextView.setText(defenseSelectedString +  " None");
 
+        scaleLeftCheckbox = (CheckBox)findViewById(R.id.hang_left_checkbox);
+        scaleMiddleCheckbox = (CheckBox)findViewById(R.id.hang_middle_checkbox);
+        scaleRightCheckbox = (CheckBox)findViewById(R.id.hang_right_checkbox);
 
 		fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
 	}
@@ -201,7 +208,9 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                     penalty.setChecked(matchRecord.getPenalty());
                     breach.setChecked(matchRecord.getBreach());
                     capture.setChecked(matchRecord.getCapture());
-                    scale.setChecked(matchRecord.getScale());
+                    scaleLeftCheckbox.setChecked(matchRecord.getScaleLeft());
+                    scaleMiddleCheckbox.setChecked(matchRecord.getScaleMiddle());
+                    scaleRightCheckbox.setChecked(matchRecord.getScaleRight());
 
                     fast2.setChecked(matchRecord.isFast2());
                     fast3.setChecked(matchRecord.isFast3());
@@ -344,6 +353,23 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         else
         {
             System.out.println("Could not fing tag " + tag);
+        }
+    }
+
+    public void scaleCheckboxClicked(View v)
+    {
+        String tag = v.getTag().toString();
+        if(!tag.equals("left"))
+        {
+            scaleLeftCheckbox.setChecked(false);
+        }
+        if (!tag.equals("middle"))
+        {
+            scaleMiddleCheckbox.setChecked(false);
+        }
+        if (!tag.equals("right"))
+        {
+            scaleRightCheckbox.setChecked(false);
         }
     }
 
