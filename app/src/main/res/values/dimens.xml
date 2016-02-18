@@ -1,5 +1,9 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="default_padding_keyline">16dp</dimen>
+    <dimen name="defenses_button_distance">10dp</dimen>
+
     <string name="match_card_layout_manager">LinearLayoutManager</string>
+
+
 </resources>
