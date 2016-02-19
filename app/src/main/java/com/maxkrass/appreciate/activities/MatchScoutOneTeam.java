@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.NumberPicker;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,29 +29,31 @@ import com.maxkrass.appreciate.views.CheckBoxWidget;
 import java.lang.reflect.Field;
 
 import java.util.ArrayList;
+import java.lang.reflect.Field;
+
 /**
  * Sarah made this for APPreciate on 12/17/15.
  */
 
 public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListener {
 
-	TeamFragment fragment;
+    TeamFragment fragment;
 
-	EditText teamNumberField;
-	EditText matchNumberField;
+    EditText teamNumberField;
+    EditText matchNumberField;
 
 
-	private CheckBox pickPort;
-	private CheckBox pickChevel;
-	private CheckBox pickMoat;
-	private CheckBox pickRamp;
-	private CheckBox pickSally;
-	private CheckBox pickRock;
-	private CheckBox pickRough;
-	private CheckBox startBall;
-	private CheckBox autoSpy;
+    private CheckBox pickPort;
+    private CheckBox pickChevel;
+    private CheckBox pickMoat;
+    private CheckBox pickRamp;
+    private CheckBox pickSally;
+    private CheckBox pickRock;
+    private CheckBox pickRough;
+    private CheckBox startBall;
+    private CheckBox autoSpy;
     private CheckBox didReachDefense;
-	Spinner defenseReach;
+    Spinner defenseReach;
 
     Spinner defenseTwoSpinner;
     Spinner defenseThreeSpinner;
@@ -71,7 +75,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     private CheckBox breach;
 
     private CheckBox capture;
-    private CheckBox scale;
+
 
     private CheckBox fast1;
     private CheckBox fast2;
@@ -80,19 +84,21 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     private CheckBox fast5;
 
 
-	TextView autoLowGoal;
+
+    Button autoLowGoalMinus;
+    TextView autoLowGoal;
+    Button getAutoLowGoalPlus;
+
     int alg = 0;
 
     TextView autoHighGoal;
     int ahg = 0;
-    
 
     TextView def2;
     int d2 = 0;
 
     TextView def3;
     int d3 = 0;
-
     TextView def4;
     int d4 = 0;
 
@@ -102,9 +108,6 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     TextView lowGoal;
     NumberPicker autoLG;
 
-    Button autoLowGoalMinus;
-    Button getAutoLowGoalPlus;
-
     int defenseNumber;
     ArrayList<String> shots;
     TextView highTextView;
@@ -112,23 +115,25 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     TextView missTextView;
     TextView defenseSelectedTextView;
     final String defenseSelectedString = "Defense Selected:";
-	
-	
+
+    public CheckBox scaleLeftCheckbox;
+    public CheckBox scaleRightCheckbox;
+    public CheckBox scaleMiddleCheckbox;
 
 
 
 
 
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.match_layout_one_team);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.one_team_toolbar);
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayShowTitleEnabled(false);
-		teamNumberField = (EditText) findViewById(R.id.team_number_field);
-		matchNumberField = (EditText) findViewById(R.id.match_number_field);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.match_layout_one_team);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.one_team_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        teamNumberField = (EditText) findViewById(R.id.team_number_field);
+        matchNumberField = (EditText) findViewById(R.id.match_number_field);
         pickPort = (CheckBox) findViewById(R.id.portcheckbox);
         pickChevel = (CheckBox) findViewById(R.id.chevel_checkbox);
         pickMoat = (CheckBox) findViewById(R.id.moat_checkbox);
@@ -153,7 +158,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         breach = (CheckBox) findViewById(R.id.breach_checkbox);
 
         capture = (CheckBox) findViewById(R.id.capture_checkbox);
-        scale = (CheckBox) findViewById(R.id.scale_checkbox);
+
 
         defenseTwoSpinner = (Spinner) findViewById(R.id.defense2);
         defenseThreeSpinner = (Spinner) findViewById(R.id.defense3);
@@ -165,7 +170,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         fast3 = (CheckBox) findViewById(R.id.fast3);
         fast4 = (CheckBox) findViewById(R.id.fast4);
         fast5 = (CheckBox) findViewById(R.id.fast5);
-        
+
         defenseNumber = -1;
         shots = new ArrayList<>();
         highTextView = (TextView)findViewById(R.id.high_text_view);
@@ -173,13 +178,19 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         missTextView = (TextView)findViewById(R.id.miss_text_view);
         defenseSelectedTextView = (TextView)findViewById(R.id.defense_selected_text_view);
 
-        highTextView.setText(0 + "");
-        lowTextView.setText(0 + "");
-        missTextView.setText(0 + "");
+        highTextView.setText(numShots('H') + "");
+        lowTextView.setText(numShots('L') + "");
+        missTextView.setText(numShots('M') + "");
         defenseSelectedTextView.setText(defenseSelectedString +  " None");
 
+        scaleLeftCheckbox = (CheckBox)findViewById(R.id.hang_left_checkbox);
+        scaleMiddleCheckbox = (CheckBox)findViewById(R.id.hang_middle_checkbox);
+        scaleRightCheckbox = (CheckBox)findViewById(R.id.hang_right_checkbox);
 
-		fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
+
+
+        fragment = (TeamFragment) getSupportFragmentManager().findFragmentById(R.id.content_fragment);
+
         autoLowGoal = (TextView)findViewById(R.id.auto_lg);
         autoLowGoal.setText("0");
         autoHighGoal = (TextView)findViewById(R.id.auto_hg);
@@ -192,8 +203,6 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         def4.setText("0");
         def5 = (TextView)findViewById(R.id.def5);
         def5.setText("0");
-
-
     }
 
 
@@ -243,7 +252,9 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                     penalty.setChecked(matchRecord.getPenalty());
                     breach.setChecked(matchRecord.getBreach());
                     capture.setChecked(matchRecord.getCapture());
-                    scale.setChecked(matchRecord.getScale());
+                    scaleLeftCheckbox.setChecked(matchRecord.getScaleLeft());
+                    scaleMiddleCheckbox.setChecked(matchRecord.getScaleMiddle());
+                    scaleRightCheckbox.setChecked(matchRecord.getScaleRight());
 
                     fast1.setChecked(matchRecord.isFast2());
                     fast2.setChecked(matchRecord.isFast2());
@@ -258,73 +269,85 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                     matchRecord.setSpinner3(Integer.parseInt(def3.getText().toString()));
                     matchRecord.setSpinner4(Integer.parseInt(def4.getText().toString()));
                     matchRecord.setSpinner5(Integer.parseInt(def5.getText().toString()));
-                    /////
-					matchRecord.save();
-                    MainPagerAdapter.matchScouts.teamAdapter.add(matchRecord);
+
+
+                    matchRecord.save();
+                    if(MainPagerAdapter.matchScouts == null)
+                    {
+                        System.out.println("matchScouts is null");
+                    }
+                    else if(MainPagerAdapter.matchScouts.teamAdapter == null)
+                    {
+                        //System.out.prni
+                    }
+
                     finish();
-				} else if (teamNumberField.getText().toString().equals(""))
-					((TextInputLayout) teamNumberField.getParent()).setError("A team number is required");
-				else if (matchNumberField.getText().toString().equals(""))
-					((TextInputLayout) matchNumberField.getParent()).setError("A match number is required");
-				break;
-			case R.id.clear_action:
-				fragment.clearFields();
-				break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+                } else if (teamNumberField.getText().toString().equals(""))
+                    ((TextInputLayout) teamNumberField.getParent()).setError("A team number is required");
+                else if (matchNumberField.getText().toString().equals(""))
+                    ((TextInputLayout) matchNumberField.getParent()).setError("A match number is required");
+                break;
+            case R.id.clear_action:
+                fragment.clearFields();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
-	public void onClick(View view) {
-		if (view instanceof CheckBoxWidget) {
-			((CheckBoxWidget) view).toggle();
-		}
-	}
-	
-	public void addShotClicked(View v)
+    public void onClick(View view) {
+        if (view instanceof CheckBoxWidget) {
+            ((CheckBoxWidget) view).toggle();
+        }
+    }
+
+    public void addShotClicked(View v)
     {
         String tag = v.getTag().toString();
         if(defenseNumber == -1)// no defense selected
         {
-            Toast.makeText(this, "Must select a defense", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Must select a defense", Toast.LENGTH_SHORT).show();// tellthe player to select a defense
             return;
         }
 
         if(tag.equals("HIGH"))
         {
-            shots.add(defenseNumber + "H");
-            highTextView.setText(Integer.parseInt(highTextView.getText().toString()) + 1 + "");
-            defenseNumber = -1;
-            defenseSelectedTextView.setText(defenseSelectedString + " None");
+            shots.add(defenseNumber + "H"); //add the shot to the arraylist
+            highTextView.setText(Integer.parseInt(highTextView.getText().toString()) + 1 + "");// add 1 to the textview
+
+            // set the defense to none
+
 
         }
         else if(tag.equals("LOW"))
         {
-            shots.add(defenseNumber + "L");
-            lowTextView.setText(Integer.parseInt(lowTextView.getText().toString()) + 1 + "");
-            defenseNumber = -1;
-            defenseSelectedTextView.setText(defenseSelectedString + " None");
-        }
-        else if(tag.equals("MISS"))
+            shots.add(defenseNumber + "L");// add the shot to the arraylist
+            lowTextView.setText(Integer.parseInt(lowTextView.getText().toString()) + 1 + "");// add 1 to the textview
+
+            //set the defense to none
+
+        } else if (tag.equals("MISS"))
         {
-            shots.add(defenseNumber + "M");
-            missTextView.setText(Integer.parseInt(missTextView.getText().toString()) + 1 + "");
-            defenseNumber = -1;
-            defenseSelectedTextView.setText(defenseSelectedString + " None");
+            shots.add(defenseNumber + "M");// add the shot to the arraylist
+            missTextView.setText(Integer.parseInt(missTextView.getText().toString()) + 1 + "");// add 1 to the textview
+
+
+
 
         }
         else
         {
             System.out.println("Could not find tag " + tag);
         }
+        System.out.println("Added string " + shots.get(shots.size() - 1));
 
 
     }
 
     public void defenseButtonClicked(View v)
     {
-        defenseNumber = Integer.parseInt(((Button)v).getTag().toString());
-        defenseSelectedTextView.setText(defenseSelectedString + " " + defenseNumber);
+        defenseNumber = Integer.parseInt(((Button)v).getTag().toString());//change the defense
+        defenseSelectedTextView.setText(defenseSelectedString + " " + defenseNumber);// update the defense selected textview
     }
 
 
@@ -339,7 +362,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
             {
                 if(shots.get(i).charAt(1) == 'H')
                 {
-                    shots.remove(i);
+                    System.out.println("Removed string " + shots.remove(i));
                     removedItem = true;
                     break;
                 }
@@ -356,7 +379,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
             {
                 if(shots.get(i).charAt(1) == 'L')
                 {
-                    shots.remove(i);
+                    System.out.println("Removed string " + shots.remove(i));
                     removedItem = true;
                     break;
                 }
@@ -373,7 +396,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
             {
                 if(shots.get(i).charAt(1) == 'M')
                 {
-                    shots.remove(i);
+                    System.out.println("Removed string " + shots.remove(i));
                     removedItem = true;
                     break;
                 }
@@ -489,4 +512,38 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         def5.setText(Integer.toString(d5));
 
     }
+
+    public void scaleCheckboxClicked(View v)
+    {
+        String tag = v.getTag().toString();
+        if(!tag.equals("left"))
+        {
+            scaleLeftCheckbox.setChecked(false);
+        }
+        if (!tag.equals("middle"))
+        {
+            scaleMiddleCheckbox.setChecked(false);
+        }
+        if (!tag.equals("right"))
+        {
+            scaleRightCheckbox.setChecked(false);
+        }
+    }
+
+    public int numShots(char shotType)
+    {
+        int numShots = 0;
+        for(String shotString : shots)
+        {
+            if(shotString.charAt(1) == shotType)
+            {
+                numShots++;
+            }
+        }
+
+        return numShots;
+    }
+
+
+
 }

@@ -37,7 +37,9 @@ public class MatchRecord extends Record {
     boolean penalty;
     boolean breach;
     boolean capture;
-    boolean scale;
+    boolean scaleLeft;
+    boolean scaleMiddle;
+    boolean scaleRight;
 
     public boolean isFast2() {
         return fast2;
@@ -317,13 +319,21 @@ public class MatchRecord extends Record {
         this.capture = capture;
     }
 
-    public boolean getScale() {
-        return scale;
+    public boolean getScaleLeft() {
+        return scaleLeft;
     }
 
-    public void setScale(boolean scale) {
-        this.scale = scale;
+    public void setScaleLeft(boolean scaleLeft) {
+        this.scaleLeft = scaleLeft;
     }
+
+    public boolean getScaleMiddle(){return scaleMiddle;}
+
+    public void setScaleMiddle(boolean scaleMiddle){this.scaleMiddle = scaleMiddle;}
+
+    public boolean getScaleRight(){return scaleRight;}
+
+    public void setScaleRight(boolean scaleRight){this.scaleRight = scaleRight;}
 
 
 
@@ -381,5 +391,5 @@ public class MatchRecord extends Record {
 
     public MatchRecord() {
 
-	}
+    }
 }
