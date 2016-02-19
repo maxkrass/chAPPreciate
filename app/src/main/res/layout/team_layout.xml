@@ -447,7 +447,7 @@
 						android:layout_width="35dp"
 						android:layout_height="35dp"
 						android:text="-"
-                        android:onClick="algSubClick"
+						android:onClick="algSubClick"
 						android:id="@+id/auto_lg_sub"/>
 
 					<TextView
@@ -459,7 +459,7 @@
 						android:layout_width="35dp"
 						android:layout_height="35dp"
 						android:text="+"
-                        android:onClick="algPlusClick"
+						android:onClick="algPlusClick"
 						android:layout_gravity="right"
 						android:id="@+id/auto_lg_plus"/>
 
@@ -641,16 +641,13 @@
 						<TextView
 							android:text="Low Bar"
 							android:layout_width="wrap_content"
-							android:layout_height="wrap_content">
-
-						</TextView>
+							android:layout_height="wrap_content"/>
 
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:layout_margin="3dp"
 							android:text="Fast"/>
-
 						<CheckBox
 							android:id="@+id/fast"
 							android:layout_width="wrap_content"
@@ -663,6 +660,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content">
 
+
 						<Spinner
 							android:id="@+id/defense2"
 							android:layout_width="wrap_content"
@@ -670,6 +668,24 @@
 							android:entries="@array/defense">
 
 						</Spinner>
+					<Button
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:text="-"
+						android:id="@+id/def2_sub"
+						android:onClick="def2SubClick"/>
+					<TextView
+						android:id="@+id/def2"
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"/>
+
+					<Button
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:text="+"
+						android:id="@+id/def2_plus"
+						android:onClick="def2PlusClick"/>
+
 
 						<Button
 							android:layout_width="35dp"
@@ -1214,7 +1230,9 @@
 					<CheckBox
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:id="@+id/hang_left_checkbox"/>
+						android:id="@+id/hang_left_checkbox"
+						android:tag="left"
+						android:onClick="scaleCheckboxClicked"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -1228,7 +1246,9 @@
 					<CheckBox
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:id="@+id/hang_middle_checkbox"/>
+						android:id="@+id/hang_middle_checkbox"
+						android:tag="middle"
+						android:onClick="scaleCheckboxClicked"/>
 				</LinearLayout>
 
 				<LinearLayout
@@ -1242,7 +1262,9 @@
 					<CheckBox
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:id="@+id/hang_right_checkbox"/>
+						android:id="@+id/hang_right_checkbox"
+						android:tag="right"
+						android:onClick="scaleCheckboxClicked"/>
 				</LinearLayout>
 
 			</LinearLayout>
