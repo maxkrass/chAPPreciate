@@ -23,7 +23,8 @@
 		<RelativeLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/defense_image_layout">
+			android:id="@+id/defense_image_layout"
+			android:gravity="center">
 
 			<ImageView
 				android:layout_width="wrap_content"
@@ -37,12 +38,12 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:tag="1"
-				android:id="@+id/button1"
+				android:id="@+id/defenseButton1"
 				android:text="1"
 
-				android:layout_below="@+id/button2"
-				android:layout_alignLeft="@+id/button2"
-				android:layout_alignStart="@+id/button2"
+				android:layout_below="@+id/defenseButton2"
+				android:layout_alignLeft="@+id/defenseButton2"
+				android:layout_alignStart="@+id/defenseButton2"
 				android:onClick="defenseButtonClicked"
 				android:layout_marginTop="@dimen/defenses_button_distance" />
 
@@ -52,21 +53,21 @@
 				android:tag="2"
 				android:text="2"
 				android:onClick="defenseButtonClicked"
-				android:layout_below="@+id/button3"
-				android:layout_alignLeft="@+id/button3"
-				android:layout_alignStart="@+id/button3"
+				android:layout_below="@+id/defenseButton3"
+				android:layout_alignLeft="@+id/defenseButton3"
+				android:layout_alignStart="@+id/defenseButton3"
 				android:layout_marginTop="@dimen/defenses_button_distance"
-				android:id="@+id/button2" />
+				android:id="@+id/defenseButton2" />
 			<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:tag="3"
 				android:text="3"
 				android:onClick="defenseButtonClicked"
-				android:id="@+id/button3"
-				android:layout_below="@+id/button4"
-				android:layout_alignLeft="@+id/button4"
-				android:layout_alignStart="@+id/button4"
+				android:id="@+id/defenseButton3"
+				android:layout_below="@+id/defenseButton4"
+				android:layout_alignLeft="@+id/defenseButton4"
+				android:layout_alignStart="@+id/defenseButton4"
 				android:layout_marginTop="@dimen/defenses_button_distance" />
 			<Button
 				android:layout_width="wrap_content"
@@ -75,23 +76,33 @@
 				android:text="4"
 				android:onClick="defenseButtonClicked"
 				android:layout_marginTop="@dimen/defenses_button_distance"
-				android:id="@+id/button4"
-				android:layout_below="@+id/button5"
-				android:layout_alignLeft="@+id/button5"
-				android:layout_alignStart="@+id/button5" />
+				android:id="@+id/defenseButton4"
+				android:layout_below="@+id/defenseButton5"
+				android:layout_alignLeft="@+id/defenseButton5"
+				android:layout_alignStart="@+id/defenseButton5" />
 			<Button
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:tag="5"
 				android:text="5"
 				android:onClick="defenseButtonClicked"
-				android:layout_marginRight="41dp"
-				android:layout_marginEnd="41dp"
-				android:layout_marginTop="76dp"
-				android:id="@+id/button5"
+				android:id="@+id/defenseButton5"
 				android:layout_alignParentTop="true"
 				android:layout_alignParentRight="true"
-				android:layout_alignParentEnd="true" />
+				android:layout_alignParentEnd="true"
+				android:layout_marginRight="41dp"
+				android:layout_marginEnd="41dp"
+				android:layout_marginTop="76dp" />
+
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="1"
+				android:layout_centerVertical="true"
+				android:layout_alignParentLeft="true"
+				android:layout_alignParentStart="true"
+				android:layout_marginLeft="58dp"
+				android:layout_marginStart="58dp" />
 
 		</RelativeLayout>
 
@@ -100,6 +111,11 @@
 			android:layout_height="wrap_content"
 			android:text="Defense Selected:"
 			android:id="@+id/defense_selected_text_view"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Shooting Position:"/>
 
 
 		<LinearLayout
@@ -210,15 +226,16 @@
 		<GridLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:columnCount="9"
+			android:columnCount="4"
 			android:orientation="vertical"
-			android:id="@+id/defenses_picked_layout">
+			android:id="@+id/defenses_picked_layout"
+			android:rowCount="4">
 
 
 			<TextView
 
 				android:layout_column="0"
-				android:layout_row="1"
+				android:layout_row="0"
 				android:fontFamily="sans-serif-medium"
 				android:gravity="center"
 				android:text="Port"
@@ -228,12 +245,38 @@
 			<TextView
 
 				android:layout_column="1"
-				android:layout_row="1"
+				android:layout_row="0"
 				android:fontFamily="sans-serif-medium"
 				android:gravity="center"
 				android:text="Chevel"
-				android:textSize="12sp"/>
+				android:textSize="12sp"/><![CDATA[
 			/>
+
+			]]>
+
+			<TextView
+
+				android:layout_column="2"
+				android:layout_row="0"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Moat"
+				android:textSize="12sp"/><![CDATA[
+			/>
+
+			]]>
+
+			<TextView
+
+				android:layout_column="3"
+				android:layout_row="0"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Ramp"
+				android:textSize="12sp"/><![CDATA[
+			/>
+
+			]]>
 
 			<CheckBox
 				android:id="@+id/portcheckbox"
@@ -241,7 +284,7 @@
 				android:layout_height="wrap_content"
 				android:layout_column="0"
 				android:layout_gravity="right"
-				android:layout_row="3"
+				android:layout_row="1"
 				android:checked="false"
 				android:gravity="center_vertical"
 				android:padding="6dp">
@@ -252,22 +295,12 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_column="1"
-				android:layout_row="3"
+				android:layout_row="1"
 				android:checked="false"
 				android:gravity="center_vertical"
 				android:padding="6dp">
 
 			</CheckBox>
-
-			<TextView
-
-				android:layout_column="2"
-				android:layout_row="1"
-				android:fontFamily="sans-serif-medium"
-				android:gravity="center"
-				android:text="Moat"
-				android:textSize="12sp"/>
-			/>
 
 			<CheckBox
 				android:id="@+id/moat_checkbox"
@@ -275,96 +308,113 @@
 				android:layout_height="wrap_content"
 				android:layout_column="2"
 				android:layout_gravity="center_horizontal"
-				android:layout_row="3"
+				android:layout_row="1"
 				android:gravity="center_vertical"
 				android:padding="6dp">
 
 			</CheckBox>
-
-			<TextView
-
-				android:layout_column="3"
-				android:layout_row="1"
-				android:fontFamily="sans-serif-medium"
-				android:gravity="center"
-				android:text="Ramp"
-				android:textSize="12sp"/>
-			/>
 
 			<CheckBox
 				android:id="@+id/ramp_checkbox"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_column="3"
-				android:layout_row="3"
+				android:layout_row="1"
 				android:gravity="center_vertical"
 				android:padding="6dp">
 
-			</CheckBox>
+			</CheckBox><![CDATA[
+
+			/>
+
+			]]>
 
 			<TextView
 
-				android:layout_column="4"
-				android:layout_row="1"
+				android:layout_column="0"
+				android:layout_row="2"
 				android:fontFamily="sans-serif-medium"
 				android:gravity="center"
 				android:text="Sally"
 				android:textSize="12sp"/>
-			/>
+
+			<TextView
+
+				android:layout_column="1"
+				android:layout_row="2"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Rock"
+				android:textSize="12sp"/>
+
+			<TextView
+
+				android:layout_column="2"
+				android:layout_row="2"
+				android:fontFamily="sans-serif-medium"
+				android:gravity="center"
+				android:text="Rough"
+				android:textSize="12sp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Drawbridge"
+				android:id="@+id/textView"
+				android:layout_row="2"
+				android:layout_column="3" />
 
 			<CheckBox
 				android:id="@+id/sally_checkbox"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_column="4"
+				android:layout_column="0"
 				android:layout_row="3"
 				android:gravity="center_vertical"
 				android:padding="6dp">
 
-			</CheckBox>
+			</CheckBox><![CDATA[
 
-			<TextView
-
-				android:layout_column="5"
-				android:layout_row="1"
-				android:fontFamily="sans-serif-medium"
-				android:gravity="center"
-				android:text="Rock"
-				android:textSize="12sp"/>
 			/>
+
+			]]>
 
 			<CheckBox
 				android:id="@+id/rock_checkbox"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_column="5"
+				android:layout_column="1"
 				android:layout_row="3"
 				android:gravity="center_vertical"
 				android:padding="6dp">
 
-			</CheckBox>
+			</CheckBox><![CDATA[
 
-			<TextView
-
-				android:layout_column="6"
-				android:layout_row="1"
-				android:fontFamily="sans-serif-medium"
-				android:gravity="center"
-				android:text="Rough"
-				android:textSize="12sp"/>
 			/>
+
+			]]>
 
 			<CheckBox
 				android:id="@+id/rough_checkbox"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_column="6"
+				android:layout_column="2"
 				android:layout_row="3"
 				android:checked="false"
 				android:gravity="center_vertical"
 				android:padding="6dp">
 
+
 			</CheckBox>
+
+			<CheckBox
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/checkBox"
+				android:layout_row="3"
+				android:layout_column="3" />
+
+
 		</GridLayout>
 
 
@@ -462,6 +512,7 @@
 						android:onClick="algPlusClick"
 						android:layout_gravity="right"
 						android:id="@+id/auto_lg_plus"/>
+
 
 				</GridLayout>
 
@@ -643,6 +694,7 @@
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"/>
 
+
 						<TextView
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
@@ -652,20 +704,19 @@
 							android:id="@+id/fast"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"/>
-						/>
 
-					</LinearLayout>
+				</LinearLayout>
 
-					<LinearLayout
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content">
-
+				<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
 
 						<Spinner
 							android:id="@+id/defense2"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:entries="@array/defense">
+							android:entries="@array/defense"
+							android:tag="2">
 
 						</Spinner>
 					<Button
@@ -673,7 +724,8 @@
 						android:layout_height="35dp"
 						android:text="-"
 						android:id="@+id/def2_sub"
-						android:onClick="def2SubClick"/>
+						android:onClick="defenseMinusClicked"
+						android:tag="2"/>
 					<TextView
 						android:id="@+id/def2"
 						android:layout_height="wrap_content"
@@ -684,27 +736,9 @@
 						android:layout_height="35dp"
 						android:text="+"
 						android:id="@+id/def2_plus"
-						android:onClick="def2PlusClick"/>
+						android:onClick="defensePlusClicked"
+						android:tag="2"/>
 
-
-						<Button
-							android:layout_width="35dp"
-							android:layout_height="35dp"
-							android:text="-"
-							android:id="@+id/def2_sub"
-							android:onClick="def2SubClick"/>
-
-						<TextView
-							android:id="@+id/def2"
-							android:layout_height="wrap_content"
-							android:layout_width="wrap_content"/>
-
-						<Button
-							android:layout_width="35dp"
-							android:layout_height="35dp"
-							android:text="+"
-							android:id="@+id/def2_plus"
-							android:onClick="def2PlusClick"/>
 
 						<TextView
 							android:layout_width="wrap_content"
@@ -729,7 +763,8 @@
 							android:id="@+id/defense3"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:entries="@array/defense">
+							android:entries="@array/defense"
+							android:tag="3">
 
 						</Spinner>
 
@@ -738,8 +773,8 @@
 							android:layout_height="35dp"
 							android:text="-"
 							android:id="@+id/def3_sub"
-							android:onClick="def3SubClick"/>
-
+							android:onClick="defenseMinusClicked"
+							android:tag="3"/>
 						<TextView
 							android:id="@+id/def3"
 							android:layout_height="wrap_content"
@@ -750,7 +785,9 @@
 							android:layout_height="35dp"
 							android:text="+"
 							android:id="@+id/def3_plus"
-							android:onClick="def3PlusClick"/>
+							android:onClick="defensePlusClicked"
+							android:tag="3"/>
+
 
 						<TextView
 							android:layout_width="wrap_content"
@@ -775,7 +812,8 @@
 							android:id="@+id/defense4"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:entries="@array/defense">
+							android:entries="@array/defense"
+							android:tag="4">
 
 						</Spinner>
 
@@ -784,19 +822,21 @@
 							android:layout_height="35dp"
 							android:text="-"
 							android:id="@+id/def4_sub"
-							android:onClick="def4SubClick"/>
+							android:onClick="defenseMinusClicked"
+							android:tag="4"/>
+
 
 						<TextView
 							android:id="@+id/def4"
 							android:layout_height="wrap_content"
 							android:layout_width="wrap_content"/>
-
 						<Button
 							android:layout_width="35dp"
 							android:layout_height="35dp"
 							android:text="+"
 							android:id="@+id/def4_plus"
-							android:onClick="def4PlusClick"/>
+							android:onClick="defensePlusClicked"
+							android:tag="4"/>
 
 						<TextView
 							android:layout_width="wrap_content"
@@ -821,7 +861,8 @@
 							android:id="@+id/defense5"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:entries="@array/defense">
+							android:entries="@array/defense"
+							android:tag="5">
 
 						</Spinner>
 
@@ -830,7 +871,8 @@
 							android:layout_height="35dp"
 							android:text="-"
 							android:id="@+id/def5_sub"
-							android:onClick="def5SubClick"/>
+							android:onClick="defenseMinusClicked"
+							android:tag="5"/>
 
 						<TextView
 							android:id="@+id/def5"
@@ -842,7 +884,8 @@
 							android:layout_height="35dp"
 							android:text="+"
 							android:id="@+id/def5_plus"
-							android:onClick="def5PlusClick"/>
+							android:onClick="defensePlusClicked"
+							android:tag="5"/>
 
 
 						<TextView
@@ -1180,22 +1223,6 @@
 
 					<CheckBox
 						android:id="@+id/capture_checkbox"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"/>
-				</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:orientation="vertical">
-
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="Scale   "/>
-
-					<CheckBox
-						android:id="@+id/scale_checkbox"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"/>
 				</LinearLayout>
