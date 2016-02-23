@@ -99,6 +99,9 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     int ahg = 0;
 
 
+    TextView def1;
+    int d1;
+
     TextView def2;
     int d2 = 0;
 
@@ -253,6 +256,8 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         autoLowGoal.setText("0");
         autoHighGoal = (TextView)findViewById(R.id.auto_hg);
         autoHighGoal.setText("0");
+        def1 = (TextView)findViewById(R.id.def1);
+        def1.setText("0");
         def2 = (TextView)findViewById(R.id.def2);
         def2.setText("0");
         def3 = (TextView)findViewById(R.id.def3);
@@ -282,53 +287,58 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                     matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
                     matchRecord.setMatchNumber(Integer.parseInt(matchNumberField.getText().toString()));
                     //////
-                    pickPort.setChecked(matchRecord.getPickPort());
-                    pickChevel.setChecked(matchRecord.getPickChevel());
-                    pickMoat.setChecked(matchRecord.getPickMoat());
-                    pickRamp.setChecked(matchRecord.getPickRamp());
-                    pickSally.setChecked(matchRecord.getPickSally());
-                    pickRock.setChecked(matchRecord.getPickRock());
-                    pickRough.setChecked(matchRecord.getPickRough());
-                    startBall.setChecked(matchRecord.getStartWithBall());
-                    autoSpy.setChecked(matchRecord.getAutoSpy());
-                    defenseReach.setSelection(matchRecord.getDefenseSpinner());
-                    didReachDefense.setChecked(matchRecord.getReachedDefense());
+
+                    matchRecord.setPickPort(pickPort.isChecked());
+                    matchRecord.setPickChevel(pickChevel.isChecked());
+                    matchRecord.setPickMoat(pickMoat.isChecked());
+                    matchRecord.setPickRamp(pickRamp.isChecked());
+                    matchRecord.setPickSally(pickSally.isChecked());
+                    matchRecord.setPickRock(pickRock.isChecked());
+                    matchRecord.setPickRough(pickRough.isChecked());
+
+                    matchRecord.setStartWithBall(startBall.isChecked());
+                    matchRecord.setAutoSpy(autoSpy.isChecked());
+                    matchRecord.setDefenseReach(defenseReach.getSelectedItem().toString());
+                    matchRecord.setReachedDefense(didReachDefense.isChecked());
 
 
-                    defenseTwoSpinner.setSelection(matchRecord.getSpinner2());
-                    defenseThreeSpinner.setSelection(matchRecord.getSpinner3());
-                    defenseFourSpinner.setSelection(matchRecord.getSpinner4());
-                    defenseFiveSpinner.setSelection(matchRecord.getSpinner5());
+                    // TODO: 2/23/16 add spinner 1
+                    matchRecord.setSpinner2(defenseTwoSpinner.getSelectedItemPosition());
+                    matchRecord.setSpinner3(defenseThreeSpinner.getSelectedItemPosition());
+                    matchRecord.setSpinner4(defenseFourSpinner.getSelectedItemPosition());
+                    matchRecord.setSpinner5(defenseFiveSpinner.getSelectedItemPosition());
 
-                    secretPassage.setChecked(matchRecord.getSecreatPassage());
-                    netural.setChecked(matchRecord.getNetural());
-                    courtyard.setChecked(matchRecord.getCourtYard());
-                    steal.setChecked(matchRecord.getSteal());
-                    block.setChecked(matchRecord.getBlock());
-                    fast.setChecked(matchRecord.getFast());
-                    penalty.setChecked(matchRecord.getPenalty());
-                    breach.setChecked(matchRecord.getBreach());
-                    capture.setChecked(matchRecord.getCapture());
-                    scaleLeftCheckbox.setChecked(matchRecord.getScaleLeft());
-                    scaleMiddleCheckbox.setChecked(matchRecord.getScaleMiddle());
-                    scaleRightCheckbox.setChecked(matchRecord.getScaleRight());
 
-                    fast1.setChecked(matchRecord.isFast2());
-                    fast2.setChecked(matchRecord.isFast2());
-                    fast3.setChecked(matchRecord.isFast3());
-                    fast4.setChecked(matchRecord.isFast4());
-                    fast5.setChecked(matchRecord.isFast5());
+                    matchRecord.setSecreatPassage(secretPassage.isChecked());
+                    matchRecord.setNetural(netural.isChecked());
+                    matchRecord.setCourtYard(courtyard.isChecked());
+                    matchRecord.setSteal(steal.isChecked());
+                    matchRecord.setBlock(block.isChecked());
+                    matchRecord.setFast(fast.isChecked());
+                    matchRecord.setPenalty(penalty.isChecked());
+                    matchRecord.setBreach(breach.isChecked());
+                    matchRecord.setCapture(capture.isChecked());
+                    matchRecord.setScaleLeft(scaleLeftCheckbox.isChecked());
+                    matchRecord.setScaleMiddle(scaleMiddleCheckbox.isChecked());
+                    matchRecord.setScaleRight(scaleRightCheckbox.isChecked());
+
+
+                    matchRecord.setFast1(fast1.isChecked());
+                    matchRecord.setFast2(fast2.isChecked());
+                    matchRecord.setFast3(fast3.isChecked());
+                    matchRecord.setFast4(fast4.isChecked());
+                    matchRecord.setFast5(fast5.isChecked());
+
 
                     matchRecord.setLowGoalAuto(Integer.parseInt(autoLowGoal.getText().toString()));
                     matchRecord.setHighGoalAuto(Integer.parseInt(autoHighGoal.getText().toString()));
 
-                    matchRecord.setSpinner2(Integer.parseInt(def2.getText().toString()));
-                    matchRecord.setSpinner3(Integer.parseInt(def3.getText().toString()));
-                    matchRecord.setSpinner4(Integer.parseInt(def4.getText().toString()));
-                    matchRecord.setSpinner5(Integer.parseInt(def5.getText().toString()));
 
 
+                    System.out.println("Saving data");
                     matchRecord.save();
+
+
 
 
                     finish();
@@ -560,6 +570,11 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     public void defensePlusClicked(View v)
     {
         String tag = v.getTag().toString();
+        if(tag.equals("1"))
+        {
+            d1++;
+            def1.setText(d1 + "");
+        }
         if(tag.equals("2"))
         {
             d2++;
@@ -587,6 +602,15 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
     {
         String tag = v.getTag().toString();
 
+        if(tag.equals("1"))
+        {
+            d1--;
+            if(d1 < 0)
+            {
+                d1 = 0;
+            }
+            def1.setText(d1 + "");
+        }
         if(tag.equals("2"))
         {
             d2--;
