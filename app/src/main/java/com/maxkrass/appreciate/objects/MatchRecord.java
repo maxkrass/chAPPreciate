@@ -1,6 +1,8 @@
 package com.maxkrass.appreciate.objects;
 
 
+import java.util.ArrayList;
+
 /**
  * Max made this for APPreciate on 18.12.2015 for APPreciate.
  */
@@ -41,6 +43,24 @@ public class MatchRecord extends Record {
     boolean scaleMiddle;
     boolean scaleRight;
 
+    boolean fast1;
+    boolean fast2;
+    boolean fast3;
+    boolean fast4;
+    boolean fast5;
+    ArrayList<String> shots;
+
+    public boolean isFast1()
+    {
+        return fast1;
+    }
+
+    public void setFast1(boolean fast1)
+    {
+        this.fast1 = fast1;
+
+    }
+
     public boolean isFast2() {
         return fast2;
     }
@@ -73,10 +93,7 @@ public class MatchRecord extends Record {
         this.fast5 = fast5;
     }
 
-    boolean fast2;
-    boolean fast3;
-    boolean fast4;
-    boolean fast5;
+
 
 
     int defenseSpinner;
@@ -338,12 +355,9 @@ public class MatchRecord extends Record {
 
 
 
-
-
-
-
     public int getMatchNumber() {
         return matchNumber;
+
     }
 
     public void setMatchNumber(int matchNumber) {
@@ -386,10 +400,18 @@ public class MatchRecord extends Record {
         this.teleComment = teleComment;
     }
 
-
-
-
-    public MatchRecord() {
-
+    public void setShots(ArrayList<String> shots)
+    {
+        this.shots = shots;
     }
+    public ArrayList<String> getShots()
+    {
+        return shots;
+    }
+
+
+
+
+
+    public MatchRecord() {}
 }
