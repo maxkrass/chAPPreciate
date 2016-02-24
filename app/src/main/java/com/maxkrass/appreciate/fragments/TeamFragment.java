@@ -26,7 +26,7 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public EditText autoComment;
 	public EditText teleComment;
 	int teamNumber;
-	int matchNumber;
+	String matchNumber;
 
 	public CheckBoxWidget stackedTotesCBW;
 	public CheckBoxWidget autoZoneCBW;
@@ -42,7 +42,7 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public TeamFragment() {
 	}
 
-	public TeamFragment(int teamNumber, int matchNumber) {
+	public TeamFragment(int teamNumber, String matchNumber) {
 		this.teamNumber = teamNumber;
 		this.matchNumber = matchNumber;
 	}

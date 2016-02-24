@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<string-array name="matchType">
+		<item>Quals</item>
+		<item>Semis</item>
+		<item>Quarters</item>
+		<item>Finals</item>
+	</string-array>
 	<string-array name="drive_type">
 		<item>Other</item>
 		<item>Tank</item>

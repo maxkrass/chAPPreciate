@@ -11,7 +11,7 @@ public class MatchRecord extends Record {
 
     int autoPoints;
     int totalPoints;
-    int matchNumber;
+    String matchNumber;
     String autoComment;
     String teleComment;
     boolean pickPort;
@@ -355,12 +355,12 @@ public class MatchRecord extends Record {
 
 
 
-    public int getMatchNumber() {
+    public String getMatchNumber() {
         return matchNumber;
 
     }
 
-    public void setMatchNumber(int matchNumber) {
+    public void setMatchNumber(String matchNumber) {
         this.matchNumber = matchNumber;
     }
 
