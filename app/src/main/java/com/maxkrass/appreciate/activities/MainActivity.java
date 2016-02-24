@@ -46,7 +46,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-public class MainActivity extends BaseActivity {
+public class
+
+		MainActivity extends BaseActivity {
 
 	MainPagerAdapter scouts;
 	TabLayout tabLayout;

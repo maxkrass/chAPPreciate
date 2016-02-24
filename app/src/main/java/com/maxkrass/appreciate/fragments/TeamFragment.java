@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -32,6 +33,9 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public CheckBoxWidget workedCBW;
 	public CheckBoxWidget functionalCBW;
 	public CheckBoxWidget coopertitionCBW;
+
+	public Button alg_plus;
+	public Button alg_sub;
 
 	ScrollView scrollView;
 
