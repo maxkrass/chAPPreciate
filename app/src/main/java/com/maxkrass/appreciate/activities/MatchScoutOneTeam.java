@@ -288,7 +288,6 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                     MatchRecord matchRecord = fragment.fetchMatch();
                     matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
                     matchRecord.setMatchNumber(matchTypeSpinner.getSelectedItem().toString() + " " + matchNumberField.getText().toString());
-                    Log.i("ISAAC", matchTypeSpinner.getSelectedItem().toString() + " " +matchNumberField.getText().toString());
                     //////
 
                     matchRecord.setPickPort(pickPort.isChecked());
