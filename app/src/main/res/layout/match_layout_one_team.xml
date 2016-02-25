@@ -64,6 +64,14 @@
 				android:id="@+id/match_number_field"
 				android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
+			<Spinner
+				android:id="@+id/match_number_spinner"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/textColorPrimary"
+				app:theme="@style/ThemeOverlay.AppCompat.Light"
+				android:entries="@array/matchType" />
+
 		</android.support.design.widget.TextInputLayout>
 
 	</android.support.design.widget.AppBarLayout>

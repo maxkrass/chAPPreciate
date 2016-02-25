@@ -44,6 +44,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
     EditText teamNumberField;
     EditText matchNumberField;
+    Spinner matchTypeSpinner;
 
 
     private CheckBox pickPort;
@@ -147,6 +148,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         teamNumberField = (EditText) findViewById(R.id.team_number_field);
         matchNumberField = (EditText) findViewById(R.id.match_number_field);
+        matchTypeSpinner = (Spinner) findViewById(R.id.match_number_spinner);
         pickPort = (CheckBox) findViewById(R.id.portcheckbox);
         pickChevel = (CheckBox) findViewById(R.id.chevel_checkbox);
         pickMoat = (CheckBox) findViewById(R.id.moat_checkbox);
@@ -285,7 +287,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                 if (!teamNumberField.getText().toString().equals("") && !matchNumberField.getText().toString().equals("")) {
                     MatchRecord matchRecord = fragment.fetchMatch();
                     matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
-                    matchRecord.setMatchNumber(Integer.parseInt(matchNumberField.getText().toString()));
+                    matchRecord.setMatchNumber(matchTypeSpinner.getSelectedItem().toString() + " " + matchNumberField.getText().toString());
                     //////
 
                     matchRecord.setPickPort(pickPort.isChecked());
