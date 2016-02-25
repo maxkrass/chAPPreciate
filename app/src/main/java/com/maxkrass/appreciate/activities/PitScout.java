@@ -43,7 +43,9 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     EditText abilitiesComment;
 
     private ImageView robotImage;
-
+    
+    
+/// To be deleted
     private CheckBoxWidget wideTeleCBW;
     private CheckBoxWidget autoZoneAutoCBW;
     private CheckBoxWidget flexibleAutoCBW;
@@ -58,6 +60,29 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     private CheckBoxWidget stepTeleCBW;
     private CheckBoxWidget totesAbilityCBW;
     private CheckBoxWidget totesAutoCBW;
+///
+
+
+/// to add code for
+    private CheckBox lowBow;
+    private CheckBox port;
+    private CheckBox moat;
+    private CheckBox chevel;
+    private CheckBox ramp;
+    private CheckBox drawBridge;
+    private CheckBox sally;
+    private CheckBox rockWall;
+    private CheckBox rough;
+    private CheckBox hang;
+    private CheckBox cheeze;
+    private CheckBox highShot;
+    private CheckBox lowShot;
+
+
+
+///
+
+
 
     Toolbar toolbar;
 
