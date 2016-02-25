@@ -335,15 +335,16 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                     matchRecord.setLowGoalAuto(Integer.parseInt(autoLowGoal.getText().toString()));
                     matchRecord.setHighGoalAuto(Integer.parseInt(autoHighGoal.getText().toString()));
 
+                    try{
+                        matchRecord.save();
+                        finish();
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(this, "Failed to save file", Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
 
-
-                    System.out.println("Saving data");
-                    matchRecord.save();
-
-
-
-
-                    finish();
                 } else if (teamNumberField.getText().toString().equals(""))
                     ((TextInputLayout) teamNumberField.getParent()).setError("A team number is required");
                 else if (matchNumberField.getText().toString().equals(""))
