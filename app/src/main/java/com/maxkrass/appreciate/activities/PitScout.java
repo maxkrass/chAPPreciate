@@ -64,19 +64,19 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
 
 
 /// to add code for
-    private CheckBox lowBow;
-    private CheckBox port;
-    private CheckBox moat;
-    private CheckBox chevel;
-    private CheckBox ramp;
-    private CheckBox drawBridge;
-    private CheckBox sally;
-    private CheckBox rockWall;
-    private CheckBox rough;
-    private CheckBox hang;
-    private CheckBox cheeze;
-    private CheckBox highShot;
-    private CheckBox lowShot;
+    private CheckBoxWidget lowBow;
+    private CheckBoxWidget port;
+    private CheckBoxWidget moat;
+    private CheckBoxWidget chevel;
+    private CheckBoxWidget ramp;
+    private CheckBoxWidget drawBridge;
+    private CheckBoxWidget sally;
+    private CheckBoxWidget rockWall;
+    private CheckBoxWidget rough;
+    private CheckBoxWidget hang;
+    private CheckBoxWidget cheeze;
+    private CheckBoxWidget highShot;
+    private CheckBoxWidget lowShot;
 
 
 
@@ -426,10 +426,11 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
 
             if (edit) {
                 int from = MainPagerAdapter.pitScouts.teamAdapter.indexOf(record);
-                record.save();
+                // record.save();
+                // there is no record.save
                 MainPagerAdapter.pitScouts.teamAdapter.update(from, record);
             } else {
-                record.save();
+                // record.save();
                 MainPagerAdapter.pitScouts.teamAdapter.add(record);
             }
             finish();
