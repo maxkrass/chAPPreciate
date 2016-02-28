@@ -43,8 +43,8 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     EditText abilitiesComment;
 
     private ImageView robotImage;
-    
-    
+
+
 /// To be deleted
     private CheckBoxWidget wideTeleCBW;
     private CheckBoxWidget autoZoneAutoCBW;
@@ -226,11 +226,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkTeleCBWs() {
-        wideTeleCBW.setChecked(editablePitRecord.isWideTeleCBW());
-        narrowTeleCBW.setChecked(editablePitRecord.isNarrowTeleCBW());
-        stepTeleCBW.setChecked(editablePitRecord.isStepTeleCBW());
-        landfillTeleCBW.setChecked(editablePitRecord.isLandfillTeleCBW());
-        humanPlayerTeleCBW.setChecked(editablePitRecord.isHumanPlayerTeleCBW());
     }
 
     private void fillEditTexts() {
@@ -243,10 +238,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkAutoCBWs() {
-        autoZoneAutoCBW.setChecked(editablePitRecord.isAutoZoneAutoCBW());
-        totesAutoCBW.setChecked(editablePitRecord.isTotesAutoCBW());
-        containersAutoCBW.setChecked(editablePitRecord.isContainersAutoCBW());
-        flexibleAutoCBW.setChecked(editablePitRecord.isFlexibleAutoCBW());
     }
 
     private void setSpinners() {
@@ -259,11 +250,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkAbilitiesCBWs() {
-        totesAbilityCBW.setChecked(editablePitRecord.isTotesAbilityCBW());
-        containersAbilityCBW.setChecked(editablePitRecord.isContainersAbilityCBW());
-        noodlesAbilityCBW.setChecked(editablePitRecord.isNoodlesAbilityCBW());
-        shiftingAbilityCBW.setChecked(editablePitRecord.isShiftingAbilityCBW());
-        coopAbilityCBW.setChecked(editablePitRecord.isCoopAbilityCBW());
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -397,22 +383,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
             record.setWheelNumSpinner(wheelNumSpinner.getSelectedItemPosition());
             record.setMainComment(mainComment.getText().toString());
             record.setTeleComment(teleComment.getText().toString());
-
-
-            record.setCoopAbilityCBW(coopAbilityCBW.isChecked());
-            record.setAutoZoneAutoCBW(autoZoneAutoCBW.isChecked());
-            record.setContainersAbilityCBW(containersAbilityCBW.isChecked());
-            record.setNarrowTeleCBW(narrowTeleCBW.isChecked());
-            record.setNoodlesAbilityCBW(noodlesAbilityCBW.isChecked());
-            record.setFlexibleAutoCBW(flexibleAutoCBW.isChecked());
-            record.setWideTeleCBW(wideTeleCBW.isChecked());
-            record.setHumanPlayerTeleCBW(humanPlayerTeleCBW.isChecked());
-            record.setLandfillTeleCBW(landfillTeleCBW.isChecked());
-            record.setContainersAutoCBW(containersAutoCBW.isChecked());
-            record.setShiftingAbilityCBW(shiftingAbilityCBW.isChecked());
-            record.setStepTeleCBW(stepTeleCBW.isChecked());
-            record.setTotesAbilityCBW(totesAbilityCBW.isChecked());
-            record.setTotesAutoCBW(totesAutoCBW.isChecked());
 
             record.setCimNumSpinner(cimNumSpinner.getSelectedItemPosition());
             record.setDriveSpinner(driveSpinner.getSelectedItemPosition());
