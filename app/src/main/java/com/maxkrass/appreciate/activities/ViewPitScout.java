@@ -125,23 +125,6 @@ public class ViewPitScout extends AppCompatActivity {
 		cimNumField.setText(getResources().getStringArray(R.array.num_cims)[timSquad.getCimNumSpinner()]);
 		maxSpeed.setText(getResources().getStringArray(R.array.speeds)[timSquad.getMaxSpeed()]);
 		mainComment.setText(timSquad.getMainComment());
-		wideTeleCBW.setChecked((timSquad.isWideTeleCBW()));
-		narrowTeleCBW.setChecked((timSquad.isNarrowTeleCBW()));
-		stepTeleCBW.setChecked((timSquad.isStepTeleCBW()));
-		landfillTeleCBW.setChecked((timSquad.isLandfillTeleCBW()));
-		humanPlayerTeleCBW.setChecked((timSquad.isHumanPlayerTeleCBW()));
-		highestPossibleStackField.setText(getResources().getStringArray(R.array.highest_possible_stack)[timSquad.getHighestPossibleStackSpinner()]);
-		teleComment.setText(timSquad.getTeleComment());
-		autoZoneAutoCBW.setChecked((timSquad.isAutoZoneAutoCBW()));
-		totesAutoCBW.setChecked((timSquad.isTotesAutoCBW()));
-		containersAutoCBW.setChecked((timSquad.isContainersAbilityCBW()));
-		flexibleAutoCBW.setChecked((timSquad.isFlexibleAutoCBW()));
-		autoComment.setText(timSquad.getAutoComment());
-		totesAbilityCBW.setChecked((timSquad.isTotesAbilityCBW()));
-		containersAbilityCBW.setChecked((timSquad.isContainersAbilityCBW()));
-		noodlesAbilityCBW.setChecked((timSquad.isNoodlesAbilityCBW()));
-		shiftingAbilityCBW.setChecked((timSquad.isShiftingAbilityCBW()));
-		coopAbilityCBW.setChecked((timSquad.isCoopAbilityCBW()));
 		abilitiesComment.setText(timSquad.getAbilitiesComment());
 	}
 

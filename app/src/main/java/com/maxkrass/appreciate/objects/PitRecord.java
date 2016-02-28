@@ -96,11 +96,11 @@ public class PitRecord extends Record {
 	}
 
 	public int getHighestPossibleStackSpinner() {
-		return highestPossibleStackSpinner;
+		return 0;
 	}
 
 	public void setHighestPossibleStackSpinner(int highestPossibleStackSpinner) {
-		this.highestPossibleStackSpinner = highestPossibleStackSpinner;
+		//this.highestPossibleStackSpinner = highestPossibleStackSpinner;
 	}
 
 	public int getWheelNumSpinner() {
