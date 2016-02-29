@@ -337,6 +337,8 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
                     try{
                         matchRecord.save();
+                        MainPagerAdapter.matchScouts.teamAdapter.add(matchRecord);
+                        Toast.makeText(this, "Match data successfully saved", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                     catch (Exception e)
