@@ -30,6 +30,7 @@ import com.maxkrass.appreciate.adapter.MainPagerAdapter;
 import com.maxkrass.appreciate.fragments.TeamFragment;
 import com.maxkrass.appreciate.objects.MatchRecord;
 import com.maxkrass.appreciate.views.CheckBoxWidget;
+import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 import java.lang.reflect.Field;
@@ -623,10 +624,10 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
 
 
         // TODO: 2/23/16 add spinner 1
-        matchRecord.setSpinnerTwo(defenseTwoSpinner.getSelectedItemPosition());
-        matchRecord.setSpinnerThree(defenseThreeSpinner.getSelectedItemPosition());
-        matchRecord.setSpinnerFour(defenseFourSpinner.getSelectedItemPosition());
-        matchRecord.setSpinnerFive(defenseFiveSpinner.getSelectedItemPosition());
+        matchRecord.setSpinner2(defenseTwoSpinner.getSelectedItemPosition());
+        matchRecord.setSpinner3(defenseThreeSpinner.getSelectedItemPosition());
+        matchRecord.setSpinner4(defenseFourSpinner.getSelectedItemPosition());
+        matchRecord.setSpinner5(defenseFiveSpinner.getSelectedItemPosition());
 
 
         matchRecord.setSecreatPassage(secretPassage.isChecked());
@@ -642,12 +643,12 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         matchRecord.setScaleMiddle(scaleMiddleCheckbox.isChecked());
         matchRecord.setScaleRight(scaleRightCheckbox.isChecked());
 
-        matchRecord.setFastOne(fast1.isChecked());
+        matchRecord.setFast1(fast1.isChecked());
         
-        matchRecord.setFastTwo(fast2.isChecked());
-        matchRecord.setFastThree(fast3.isChecked());
-        matchRecord.setFastFour(fast4.isChecked());
-        matchRecord.setFastFive(fast5.isChecked());
+        matchRecord.setFast2(fast2.isChecked());
+        matchRecord.setFast3(fast3.isChecked());
+        matchRecord.setFast4(fast4.isChecked());
+        matchRecord.setFast5(fast5.isChecked());
 
         matchRecord.setLowGoalAuto(Integer.parseInt(autoLowGoal.getText().toString()));
         matchRecord.setHighGoalAuto(Integer.parseInt(autoHighGoal.getText().toString()));
