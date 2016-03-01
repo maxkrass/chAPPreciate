@@ -13,6 +13,8 @@ import com.maxkrass.appreciate.objects.MatchRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ViewMatchScoutSelect extends BaseActivity {
@@ -35,6 +37,7 @@ public class ViewMatchScoutSelect extends BaseActivity {
 		RecyclerView recyclerView = (RecyclerView) findViewById(R.id.match_card_list);
 		List<MatchRecord> leroy = Select.from(MatchRecord.class).where(Condition.prop("team_number").eq(teamNumber)).orderBy("CAST(team_number AS int)").list();
 		if (leroy.size() < 1) finish();
+		leroy = sortListByMatchNumber(leroy);
 		recyclerView.setAdapter(new MatchCardAdapter(ViewMatchScoutSelect.this, leroy));
 		recyclerView.setHasFixedSize(true);         //Subject to change as card get fuller and information might be collapsed at first
 		/*if (leroy.size() > 0)
@@ -66,5 +69,58 @@ public class ViewMatchScoutSelect extends BaseActivity {
 		if (item.getItemId() == android.R.id.home)
 			finish();
 		return true;
+	}
+	
+	public List<MatchRecord> sortListByMatchNumber(List<MatchRecord> list)
+	{
+
+		for(int outerLoop = 0; outerLoop < list.size(); outerLoop++)
+		{
+			for (int innerLoop = 0; innerLoop < list.size(); innerLoop++)
+			{
+				if(outerLoop != innerLoop)
+				{
+					String outerLoopString = list.get(outerLoop).getMatchNumber();
+					String innerLoopString = list.get(innerLoop).getMatchNumber();
+					System.out.println(outerLoopString);
+
+					int outerMatchPriority = getMatchTypePriority(outerLoopString.substring(0, outerLoopString.indexOf(' ')));
+					int innerMatchPriority = getMatchTypePriority(innerLoopString.substring(0, innerLoopString.indexOf(' ')));
+
+					int outerMatchNumber = Integer.parseInt(outerLoopString.substring(outerLoopString.indexOf(' ') + 1));
+					int innerMatchNumber = Integer.parseInt(innerLoopString.substring(innerLoopString.indexOf(' ') + 1));
+
+					if(innerMatchPriority < outerMatchPriority)
+					{
+						Collections.swap(list, outerLoop, innerLoop);
+						outerLoop--;
+						break;
+					}
+					if(outerMatchPriority == innerMatchPriority)
+					{
+						if(innerMatchNumber > outerMatchNumber)
+						{
+							Collections.swap(list, innerLoop, outerLoop);
+							outerLoop--;
+						}
+					}
+
+				}
+			}
+		}
+		return list;
+	}
+
+	public int getMatchTypePriority(String matchType)
+	{
+		switch (matchType)
+		{
+			case "Quals": return 4;
+			case "Quarters":return 3;
+			case "Semis":return 2;
+			case "Finals": return 1;
+			default:return -1;
+		}
+
 	}
 }
