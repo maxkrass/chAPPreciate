@@ -33,6 +33,7 @@ import com.maxkrass.appreciate.views.CheckBoxWidget;
 
 import java.util.ArrayList;
 import java.lang.reflect.Field;
+import java.util.List;
 
 /**
  * Sarah made this for APPreciate on 12/17/15.
@@ -285,67 +286,7 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.save_action:
                 if (!teamNumberField.getText().toString().equals("") && !matchNumberField.getText().toString().equals("")) {
-                    MatchRecord matchRecord = fragment.fetchMatch();
-                    matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
-                    matchRecord.setMatchNumber(matchTypeSpinner.getSelectedItem().toString() + " " + matchNumberField.getText().toString());
-                    //////
-
-                    matchRecord.setPickPort(pickPort.isChecked());
-                    matchRecord.setPickChevel(pickChevel.isChecked());
-                    matchRecord.setPickMoat(pickMoat.isChecked());
-                    matchRecord.setPickRamp(pickRamp.isChecked());
-                    matchRecord.setPickSally(pickSally.isChecked());
-                    matchRecord.setPickRock(pickRock.isChecked());
-                    matchRecord.setPickRough(pickRough.isChecked());
-
-                    matchRecord.setStartWithBall(startBall.isChecked());
-                    matchRecord.setAutoSpy(autoSpy.isChecked());
-                    matchRecord.setDefenseReach(defenseReach.getSelectedItem().toString());
-                    matchRecord.setReachedDefense(didReachDefense.isChecked());
-
-
-                    // TODO: 2/23/16 add spinner 1
-                    matchRecord.setSpinner2(defenseTwoSpinner.getSelectedItemPosition());
-                    matchRecord.setSpinner3(defenseThreeSpinner.getSelectedItemPosition());
-                    matchRecord.setSpinner4(defenseFourSpinner.getSelectedItemPosition());
-                    matchRecord.setSpinner5(defenseFiveSpinner.getSelectedItemPosition());
-
-
-                    matchRecord.setSecreatPassage(secretPassage.isChecked());
-                    matchRecord.setNetural(netural.isChecked());
-                    matchRecord.setCourtYard(courtyard.isChecked());
-                    matchRecord.setSteal(steal.isChecked());
-                    matchRecord.setBlock(block.isChecked());
-                    matchRecord.setFast(fast.isChecked());
-                    matchRecord.setPenalty(penalty.isChecked());
-                    matchRecord.setBreach(breach.isChecked());
-                    matchRecord.setCapture(capture.isChecked());
-                    matchRecord.setScaleLeft(scaleLeftCheckbox.isChecked());
-                    matchRecord.setScaleMiddle(scaleMiddleCheckbox.isChecked());
-                    matchRecord.setScaleRight(scaleRightCheckbox.isChecked());
-
-
-                    matchRecord.setFast1(fast1.isChecked());
-                    matchRecord.setFast2(fast2.isChecked());
-                    matchRecord.setFast3(fast3.isChecked());
-                    matchRecord.setFast4(fast4.isChecked());
-                    matchRecord.setFast5(fast5.isChecked());
-
-
-                    matchRecord.setLowGoalAuto(Integer.parseInt(autoLowGoal.getText().toString()));
-                    matchRecord.setHighGoalAuto(Integer.parseInt(autoHighGoal.getText().toString()));
-
-                    try{
-                        matchRecord.save();
-                        MainPagerAdapter.matchScouts.teamAdapter.add(matchRecord);
-                        Toast.makeText(this, "Match data successfully saved", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                    catch (Exception e)
-                    {
-                        Toast.makeText(this, "Failed to save file", Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
+                    saveDataToMatchFile();
 
                 } else if (teamNumberField.getText().toString().equals(""))
                     ((TextInputLayout) teamNumberField.getParent()).setError("A team number is required");
@@ -655,6 +596,91 @@ public class MatchScoutOneTeam extends BaseActivity implements View.OnClickListe
         }
 
 
+    }
+    
+    public void saveDataToMatchFile()
+    {
+        //if(MainPagerAdapter.getMatchRecordForMatch())
+        MatchRecord matchRecord = fragment.fetchMatch();
+
+        matchRecord.setTeamNumber(Integer.parseInt(teamNumberField.getText().toString()));
+
+        matchRecord.setMatchNumber(matchTypeSpinner.getSelectedItem().toString() + " " + matchNumberField.getText().toString());
+        //////
+
+        matchRecord.setPickPort(pickPort.isChecked());
+        matchRecord.setPickChevel(pickChevel.isChecked());
+        matchRecord.setPickMoat(pickMoat.isChecked());
+        matchRecord.setPickRamp(pickRamp.isChecked());
+        matchRecord.setPickSally(pickSally.isChecked());
+        matchRecord.setPickRock(pickRock.isChecked());
+        matchRecord.setPickRough(pickRough.isChecked());
+
+        matchRecord.setStartWithBall(startBall.isChecked());
+        matchRecord.setAutoSpy(autoSpy.isChecked());
+        matchRecord.setDefenseReach(defenseReach.getSelectedItem().toString());
+        matchRecord.setReachedDefense(didReachDefense.isChecked());
+
+
+        // TODO: 2/23/16 add spinner 1
+        matchRecord.setSpinnerTwo(defenseTwoSpinner.getSelectedItemPosition());
+        matchRecord.setSpinnerThree(defenseThreeSpinner.getSelectedItemPosition());
+        matchRecord.setSpinnerFour(defenseFourSpinner.getSelectedItemPosition());
+        matchRecord.setSpinnerFive(defenseFiveSpinner.getSelectedItemPosition());
+
+
+        matchRecord.setSecreatPassage(secretPassage.isChecked());
+        matchRecord.setNetural(netural.isChecked());
+        matchRecord.setCourtYard(courtyard.isChecked());
+        matchRecord.setSteal(steal.isChecked());
+        matchRecord.setBlock(block.isChecked());
+        matchRecord.setFast(fast.isChecked());
+        matchRecord.setPenalty(penalty.isChecked());
+        matchRecord.setBreach(breach.isChecked());
+        matchRecord.setCapture(capture.isChecked());
+        matchRecord.setScaleLeft(scaleLeftCheckbox.isChecked());
+        matchRecord.setScaleMiddle(scaleMiddleCheckbox.isChecked());
+        matchRecord.setScaleRight(scaleRightCheckbox.isChecked());
+
+        matchRecord.setFastOne(fast1.isChecked());
+        
+        matchRecord.setFastTwo(fast2.isChecked());
+        matchRecord.setFastThree(fast3.isChecked());
+        matchRecord.setFastFour(fast4.isChecked());
+        matchRecord.setFastFive(fast5.isChecked());
+
+        matchRecord.setLowGoalAuto(Integer.parseInt(autoLowGoal.getText().toString()));
+        matchRecord.setHighGoalAuto(Integer.parseInt(autoHighGoal.getText().toString()));
+        List<MatchRecord> matchRecords = MatchRecord.listAll(MatchRecord.class);
+        for(MatchRecord i : matchRecords)
+        {
+            if(i.getTeamNumber() == matchRecord.getTeamNumber() && i.getMatchNumber().equals(matchRecord.getMatchNumber()))
+            {
+                i.delete();
+                Toast.makeText(this, "Match Record Updated", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        try{
+
+            matchRecord.save();
+            if(MainPagerAdapter.matchScouts == null)
+            {
+                System.out.println("matchScouts is null");
+            }
+            else if(MainPagerAdapter.matchScouts.teamAdapter == null)
+            {
+                System.out.println("temAdapter is null");
+            }
+
+            MainPagerAdapter.matchScouts.teamAdapter.add(matchRecord);
+            finish();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, "Failed to save file", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
     }
 
 
