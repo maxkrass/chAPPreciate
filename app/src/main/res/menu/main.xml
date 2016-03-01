@@ -25,4 +25,9 @@
 		android:id="@+id/export_menu"
 		android:title="Export"
 		app:showAsAction="never" />
+		
+	<item
+		android:id="@+id/delete_database_menu"
+		android:title="Delete Database"
+		app:showAsAction="never"/>
 </menu>
