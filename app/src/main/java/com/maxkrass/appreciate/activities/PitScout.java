@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.CheckBox;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.adapter.MainPagerAdapter;
