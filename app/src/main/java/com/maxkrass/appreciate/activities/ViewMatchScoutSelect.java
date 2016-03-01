@@ -102,6 +102,7 @@ public class ViewMatchScoutSelect extends BaseActivity {
 						{
 							Collections.swap(list, innerLoop, outerLoop);
 							outerLoop--;
+							break;
 						}
 					}
 
