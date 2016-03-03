@@ -322,6 +322,9 @@ public class
 					startActivity(Intent.createChooser(mailIntent, "Send Email"));
 				}
 				break;
+			case R.id.delete_database_menu:
+				deleteDatabaseButtonClicked();
+				break;
 		}
 
 		return true;
@@ -436,6 +439,28 @@ public class
 	public String getLastPathComponent(String filePath) {
 		String[] segments = filePath.split("/");
 		return segments[segments.length - 1];
+	}
+	
+	public void deleteDatabaseButtonClicked()
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Are you sure you want to delete the database?");
+		builder.setMessage("This will restrt the app");
+		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				deleteDatabase("chAPPreciate.db");
+				finish();
+			}
+		});
+		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+			}
+		});
+		builder.show();
+
 	}
 
 
