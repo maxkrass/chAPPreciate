@@ -14,25 +14,12 @@ public class PitRecord extends Record {
 	String autoComment;
 	String abilitiesComment;
 
-	boolean wideTeleCBW;
-	boolean autoZoneAutoCBW;
-	boolean flexibleAutoCBW;
-	boolean containersAbilityCBW;
-	boolean containersAutoCBW;
-	boolean coopAbilityCBW;
-	boolean humanPlayerTeleCBW;
-	boolean landfillTeleCBW;
-	boolean noodlesAbilityCBW;
-	boolean narrowTeleCBW;
-	boolean shiftingAbilityCBW;
-	boolean stepTeleCBW;
-	boolean totesAbilityCBW;
-	boolean totesAutoCBW;
+	
 
 
 	int cimNumSpinner;
 	int driveSpinner;
-	int highestPossibleStackSpinner;
+	int highestPossibleShotSpinner;
 	int wheelNumSpinner;
 	int wheelTypeSpinner;
 
@@ -87,118 +74,10 @@ public class PitRecord extends Record {
 	public void setAbilitiesComment(String abilitiesComment) {
 		this.abilitiesComment = abilitiesComment;
 	}
+	
+	
 
-	public boolean isWideTeleCBW() {
-		return wideTeleCBW;
-	}
 
-	public void setWideTeleCBW(boolean wideTeleCBW) {
-		this.wideTeleCBW = wideTeleCBW;
-	}
-
-	public boolean isAutoZoneAutoCBW() {
-		return autoZoneAutoCBW;
-	}
-
-	public void setAutoZoneAutoCBW(boolean autoZoneAutoCBW) {
-		this.autoZoneAutoCBW = autoZoneAutoCBW;
-	}
-
-	public boolean isFlexibleAutoCBW() {
-		return flexibleAutoCBW;
-	}
-
-	public void setFlexibleAutoCBW(boolean flexibleAutoCBW) {
-		this.flexibleAutoCBW = flexibleAutoCBW;
-	}
-
-	public boolean isContainersAbilityCBW() {
-		return containersAbilityCBW;
-	}
-
-	public void setContainersAbilityCBW(boolean containersAbilityCBW) {
-		this.containersAbilityCBW = containersAbilityCBW;
-	}
-
-	public boolean isContainersAutoCBW() {
-		return containersAutoCBW;
-	}
-
-	public void setContainersAutoCBW(boolean containersAutoCBW) {
-		this.containersAutoCBW = containersAutoCBW;
-	}
-
-	public boolean isCoopAbilityCBW() {
-		return coopAbilityCBW;
-	}
-
-	public void setCoopAbilityCBW(boolean coopAbilityCBW) {
-		this.coopAbilityCBW = coopAbilityCBW;
-	}
-
-	public boolean isHumanPlayerTeleCBW() {
-		return humanPlayerTeleCBW;
-	}
-
-	public void setHumanPlayerTeleCBW(boolean humanPlayerTeleCBW) {
-		this.humanPlayerTeleCBW = humanPlayerTeleCBW;
-	}
-
-	public boolean isLandfillTeleCBW() {
-		return landfillTeleCBW;
-	}
-
-	public void setLandfillTeleCBW(boolean landfillTeleCBW) {
-		this.landfillTeleCBW = landfillTeleCBW;
-	}
-
-	public boolean isNoodlesAbilityCBW() {
-		return noodlesAbilityCBW;
-	}
-
-	public void setNoodlesAbilityCBW(boolean noodlesAbilityCBW) {
-		this.noodlesAbilityCBW = noodlesAbilityCBW;
-	}
-
-	public boolean isNarrowTeleCBW() {
-		return narrowTeleCBW;
-	}
-
-	public void setNarrowTeleCBW(boolean narrowTeleCBW) {
-		this.narrowTeleCBW = narrowTeleCBW;
-	}
-
-	public boolean isShiftingAbilityCBW() {
-		return shiftingAbilityCBW;
-	}
-
-	public void setShiftingAbilityCBW(boolean shiftingAbilityCBW) {
-		this.shiftingAbilityCBW = shiftingAbilityCBW;
-	}
-
-	public boolean isStepTeleCBW() {
-		return stepTeleCBW;
-	}
-
-	public void setStepTeleCBW(boolean stepTeleCBW) {
-		this.stepTeleCBW = stepTeleCBW;
-	}
-
-	public boolean isTotesAbilityCBW() {
-		return totesAbilityCBW;
-	}
-
-	public void setTotesAbilityCBW(boolean totesAbilityCBW) {
-		this.totesAbilityCBW = totesAbilityCBW;
-	}
-
-	public boolean isTotesAutoCBW() {
-		return totesAutoCBW;
-	}
-
-	public void setTotesAutoCBW(boolean totesAutoCBW) {
-		this.totesAutoCBW = totesAutoCBW;
-	}
 
 	public int getCimNumSpinner() {
 		return cimNumSpinner;
@@ -217,11 +96,11 @@ public class PitRecord extends Record {
 	}
 
 	public int getHighestPossibleStackSpinner() {
-		return highestPossibleStackSpinner;
+		return 0;
 	}
 
 	public void setHighestPossibleStackSpinner(int highestPossibleStackSpinner) {
-		this.highestPossibleStackSpinner = highestPossibleStackSpinner;
+		//this.highestPossibleStackSpinner = highestPossibleStackSpinner;
 	}
 
 	public int getWheelNumSpinner() {

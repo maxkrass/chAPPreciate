@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.CheckBox;
 
 import com.maxkrass.appreciate.R;
 import com.maxkrass.appreciate.adapter.MainPagerAdapter;
@@ -44,6 +45,8 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
 
     private ImageView robotImage;
 
+
+/// To be deleted
     private CheckBoxWidget wideTeleCBW;
     private CheckBoxWidget autoZoneAutoCBW;
     private CheckBoxWidget flexibleAutoCBW;
@@ -58,6 +61,29 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     private CheckBoxWidget stepTeleCBW;
     private CheckBoxWidget totesAbilityCBW;
     private CheckBoxWidget totesAutoCBW;
+///
+
+
+/// to add code for
+    private CheckBoxWidget lowBow;
+    private CheckBoxWidget port;
+    private CheckBoxWidget moat;
+    private CheckBoxWidget chevel;
+    private CheckBoxWidget ramp;
+    private CheckBoxWidget drawBridge;
+    private CheckBoxWidget sally;
+    private CheckBoxWidget rockWall;
+    private CheckBoxWidget rough;
+    private CheckBoxWidget hang;
+    private CheckBoxWidget cheeze;
+    private CheckBoxWidget highShot;
+    private CheckBoxWidget lowShot;
+
+
+
+///
+
+
 
     Toolbar toolbar;
 
@@ -201,11 +227,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkTeleCBWs() {
-        wideTeleCBW.setChecked(editablePitRecord.isWideTeleCBW());
-        narrowTeleCBW.setChecked(editablePitRecord.isNarrowTeleCBW());
-        stepTeleCBW.setChecked(editablePitRecord.isStepTeleCBW());
-        landfillTeleCBW.setChecked(editablePitRecord.isLandfillTeleCBW());
-        humanPlayerTeleCBW.setChecked(editablePitRecord.isHumanPlayerTeleCBW());
     }
 
     private void fillEditTexts() {
@@ -218,10 +239,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkAutoCBWs() {
-        autoZoneAutoCBW.setChecked(editablePitRecord.isAutoZoneAutoCBW());
-        totesAutoCBW.setChecked(editablePitRecord.isTotesAutoCBW());
-        containersAutoCBW.setChecked(editablePitRecord.isContainersAutoCBW());
-        flexibleAutoCBW.setChecked(editablePitRecord.isFlexibleAutoCBW());
     }
 
     private void setSpinners() {
@@ -234,11 +251,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
     }
 
     private void checkAbilitiesCBWs() {
-        totesAbilityCBW.setChecked(editablePitRecord.isTotesAbilityCBW());
-        containersAbilityCBW.setChecked(editablePitRecord.isContainersAbilityCBW());
-        noodlesAbilityCBW.setChecked(editablePitRecord.isNoodlesAbilityCBW());
-        shiftingAbilityCBW.setChecked(editablePitRecord.isShiftingAbilityCBW());
-        coopAbilityCBW.setChecked(editablePitRecord.isCoopAbilityCBW());
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -373,22 +385,6 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
             record.setMainComment(mainComment.getText().toString());
             record.setTeleComment(teleComment.getText().toString());
 
-
-            record.setCoopAbilityCBW(coopAbilityCBW.isChecked());
-            record.setAutoZoneAutoCBW(autoZoneAutoCBW.isChecked());
-            record.setContainersAbilityCBW(containersAbilityCBW.isChecked());
-            record.setNarrowTeleCBW(narrowTeleCBW.isChecked());
-            record.setNoodlesAbilityCBW(noodlesAbilityCBW.isChecked());
-            record.setFlexibleAutoCBW(flexibleAutoCBW.isChecked());
-            record.setWideTeleCBW(wideTeleCBW.isChecked());
-            record.setHumanPlayerTeleCBW(humanPlayerTeleCBW.isChecked());
-            record.setLandfillTeleCBW(landfillTeleCBW.isChecked());
-            record.setContainersAutoCBW(containersAutoCBW.isChecked());
-            record.setShiftingAbilityCBW(shiftingAbilityCBW.isChecked());
-            record.setStepTeleCBW(stepTeleCBW.isChecked());
-            record.setTotesAbilityCBW(totesAbilityCBW.isChecked());
-            record.setTotesAutoCBW(totesAutoCBW.isChecked());
-
             record.setCimNumSpinner(cimNumSpinner.getSelectedItemPosition());
             record.setDriveSpinner(driveSpinner.getSelectedItemPosition());
             record.setHighestPossibleStackSpinner(highestPossibleStackSpinner.getSelectedItemPosition());
@@ -401,10 +397,11 @@ public class PitScout extends BaseActivity implements View.OnClickListener {
 
             if (edit) {
                 int from = MainPagerAdapter.pitScouts.teamAdapter.indexOf(record);
-                record.save();
+                // record.save();
+                // there is no record.save
                 MainPagerAdapter.pitScouts.teamAdapter.update(from, record);
             } else {
-                record.save();
+                // record.save();
                 MainPagerAdapter.pitScouts.teamAdapter.add(record);
             }
             finish();

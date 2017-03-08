@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -25,7 +26,7 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public EditText autoComment;
 	public EditText teleComment;
 	int teamNumber;
-	int matchNumber;
+	String matchNumber;
 
 	public CheckBoxWidget stackedTotesCBW;
 	public CheckBoxWidget autoZoneCBW;
@@ -33,12 +34,15 @@ public class TeamFragment extends Fragment implements android.view.View.OnClickL
 	public CheckBoxWidget functionalCBW;
 	public CheckBoxWidget coopertitionCBW;
 
+	public Button alg_plus;
+	public Button alg_sub;
+
 	ScrollView scrollView;
 
 	public TeamFragment() {
 	}
 
-	public TeamFragment(int teamNumber, int matchNumber) {
+	public TeamFragment(int teamNumber, String matchNumber) {
 		this.teamNumber = teamNumber;
 		this.matchNumber = matchNumber;
 	}

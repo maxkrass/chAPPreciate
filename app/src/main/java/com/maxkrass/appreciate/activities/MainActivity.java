@@ -46,7 +46,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-public class MainActivity extends BaseActivity {
+public class
+
+		MainActivity extends BaseActivity {
 
 	MainPagerAdapter scouts;
 	TabLayout tabLayout;
@@ -320,6 +322,9 @@ public class MainActivity extends BaseActivity {
 					startActivity(Intent.createChooser(mailIntent, "Send Email"));
 				}
 				break;
+			case R.id.delete_database_menu:
+				deleteDatabaseButtonClicked();
+				break;
 		}
 
 		return true;
@@ -434,6 +439,28 @@ public class MainActivity extends BaseActivity {
 	public String getLastPathComponent(String filePath) {
 		String[] segments = filePath.split("/");
 		return segments[segments.length - 1];
+	}
+	
+	public void deleteDatabaseButtonClicked()
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Are you sure you want to delete the database?");
+		builder.setMessage("This will restrt the app");
+		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				deleteDatabase("chAPPreciate.db");
+				finish();
+			}
+		});
+		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+			}
+		});
+		builder.show();
+
 	}
 
 

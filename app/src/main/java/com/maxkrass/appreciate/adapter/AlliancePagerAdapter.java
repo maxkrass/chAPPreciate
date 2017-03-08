@@ -12,9 +12,9 @@ public class AlliancePagerAdapter extends FragmentStatePagerAdapter {
 	public static TeamFragment team2;
 	public static TeamFragment team3;
 	public static int[] teamNumbers;
-	int matchNumber;
+	public String matchNumber;
 
-	public AlliancePagerAdapter(FragmentManager fm, int matchNumber, int... teamNumbers) {
+	public AlliancePagerAdapter(FragmentManager fm, String matchNumber, int... teamNumbers) {
 		super(fm);
 		AlliancePagerAdapter.teamNumbers = teamNumbers;
 		this.matchNumber = matchNumber;
